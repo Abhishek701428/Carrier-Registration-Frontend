@@ -1,0 +1,192 @@
+{
+	"info": {
+		"_postman_id": "97febcc7-3d8e-4ebb-aa79-f3d0c94cebb4",
+		"name": "trucks",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "22820227",
+		"_collection_link": "https://orange-star-736945.postman.co/workspace/d64a7223-9067-4a4f-8dce-78c46da897cd/collection/22820227-97febcc7-3d8e-4ebb-aa79-f3d0c94cebb4?action=share&source=collection_link&creator=22820227"
+	},
+	"item": [
+		{
+			"name": "create_Truck",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"year\":\"2024\",\r\n    \"make\":\"postkjhfd\",\r\n    \"model\":\"mode2024\",\r\n    \"vin\":\"ABC123456789\",\r\n    \"licence_state\":\"Rajasthan\",\r\n    \"carb_id\":\"4887957\",\r\n    \"ny_permit\":\"NY123456\",\r\n    \"ky_permit\":\"KY789012\",\r\n    \"nm_permit\":\"NM654321\",\r\n    \"or_permit\":\"OR456789\",\r\n    \"purchased_new\":true,\r\n    \"purchased_date\":\"2015-01-01\",\r\n    \"purchased_price\":25000,\r\n    \"truck_number\":\"RJSRAT570\",\r\n    \"carrier_id\":\"65d111e7d19e540a700b5866\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/api/v1/truck/create",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"truck",
+						"create"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetTrucksByCarrierId",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/api/v1/truck/get",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"truck",
+						"get"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetTruckById",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/api/v1/truck/get/truck/65d0d5201c1518b08e537b22",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"truck",
+						"get",
+						"truck",
+						"65d0d5201c1518b08e537b22"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "updateTruckById",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"year\":\"2024\",\r\n    \"make\":\"postkjhfd\",\r\n    \"model\":\"mode2024\",\r\n    \"vin\":\"ABC123456789\",\r\n    \"licence_state\":\"Rajasthan\",\r\n    \"carb_id\":\"4887957\",\r\n    \"ny_permit\":\"NY123456\",\r\n    \"ky_permit\":\"KY789012\",\r\n    \"nm_permit\":\"NM654321\",\r\n    \"or_permit\":\"OR456789\",\r\n    \"purchased_new\":true,\r\n    \"purchased_date\":\"2015-01-01\",\r\n    \"purchased_price\":25000\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/api/v1/truck/update/65d0d5201c1518b08e537b22",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"truck",
+						"update",
+						"65d0d5201c1518b08e537b22"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "deleteTruckById",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/api/v1/truck/delete/65d0d5201c1518b08e537b22",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"truck",
+						"delete",
+						"65d0d5201c1518b08e537b22"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

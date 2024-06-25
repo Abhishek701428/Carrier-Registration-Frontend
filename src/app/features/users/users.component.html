@@ -1,0 +1,992 @@
+<app-navbar></app-navbar>
+
+
+<main id="main" class="main mt-0 p-0">
+  <div id="kt_app_content" class="app-content  flex-column-fluid">
+    <div class="container-fluid px-5">
+      <div class="row bg-white px-3 py-4 mt-3 rounded">
+        <div class="col-md-12">
+          <!-- Default Tabs -->
+          <ul class="nav nav-pills gap-2 border-bottom pb-4" id="myTab" role="tablist">
+            <li class="nav-item" role="presentation">
+              <button class="nav-link rounded-pill active" id="home-tab" data-bs-toggle="tab" data-bs-target="#customer"
+                type="button" role="tab" aria-controls="home" aria-selected="true">Activity Logs</button>
+            </li>
+            <li class="nav-item" role="presentation">
+              <button class="nav-link rounded-pill" id="profile-tab" data-bs-toggle="tab" data-bs-target="#file"
+                type="button" role="tab" aria-controls="profile" aria-selected="false" tabindex="-1">Profile</button>
+            </li>
+            <li class="nav-item" role="presentation">
+              <button class="nav-link rounded-pill" id="contact-tab" data-bs-toggle="tab" data-bs-target="#forms"
+                type="button" role="tab" aria-controls="contact" aria-selected="false" tabindex="-1">Users</button>
+            </li>
+            <li class="nav-item" role="presentation">
+              <button class="nav-link rounded-pill" id="contact-tab" data-bs-toggle="tab" data-bs-target="#email"
+                type="button" role="tab" aria-controls="contact" aria-selected="false" tabindex="-1">Permission
+                Groups</button>
+            </li>
+          </ul>
+          <div class="tab-content pt-2" id="myTabContent">
+            <div class="tab-pane fade active show" id="customer" role="tabpanel" aria-labelledby="home-tab">
+              <div id="kt_app_content" class="app-content  flex-column-fluid">
+
+                <div class="my-4">
+                  <div class="row">
+                    <div class="col-md-12">
+                      <div class="d-flex justify-content-end gap-2">
+                        <button type="button" class="btn btn-success rounded-pill font-14" data-bs-toggle="modal"
+                          data-bs-target="#largeModal1">
+                          <i class="fa fa-plus me-2" aria-hidden="true"></i>Add
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="col-lg-12">
+                    <div class="table-responsive">
+                      <table class="table table-bordered">
+                        <thead>
+                          <tr>
+                            <th scope="col">Name</th>
+                            <th scope="col">Email</th>
+                            <th scope="col">Type</th>
+                            <th scope="col">Permission Group</th>
+                            <th scope="col">Active/De-Active</th>
+                            <th scope="col" width="30px">Actions</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <td><a class="text-primary" href="">Andrew</a></td>
+                            <td>andrewgmail.com</td>
+                            <td>user</td>
+                            <td>update permission</td>
+                            <td>
+                              <span class="text-success font-weight-500"><i
+                                  class="fa fa-circle font-10 me-1"></i>Active</span>
+                            </td>
+                            <td class="text-capitalize text-center">
+                              <div class="dropdown filter-dropdown">
+                                <span class="dropdown-toggle font-16 px-3" type="button" id="dropdownMenuButton23"
+                                  data-bs-toggle="dropdown" aria-expanded="false"><i class="fa fa-ellipsis-v"></i>
+                                </span>
+                                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton2" style="">
+
+                                  <a class="dropdown-item dispatch font-13" href="javascript:;" data-bs-toggle="modal"
+                                    data-bs-target="#ExtralargeModalEdit"
+                                    onclick="dropdownevent('dropdownMenuButton2', 'dispatch')">Edit</a>
+                                  <a class="dropdown-item assiened font-13" href="javascript:;" data-bs-toggle="modal"
+                                    data-bs-target="#ExtralargeModalDelete"
+                                    onclick="dropdownevent('dropdownMenuButton2', 'assigned')">Delete</a>
+                                </div>
+                              </div>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td><a class="text-primary" href="">Andrew</a></td>
+                            <td>andrewgmail.com</td>
+                            <td>user</td>
+                            <td>update permission</td>
+                            <td>
+                              <span class="text-success font-weight-500"><i
+                                  class="fa fa-circle font-10 me-1"></i>Active</span>
+                            </td>
+                            <td class="text-capitalize text-center">
+                              <div class="dropdown filter-dropdown">
+                                <span class="dropdown-toggle font-16 px-3" type="button" id="dropdownMenuButton23"
+                                  data-bs-toggle="dropdown" aria-expanded="false"><i class="fa fa-ellipsis-v"></i>
+                                </span>
+                                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton2" style="">
+
+                                  <a class="dropdown-item dispatch font-13" href="javascript:;" data-bs-toggle="modal"
+                                    data-bs-target="#ExtralargeModalEdit"
+                                    onclick="dropdownevent('dropdownMenuButton2', 'dispatch')">Edit</a>
+                                  <a class="dropdown-item assiened font-13" href="javascript:;" data-bs-toggle="modal"
+                                    data-bs-target="#ExtralargeModalDelete"
+                                    onclick="dropdownevent('dropdownMenuButton2', 'assigned')">Delete</a>
+                                </div>
+                              </div>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td><a class="text-primary" href="">Andrew</a></td>
+                            <td>andrewgmail.com</td>
+                            <td>user</td>
+                            <td>update permission</td>
+                            <td>
+                              <span class="text-danger font-weight-500"><i
+                                  class="fa fa-circle font-10 me-1"></i>In-Active</span>
+                            </td>
+                            <td class="text-capitalize text-center">
+                              <div class="dropdown filter-dropdown">
+                                <span class="dropdown-toggle font-16 px-3" type="button" id="dropdownMenuButton23"
+                                  data-bs-toggle="dropdown" aria-expanded="false"><i class="fa fa-ellipsis-v"></i>
+                                </span>
+                                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton2" style="">
+
+                                  <a class="dropdown-item dispatch font-13" href="javascript:;" data-bs-toggle="modal"
+                                    data-bs-target="#ExtralargeModalEdit"
+                                    onclick="dropdownevent('dropdownMenuButton2', 'dispatch')">Edit</a>
+                                  <a class="dropdown-item assiened font-13" href="javascript:;" data-bs-toggle="modal"
+                                    data-bs-target="#ExtralargeModalDelete"
+                                    onclick="dropdownevent('dropdownMenuButton2', 'assigned')">Delete</a>
+                                </div>
+                              </div>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td><a class="text-primary" href="">Andrew</a></td>
+                            <td>andrewgmail.com</td>
+                            <td>user</td>
+                            <td>update permission</td>
+                            <td>
+                              <span class="text-success font-weight-500"><i
+                                  class="fa fa-circle font-10 me-1"></i>Active</span>
+                            </td>
+                            <td class="text-capitalize text-center">
+                              <div class="dropdown filter-dropdown">
+                                <span class="dropdown-toggle font-16 px-3" type="button" id="dropdownMenuButton23"
+                                  data-bs-toggle="dropdown" aria-expanded="false"><i class="fa fa-ellipsis-v"></i>
+                                </span>
+                                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton2" style="">
+
+                                  <a class="dropdown-item dispatch font-13" href="javascript:;" data-bs-toggle="modal"
+                                    data-bs-target="#ExtralargeModalEdit"
+                                    onclick="dropdownevent('dropdownMenuButton2', 'dispatch')">Edit</a>
+                                  <a class="dropdown-item assiened font-13" href="javascript:;" data-bs-toggle="modal"
+                                    data-bs-target="#ExtralargeModalDelete"
+                                    onclick="dropdownevent('dropdownMenuButton2', 'assigned')">Delete</a>
+                                </div>
+                              </div>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td><a class="text-primary" href="">Andrew</a></td>
+                            <td>andrewgmail.com</td>
+                            <td>user</td>
+                            <td>update permission</td>
+                            <td>
+                              <span class="text-success font-weight-500"><i
+                                  class="fa fa-circle font-10 me-1"></i>Active</span>
+                            </td>
+                            <td class="text-capitalize text-center">
+                              <div class="dropdown filter-dropdown">
+                                <span class="dropdown-toggle font-16 px-3" type="button" id="dropdownMenuButton23"
+                                  data-bs-toggle="dropdown" aria-expanded="false"><i class="fa fa-ellipsis-v"></i>
+                                </span>
+                                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton2" style="">
+
+                                  <a class="dropdown-item dispatch font-13" href="javascript:;" data-bs-toggle="modal"
+                                    data-bs-target="#ExtralargeModalEdit"
+                                    onclick="dropdownevent('dropdownMenuButton2', 'dispatch')">Edit</a>
+                                  <a class="dropdown-item assiened font-13" href="javascript:;" data-bs-toggle="modal"
+                                    data-bs-target="#ExtralargeModalDelete"
+                                    onclick="dropdownevent('dropdownMenuButton2', 'assigned')">Delete</a>
+                                </div>
+                              </div>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td><a class="text-primary" href="">Andrew</a></td>
+                            <td>andrewgmail.com</td>
+                            <td>user</td>
+                            <td>update permission</td>
+                            <td>
+                              <span class="text-danger font-weight-500"><i
+                                  class="fa fa-circle font-10 me-1"></i>In-Active</span>
+                            </td>
+                            <td class="text-capitalize text-center">
+                              <div class="dropdown filter-dropdown">
+                                <span class="dropdown-toggle font-16 px-3" type="button" id="dropdownMenuButton23"
+                                  data-bs-toggle="dropdown" aria-expanded="false"><i class="fa fa-ellipsis-v"></i>
+                                </span>
+                                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton2" style="">
+
+                                  <a class="dropdown-item dispatch font-13" href="javascript:;" data-bs-toggle="modal"
+                                    data-bs-target="#ExtralargeModalEdit"
+                                    onclick="dropdownevent('dropdownMenuButton2', 'dispatch')">Edit</a>
+                                  <a class="dropdown-item assiened font-13" href="javascript:;" data-bs-toggle="modal"
+                                    data-bs-target="#ExtralargeModalDelete"
+                                    onclick="dropdownevent('dropdownMenuButton2', 'assigned')">Delete</a>
+                                </div>
+                              </div>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td><a class="text-primary" href="">Andrew</a></td>
+                            <td>andrewgmail.com</td>
+                            <td>user</td>
+                            <td>update permission</td>
+                            <td>
+                              <span class="text-success font-weight-500"><i
+                                  class="fa fa-circle font-10 me-1"></i>Active</span>
+                            </td>
+                            <td class="text-capitalize text-center">
+                              <div class="dropdown filter-dropdown">
+                                <span class="dropdown-toggle font-16 px-3" type="button" id="dropdownMenuButton23"
+                                  data-bs-toggle="dropdown" aria-expanded="false"><i class="fa fa-ellipsis-v"></i>
+                                </span>
+                                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton2" style="">
+
+                                  <a class="dropdown-item dispatch font-13" href="javascript:;" data-bs-toggle="modal"
+                                    data-bs-target="#ExtralargeModalEdit"
+                                    onclick="dropdownevent('dropdownMenuButton2', 'dispatch')">Edit</a>
+                                  <a class="dropdown-item assiened font-13" href="javascript:;" data-bs-toggle="modal"
+                                    data-bs-target="#ExtralargeModalDelete"
+                                    onclick="dropdownevent('dropdownMenuButton2', 'assigned')">Delete</a>
+                                </div>
+                              </div>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td><a class="text-primary" href="">Andrew</a></td>
+                            <td>andrewgmail.com</td>
+                            <td>user</td>
+                            <td>update permission</td>
+                            <td>
+                              <span class="text-success font-weight-500"><i
+                                  class="fa fa-circle font-10 me-1"></i>Active</span>
+                            </td>
+                            <td class="text-capitalize text-center">
+                              <div class="dropdown filter-dropdown">
+                                <span class="dropdown-toggle font-16 px-3" type="button" id="dropdownMenuButton23"
+                                  data-bs-toggle="dropdown" aria-expanded="false"><i class="fa fa-ellipsis-v"></i>
+                                </span>
+                                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton2" style="">
+
+                                  <a class="dropdown-item dispatch font-13" href="javascript:;" data-bs-toggle="modal"
+                                    data-bs-target="#ExtralargeModalEdit"
+                                    onclick="dropdownevent('dropdownMenuButton2', 'dispatch')">Edit</a>
+                                  <a class="dropdown-item assiened font-13" href="javascript:;" data-bs-toggle="modal"
+                                    data-bs-target="#ExtralargeModalDelete"
+                                    onclick="dropdownevent('dropdownMenuButton2', 'assigned')">Delete</a>
+                                </div>
+                              </div>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td><a class="text-primary" href="">Andrew</a></td>
+                            <td>andrewgmail.com</td>
+                            <td>user</td>
+                            <td>update permission</td>
+                            <td>
+                              <span class="text-danger font-weight-500"><i
+                                  class="fa fa-circle font-10 me-1"></i>In-Active</span>
+                            </td>
+                            <td class="text-capitalize text-center">
+                              <div class="dropdown filter-dropdown">
+                                <span class="dropdown-toggle font-16 px-3" type="button" id="dropdownMenuButton23"
+                                  data-bs-toggle="dropdown" aria-expanded="false"><i class="fa fa-ellipsis-v"></i>
+                                </span>
+                                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton2" style="">
+
+                                  <a class="dropdown-item dispatch font-13" href="javascript:;" data-bs-toggle="modal"
+                                    data-bs-target="#ExtralargeModalEdit"
+                                    onclick="dropdownevent('dropdownMenuButton2', 'dispatch')">Edit</a>
+                                  <a class="dropdown-item assiened font-13" href="javascript:;" data-bs-toggle="modal"
+                                    data-bs-target="#ExtralargeModalDelete"
+                                    onclick="dropdownevent('dropdownMenuButton2', 'assigned')">Delete</a>
+                                </div>
+                              </div>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td><a class="text-primary" href="">Andrew</a></td>
+                            <td>andrewgmail.com</td>
+                            <td>user</td>
+                            <td>update permission</td>
+                            <td>
+                              <span class="text-success font-weight-500"><i
+                                  class="fa fa-circle font-10 me-1"></i>Active</span>
+                            </td>
+                            <td class="text-capitalize text-center">
+                              <div class="dropdown filter-dropdown">
+                                <span class="dropdown-toggle font-16 px-3" type="button" id="dropdownMenuButton23"
+                                  data-bs-toggle="dropdown" aria-expanded="false"><i class="fa fa-ellipsis-v"></i>
+                                </span>
+                                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton2" style="">
+
+                                  <a class="dropdown-item dispatch font-13" href="javascript:;" data-bs-toggle="modal"
+                                    data-bs-target="#ExtralargeModalEdit"
+                                    onclick="dropdownevent('dropdownMenuButton2', 'dispatch')">Edit</a>
+                                  <a class="dropdown-item assiened font-13" href="javascript:;" data-bs-toggle="modal"
+                                    data-bs-target="#ExtralargeModalDelete"
+                                    onclick="dropdownevent('dropdownMenuButton2', 'assigned')">Delete</a>
+                                </div>
+                              </div>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td><a class="text-primary" href="">Andrew</a></td>
+                            <td>andrewgmail.com</td>
+                            <td>user</td>
+                            <td>update permission</td>
+                            <td>
+                              <span class="text-success font-weight-500"><i
+                                  class="fa fa-circle font-10 me-1"></i>Active</span>
+                            </td>
+                            <td class="text-capitalize text-center">
+                              <div class="dropdown filter-dropdown">
+                                <span class="dropdown-toggle font-16 px-3" type="button" id="dropdownMenuButton23"
+                                  data-bs-toggle="dropdown" aria-expanded="false"><i class="fa fa-ellipsis-v"></i>
+                                </span>
+                                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton2" style="">
+
+                                  <a class="dropdown-item dispatch font-13" href="javascript:;" data-bs-toggle="modal"
+                                    data-bs-target="#ExtralargeModalEdit"
+                                    onclick="dropdownevent('dropdownMenuButton2', 'dispatch')">Edit</a>
+                                  <a class="dropdown-item assiened font-13" href="javascript:;" data-bs-toggle="modal"
+                                    data-bs-target="#ExtralargeModalDelete"
+                                    onclick="dropdownevent('dropdownMenuButton2', 'assigned')">Delete</a>
+                                </div>
+                              </div>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td><a class="text-primary" href="">Andrew</a></td>
+                            <td>andrewgmail.com</td>
+                            <td>user</td>
+                            <td>update permission</td>
+                            <td>
+                              <span class="text-danger font-weight-500"><i
+                                  class="fa fa-circle font-10 me-1"></i>In-Active</span>
+                            </td>
+                            <td class="text-capitalize text-center">
+                              <div class="dropdown filter-dropdown">
+                                <span class="dropdown-toggle font-16 px-3" type="button" id="dropdownMenuButton23"
+                                  data-bs-toggle="dropdown" aria-expanded="false"><i class="fa fa-ellipsis-v"></i>
+                                </span>
+                                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton2" style="">
+
+                                  <a class="dropdown-item dispatch font-13" href="javascript:;" data-bs-toggle="modal"
+                                    data-bs-target="#ExtralargeModalEdit"
+                                    onclick="dropdownevent('dropdownMenuButton2', 'dispatch')">Edit</a>
+                                  <a class="dropdown-item assiened font-13" href="javascript:;" data-bs-toggle="modal"
+                                    data-bs-target="#ExtralargeModalDelete"
+                                    onclick="dropdownevent('dropdownMenuButton2', 'assigned')">Delete</a>
+                                </div>
+                              </div>
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                </div>
+                <div class="row bg-white px-3 py-4 mt-3 rounded">
+                  <div class="col-md-12">
+                    <nav aria-label="Page navigation example ms-auto me-auto">
+                      <ul class="pagination justify-content-center gap-2 mb-0">
+                        <li class="page-item">
+                          <a class="page-link font-22" href="javascript:;" aria-label="Previous"><i
+                              class="fa fa-angle-left font-weight-300"></i></a>
+                        </li>
+                        <li class="page-item active"><a class="page-link font-14" href="javascript:;">1</a></li>
+                        <li class="page-item"><a class="page-link font-14" href="javascript:;">2</a></li>
+                        <li class="page-item"><a class="page-link font-14" href="javascript:;">3</a></li>
+                        <li class="page-item"><a class="page-link font-14" href="javascript:;">4</a></li>
+                        <li class="page-item"><a class="page-link font-14" href="javascript:;">5</a></li>
+                        <li class="page-item"><a class="page-link font-22" href="javascript:;" aria-label="Next"><i
+                              class="fa fa-angle-right font-weight-300"></i></a></li>
+                      </ul>
+                    </nav>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+            <div class="tab-pane fade" id="file" role="tabpanel" aria-labelledby="profile-tab">
+
+              <div id="kt_app_content" class="app-content  flex-column-fluid">
+
+                <div class="my-4">
+                  <div class="row">
+                    <div class="col-md-12">
+                      <div class="d-flex justify-content-end gap-2">
+                        <button type="button" class="btn btn-success rounded-pill font-14" data-bs-toggle="modal"
+                          data-bs-target="#largeModal1">
+                          <i class="fa fa-plus me-2" aria-hidden="true"></i>Add
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-lg-12">
+
+                    <form class="row g-3">
+                      <div class="col-md-12">
+                        <h2 class="font-14 font-weight-700">User Name</h2>
+                        <input type="text" class="form-control" id="validationDefault01" value="John" required="">
+                      </div>
+                      <div class="col-md-12">
+                        <h2 class="font-14 font-weight-700">Email</h2>
+                        <input type="text" class="form-control" id="validationDefault02" value="Doe" required="">
+                      </div>
+                      <div class="col-md-6">
+                        <h2 class="font-14 font-weight-700">Password</h2>
+                        <input type="text" class="form-control" id="validationDefault02" value="Doe" required="">
+                      </div>
+                      <div class="col-md-6">
+                        <h2 class="font-14 font-weight-700">Re-Enter Password</h2>
+                        <input type="text" class="form-control" id="validationDefault03" required="">
+                      </div>
+                      <div class="col-12">
+                        <div class="d-flex justify-content-center mt-3">
+                          <button class="btn btn-success rounded-pill font-14" type="submit">Submit</button>
+                        </div>
+                      </div>
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="tab-pane fade" id="forms" role="tabpanel" aria-labelledby="contact-tab">
+
+              <div id="kt_app_content" class="app-content  flex-column-fluid">
+
+                <div class="my-4">
+                  <div class="row">
+                    <div class="col-md-12">
+                      <div class="d-flex justify-content-end gap-2">
+                        <button type="button" class="btn btn-success rounded-pill font-14" data-bs-toggle="modal"
+                          data-bs-target="#largeModal1">
+                          <i class="fa fa-plus me-2" aria-hidden="true"></i>Add
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="col-lg-12">
+                    <div class="table-responsive">
+                      <table class="table table-bordered">
+                        <thead>
+                          <tr>
+                            <th scope="col">Name</th>
+                            <th scope="col">Email</th>
+                            <th scope="col">Type</th>
+                            <th scope="col">Permission Group</th>
+                            <th scope="col">Active/De-Active</th>
+                            <th scope="col" width="30px">Actions</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <td><a class="text-primary" href="">Andrew</a></td>
+                            <td>andrewgmail.com</td>
+                            <td>user</td>
+                            <td>update permission</td>
+                            <td>
+                              <span class="text-success font-weight-500"><i
+                                  class="fa fa-circle font-10 me-1"></i>Active</span>
+                            </td>
+                            <td class="text-capitalize text-center">
+                              <div class="dropdown filter-dropdown">
+                                <span class="dropdown-toggle font-16 px-3" type="button" id="dropdownMenuButton23"
+                                  data-bs-toggle="dropdown" aria-expanded="false"><i class="fa fa-ellipsis-v"></i>
+                                </span>
+                                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton2" style="">
+
+                                  <a class="dropdown-item dispatch font-13" href="javascript:;" data-bs-toggle="modal"
+                                    data-bs-target="#ExtralargeModalEdit"
+                                    onclick="dropdownevent('dropdownMenuButton2', 'dispatch')">Edit</a>
+                                  <a class="dropdown-item assiened font-13" href="javascript:;" data-bs-toggle="modal"
+                                    data-bs-target="#ExtralargeModalDelete"
+                                    onclick="dropdownevent('dropdownMenuButton2', 'assigned')">Delete</a>
+                                </div>
+                              </div>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td><a class="text-primary" href="">Andrew</a></td>
+                            <td>andrewgmail.com</td>
+                            <td>user</td>
+                            <td>update permission</td>
+                            <td>
+                              <span class="text-success font-weight-500"><i
+                                  class="fa fa-circle font-10 me-1"></i>Active</span>
+                            </td>
+                            <td class="text-capitalize text-center">
+                              <div class="dropdown filter-dropdown">
+                                <span class="dropdown-toggle font-16 px-3" type="button" id="dropdownMenuButton23"
+                                  data-bs-toggle="dropdown" aria-expanded="false"><i class="fa fa-ellipsis-v"></i>
+                                </span>
+                                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton2" style="">
+
+                                  <a class="dropdown-item dispatch font-13" href="javascript:;" data-bs-toggle="modal"
+                                    data-bs-target="#ExtralargeModalEdit"
+                                    onclick="dropdownevent('dropdownMenuButton2', 'dispatch')">Edit</a>
+                                  <a class="dropdown-item assiened font-13" href="javascript:;" data-bs-toggle="modal"
+                                    data-bs-target="#ExtralargeModalDelete"
+                                    onclick="dropdownevent('dropdownMenuButton2', 'assigned')">Delete</a>
+                                </div>
+                              </div>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td><a class="text-primary" href="">Andrew</a></td>
+                            <td>andrewgmail.com</td>
+                            <td>user</td>
+                            <td>update permission</td>
+                            <td>
+                              <span class="text-danger font-weight-500"><i
+                                  class="fa fa-circle font-10 me-1"></i>In-Active</span>
+                            </td>
+                            <td class="text-capitalize text-center">
+                              <div class="dropdown filter-dropdown">
+                                <span class="dropdown-toggle font-16 px-3" type="button" id="dropdownMenuButton23"
+                                  data-bs-toggle="dropdown" aria-expanded="false"><i class="fa fa-ellipsis-v"></i>
+                                </span>
+                                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton2" style="">
+
+                                  <a class="dropdown-item dispatch font-13" href="javascript:;" data-bs-toggle="modal"
+                                    data-bs-target="#ExtralargeModalEdit"
+                                    onclick="dropdownevent('dropdownMenuButton2', 'dispatch')">Edit</a>
+                                  <a class="dropdown-item assiened font-13" href="javascript:;" data-bs-toggle="modal"
+                                    data-bs-target="#ExtralargeModalDelete"
+                                    onclick="dropdownevent('dropdownMenuButton2', 'assigned')">Delete</a>
+                                </div>
+                              </div>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td><a class="text-primary" href="">Andrew</a></td>
+                            <td>andrewgmail.com</td>
+                            <td>user</td>
+                            <td>update permission</td>
+                            <td>
+                              <span class="text-success font-weight-500"><i
+                                  class="fa fa-circle font-10 me-1"></i>Active</span>
+                            </td>
+                            <td class="text-capitalize text-center">
+                              <div class="dropdown filter-dropdown">
+                                <span class="dropdown-toggle font-16 px-3" type="button" id="dropdownMenuButton23"
+                                  data-bs-toggle="dropdown" aria-expanded="false"><i class="fa fa-ellipsis-v"></i>
+                                </span>
+                                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton2" style="">
+
+                                  <a class="dropdown-item dispatch font-13" href="javascript:;" data-bs-toggle="modal"
+                                    data-bs-target="#ExtralargeModalEdit"
+                                    onclick="dropdownevent('dropdownMenuButton2', 'dispatch')">Edit</a>
+                                  <a class="dropdown-item assiened font-13" href="javascript:;" data-bs-toggle="modal"
+                                    data-bs-target="#ExtralargeModalDelete"
+                                    onclick="dropdownevent('dropdownMenuButton2', 'assigned')">Delete</a>
+                                </div>
+                              </div>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td><a class="text-primary" href="">Andrew</a></td>
+                            <td>andrewgmail.com</td>
+                            <td>user</td>
+                            <td>update permission</td>
+                            <td>
+                              <span class="text-success font-weight-500"><i
+                                  class="fa fa-circle font-10 me-1"></i>Active</span>
+                            </td>
+                            <td class="text-capitalize text-center">
+                              <div class="dropdown filter-dropdown">
+                                <span class="dropdown-toggle font-16 px-3" type="button" id="dropdownMenuButton23"
+                                  data-bs-toggle="dropdown" aria-expanded="false"><i class="fa fa-ellipsis-v"></i>
+                                </span>
+                                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton2" style="">
+
+                                  <a class="dropdown-item dispatch font-13" href="javascript:;" data-bs-toggle="modal"
+                                    data-bs-target="#ExtralargeModalEdit"
+                                    onclick="dropdownevent('dropdownMenuButton2', 'dispatch')">Edit</a>
+                                  <a class="dropdown-item assiened font-13" href="javascript:;" data-bs-toggle="modal"
+                                    data-bs-target="#ExtralargeModalDelete"
+                                    onclick="dropdownevent('dropdownMenuButton2', 'assigned')">Delete</a>
+                                </div>
+                              </div>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td><a class="text-primary" href="">Andrew</a></td>
+                            <td>andrewgmail.com</td>
+                            <td>user</td>
+                            <td>update permission</td>
+                            <td>
+                              <span class="text-danger font-weight-500"><i
+                                  class="fa fa-circle font-10 me-1"></i>In-Active</span>
+                            </td>
+                            <td class="text-capitalize text-center">
+                              <div class="dropdown filter-dropdown">
+                                <span class="dropdown-toggle font-16 px-3" type="button" id="dropdownMenuButton23"
+                                  data-bs-toggle="dropdown" aria-expanded="false"><i class="fa fa-ellipsis-v"></i>
+                                </span>
+                                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton2" style="">
+
+                                  <a class="dropdown-item dispatch font-13" href="javascript:;" data-bs-toggle="modal"
+                                    data-bs-target="#ExtralargeModalEdit"
+                                    onclick="dropdownevent('dropdownMenuButton2', 'dispatch')">Edit</a>
+                                  <a class="dropdown-item assiened font-13" href="javascript:;" data-bs-toggle="modal"
+                                    data-bs-target="#ExtralargeModalDelete"
+                                    onclick="dropdownevent('dropdownMenuButton2', 'assigned')">Delete</a>
+                                </div>
+                              </div>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td><a class="text-primary" href="">Andrew</a></td>
+                            <td>andrewgmail.com</td>
+                            <td>user</td>
+                            <td>update permission</td>
+                            <td>
+                              <span class="text-success font-weight-500"><i
+                                  class="fa fa-circle font-10 me-1"></i>Active</span>
+                            </td>
+                            <td class="text-capitalize text-center">
+                              <div class="dropdown filter-dropdown">
+                                <span class="dropdown-toggle font-16 px-3" type="button" id="dropdownMenuButton23"
+                                  data-bs-toggle="dropdown" aria-expanded="false"><i class="fa fa-ellipsis-v"></i>
+                                </span>
+                                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton2" style="">
+
+                                  <a class="dropdown-item dispatch font-13" href="javascript:;" data-bs-toggle="modal"
+                                    data-bs-target="#ExtralargeModalEdit"
+                                    onclick="dropdownevent('dropdownMenuButton2', 'dispatch')">Edit</a>
+                                  <a class="dropdown-item assiened font-13" href="javascript:;" data-bs-toggle="modal"
+                                    data-bs-target="#ExtralargeModalDelete"
+                                    onclick="dropdownevent('dropdownMenuButton2', 'assigned')">Delete</a>
+                                </div>
+                              </div>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td><a class="text-primary" href="">Andrew</a></td>
+                            <td>andrewgmail.com</td>
+                            <td>user</td>
+                            <td>update permission</td>
+                            <td>
+                              <span class="text-success font-weight-500"><i
+                                  class="fa fa-circle font-10 me-1"></i>Active</span>
+                            </td>
+                            <td class="text-capitalize text-center">
+                              <div class="dropdown filter-dropdown">
+                                <span class="dropdown-toggle font-16 px-3" type="button" id="dropdownMenuButton23"
+                                  data-bs-toggle="dropdown" aria-expanded="false"><i class="fa fa-ellipsis-v"></i>
+                                </span>
+                                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton2" style="">
+
+                                  <a class="dropdown-item dispatch font-13" href="javascript:;" data-bs-toggle="modal"
+                                    data-bs-target="#ExtralargeModalEdit"
+                                    onclick="dropdownevent('dropdownMenuButton2', 'dispatch')">Edit</a>
+                                  <a class="dropdown-item assiened font-13" href="javascript:;" data-bs-toggle="modal"
+                                    data-bs-target="#ExtralargeModalDelete"
+                                    onclick="dropdownevent('dropdownMenuButton2', 'assigned')">Delete</a>
+                                </div>
+                              </div>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td><a class="text-primary" href="">Andrew</a></td>
+                            <td>andrewgmail.com</td>
+                            <td>user</td>
+                            <td>update permission</td>
+                            <td>
+                              <span class="text-danger font-weight-500"><i
+                                  class="fa fa-circle font-10 me-1"></i>In-Active</span>
+                            </td>
+                            <td class="text-capitalize text-center">
+                              <div class="dropdown filter-dropdown">
+                                <span class="dropdown-toggle font-16 px-3" type="button" id="dropdownMenuButton23"
+                                  data-bs-toggle="dropdown" aria-expanded="false"><i class="fa fa-ellipsis-v"></i>
+                                </span>
+                                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton2" style="">
+
+                                  <a class="dropdown-item dispatch font-13" href="javascript:;" data-bs-toggle="modal"
+                                    data-bs-target="#ExtralargeModalEdit"
+                                    onclick="dropdownevent('dropdownMenuButton2', 'dispatch')">Edit</a>
+                                  <a class="dropdown-item assiened font-13" href="javascript:;" data-bs-toggle="modal"
+                                    data-bs-target="#ExtralargeModalDelete"
+                                    onclick="dropdownevent('dropdownMenuButton2', 'assigned')">Delete</a>
+                                </div>
+                              </div>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td><a class="text-primary" href="">Andrew</a></td>
+                            <td>andrewgmail.com</td>
+                            <td>user</td>
+                            <td>update permission</td>
+                            <td>
+                              <span class="text-success font-weight-500"><i
+                                  class="fa fa-circle font-10 me-1"></i>Active</span>
+                            </td>
+                            <td class="text-capitalize text-center">
+                              <div class="dropdown filter-dropdown">
+                                <span class="dropdown-toggle font-16 px-3" type="button" id="dropdownMenuButton23"
+                                  data-bs-toggle="dropdown" aria-expanded="false"><i class="fa fa-ellipsis-v"></i>
+                                </span>
+                                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton2" style="">
+
+                                  <a class="dropdown-item dispatch font-13" href="javascript:;" data-bs-toggle="modal"
+                                    data-bs-target="#ExtralargeModalEdit"
+                                    onclick="dropdownevent('dropdownMenuButton2', 'dispatch')">Edit</a>
+                                  <a class="dropdown-item assiened font-13" href="javascript:;" data-bs-toggle="modal"
+                                    data-bs-target="#ExtralargeModalDelete"
+                                    onclick="dropdownevent('dropdownMenuButton2', 'assigned')">Delete</a>
+                                </div>
+                              </div>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td><a class="text-primary" href="">Andrew</a></td>
+                            <td>andrewgmail.com</td>
+                            <td>user</td>
+                            <td>update permission</td>
+                            <td>
+                              <span class="text-success font-weight-500"><i
+                                  class="fa fa-circle font-10 me-1"></i>Active</span>
+                            </td>
+                            <td class="text-capitalize text-center">
+                              <div class="dropdown filter-dropdown">
+                                <span class="dropdown-toggle font-16 px-3" type="button" id="dropdownMenuButton23"
+                                  data-bs-toggle="dropdown" aria-expanded="false"><i class="fa fa-ellipsis-v"></i>
+                                </span>
+                                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton2" style="">
+
+                                  <a class="dropdown-item dispatch font-13" href="javascript:;" data-bs-toggle="modal"
+                                    data-bs-target="#ExtralargeModalEdit"
+                                    onclick="dropdownevent('dropdownMenuButton2', 'dispatch')">Edit</a>
+                                  <a class="dropdown-item assiened font-13" href="javascript:;" data-bs-toggle="modal"
+                                    data-bs-target="#ExtralargeModalDelete"
+                                    onclick="dropdownevent('dropdownMenuButton2', 'assigned')">Delete</a>
+                                </div>
+                              </div>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td><a class="text-primary" href="">Andrew</a></td>
+                            <td>andrewgmail.com</td>
+                            <td>user</td>
+                            <td>update permission</td>
+                            <td>
+                              <span class="text-danger font-weight-500"><i
+                                  class="fa fa-circle font-10 me-1"></i>In-Active</span>
+                            </td>
+                            <td class="text-capitalize text-center">
+                              <div class="dropdown filter-dropdown">
+                                <span class="dropdown-toggle font-16 px-3" type="button" id="dropdownMenuButton23"
+                                  data-bs-toggle="dropdown" aria-expanded="false"><i class="fa fa-ellipsis-v"></i>
+                                </span>
+                                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton2" style="">
+
+                                  <a class="dropdown-item dispatch font-13" href="javascript:;" data-bs-toggle="modal"
+                                    data-bs-target="#ExtralargeModalEdit"
+                                    onclick="dropdownevent('dropdownMenuButton2', 'dispatch')">Edit</a>
+                                  <a class="dropdown-item assiened font-13" href="javascript:;" data-bs-toggle="modal"
+                                    data-bs-target="#ExtralargeModalDelete"
+                                    onclick="dropdownevent('dropdownMenuButton2', 'assigned')">Delete</a>
+                                </div>
+                              </div>
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                </div>
+                <div class="row bg-white px-3 py-4 mt-3 rounded">
+                  <div class="col-md-12">
+                    <nav aria-label="Page navigation example ms-auto me-auto">
+                      <ul class="pagination justify-content-center gap-2 mb-0">
+                        <li class="page-item">
+                          <a class="page-link font-22" href="javascript:;" aria-label="Previous"><i
+                              class="fa fa-angle-left font-weight-300"></i></a>
+                        </li>
+                        <li class="page-item active"><a class="page-link font-14" href="javascript:;">1</a></li>
+                        <li class="page-item"><a class="page-link font-14" href="javascript:;">2</a></li>
+                        <li class="page-item"><a class="page-link font-14" href="javascript:;">3</a></li>
+                        <li class="page-item"><a class="page-link font-14" href="javascript:;">4</a></li>
+                        <li class="page-item"><a class="page-link font-14" href="javascript:;">5</a></li>
+                        <li class="page-item"><a class="page-link font-22" href="javascript:;" aria-label="Next"><i
+                              class="fa fa-angle-right font-weight-300"></i></a></li>
+                      </ul>
+                    </nav>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+            <div class="tab-pane fade" id="email" role="tabpanel" aria-labelledby="contact-tab">
+
+
+              <div id="kt_app_content" class="app-content  flex-column-fluid">
+
+                <div class="my-4">
+                  <div class="row">
+                    <div class="col-md-12">
+                      <div class="d-flex justify-content-end gap-2">
+                        <button type="button" class="btn btn-success rounded-pill font-14" data-bs-toggle="modal"
+                          data-bs-target="#largeModal1">
+                          <i class="fa fa-plus me-2" aria-hidden="true"></i>Add
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="col-lg-12">
+                    <div class="table-responsive">
+                      <table class="table table-bordered">
+                        <thead>
+                          <tr>
+                            <th>Group Name</th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <td><a href="#">Payable </a></td>
+                            <td>User</td>
+                            <td>View</td>
+                            <td><input class="form-check-input me-1" type="checkbox" value="" aria-label="...">Edit</td>
+                            <td><input class="form-check-input me-1" type="checkbox" value="" aria-label="...">Delete
+                            </td>
+                          </tr>
+                          <tr>
+                            <td><a href="#">Receivable </a></td>
+                            <td>User</td>
+                            <td>View</td>
+                            <td><input class="form-check-input me-1" type="checkbox" value="" aria-label="...">Edit</td>
+                            <td><input class="form-check-input me-1" type="checkbox" value="" aria-label="...">Delete
+                            </td>
+                          </tr>
+                          <tr>
+                            <td><a href="#"> Carrier on board </a></td>
+                            <td>User</td>
+                            <td>View</td>
+                            <td><input class="form-check-input me-1" type="checkbox" value="" aria-label="...">Edit</td>
+                            <td><input class="form-check-input me-1" type="checkbox" value="" aria-label="...">Delete
+                            </td>
+                          </tr>
+                          <tr>
+                            <td><a href="#">Payable </a></td>
+                            <td>User</td>
+                            <td>View</td>
+                            <td><input class="form-check-input me-1" type="checkbox" value="" aria-label="...">Edit</td>
+                            <td><input class="form-check-input me-1" type="checkbox" value="" aria-label="...">Delete
+                            </td>
+                          </tr>
+                          <tr>
+                            <td><a href="#">Receivable </a></td>
+                            <td>User</td>
+                            <td>View</td>
+                            <td><input class="form-check-input me-1" type="checkbox" value="" aria-label="...">Edit</td>
+                            <td><input class="form-check-input me-1" type="checkbox" value="" aria-label="...">Delete
+                            </td>
+                          </tr>
+                          <tr>
+                            <td><a href="#"> Carrier on board </a></td>
+                            <td>User</td>
+                            <td>View</td>
+                            <td><input class="form-check-input me-1" type="checkbox" value="" aria-label="...">Edit</td>
+                            <td><input class="form-check-input me-1" type="checkbox" value="" aria-label="...">Delete
+                            </td>
+                          </tr>
+
+
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                </div>
+
+
+                <div class="row bg-white px-3 py-4 mt-3 rounded">
+                  <div class="col-md-12">
+                    <nav aria-label="Page navigation example ms-auto me-auto">
+                      <ul class="pagination justify-content-center gap-2 mb-0">
+                        <li class="page-item">
+                          <a class="page-link font-22" href="javascript:;" aria-label="Previous"><i
+                              class="fa fa-angle-left font-weight-300"></i></a>
+                        </li>
+                        <li class="page-item active"><a class="page-link font-14" href="javascript:;">1</a></li>
+                        <li class="page-item"><a class="page-link font-14" href="javascript:;">2</a></li>
+                        <li class="page-item"><a class="page-link font-14" href="javascript:;">3</a></li>
+                        <li class="page-item"><a class="page-link font-14" href="javascript:;">4</a></li>
+                        <li class="page-item"><a class="page-link font-14" href="javascript:;">5</a></li>
+                        <li class="page-item"><a class="page-link font-22" href="javascript:;" aria-label="Next"><i
+                              class="fa fa-angle-right font-weight-300"></i></a></li>
+                      </ul>
+                    </nav>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- End Default Tabs -->
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<!-- form moduls -->
+
+
+<div class="modal fade" id="largeModal1" tabindex="-1">
+  <div class="modal-dialog modal-xl">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Add</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form class="row g-3">
+          <div class="col-md-6">
+            <h2 class="font-14 font-weight-700"> First Name</h2>
+            <input type="text" class="form-control" id="validationDefault01" value=" U88578 " required="">
+          </div>
+          <div class="col-md-6">
+            <h2 class="font-14 font-weight-700">Last Name</h2>
+            <input type="text" class="form-control" id="validationDefault02" value="V8557895" required="">
+          </div>
+          <div class="col-md-6">
+            <h2 class="font-14 font-weight-700">Email</h2>
+            <input type="text" class="form-control" id="validationDefault02" value="J-858266" required="">
+          </div>
+          <div class="col-md-6">
+            <h2 class="font-14 font-weight-700">Phone Number</h2>
+            <input type="text" class="form-control" id="validationDefault02" value="12/03/2023" required="">
+          </div>
+          <div class="col-md-6">
+            <h2 class="font-14 font-weight-700">Password</h2>
+            <input type="text" class="form-control" id="validationDefault02" value="Cab Card" required="">
+          </div>
+          <div class="col-md-6">
+            <h2 class="font-14 font-weight-700">Confirm Password</h2>
+            <input type="text" class="form-control" id="validationDefault02" value="Document.pdf" required="">
+          </div>
+          <div class="col-md-6">
+            <h2 class="font-14 font-weight-700">Permission Group</h2>
+            <input type="text" class="form-control" id="validationDefault02" value="Document.pdf" required="">
+          </div>
+          <div class="col-md-6">
+            <h2 class="font-14 font-weight-700">Choose Carrier</h2>
+            <select class="form-control">
+              <option>3D Trucking</option>
+              <option>3D Trucking</option>
+            </select>
+          </div>
+
+        </form>
+      </div>
+      <div class="modal-footer justify-content-center">
+        <button type="button" class="btn btn-outline-secondary btn-sm text-uppercase rounded-pill"
+          data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-success btn-sm text-uppercase rounded-pill">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>

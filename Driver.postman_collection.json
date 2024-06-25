@@ -1,0 +1,183 @@
+{
+	"info": {
+		"_postman_id": "5e8d0974-ff8a-47bc-aed3-7a10d85f744f",
+		"name": "Driver",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "22820227",
+		"_collection_link": "https://orange-star-736945.postman.co/workspace/d64a7223-9067-4a4f-8dce-78c46da897cd/collection/22820227-5e8d0974-ff8a-47bc-aed3-7a10d85f744f?action=share&source=collection_link&creator=22820227"
+	},
+	"item": [
+		{
+			"name": "createDriver",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"driver_name\": \"John Doe\",\r\n  \"phone_number\": 1234567890,\r\n  \"email\": \"driver17@gmail.com\",\r\n  \"dob\": \"1990-05-15\",\r\n  \"cdl_licence\": \"CDL123456\",\r\n  \"address\": \"123 Main St, Anytown, USA\",\r\n  \"notes\": \"Experienced driver with clean record.\",\r\n  \"commercial_licence_yr\": \"5\",\r\n  \"experience_type\": \"Long haul\",\r\n  \"driving_school\": \"ABC Driving School\",\r\n  \"application_date\": \"2022-01-10\",\r\n  \"hire_date\": \"2022-02-01\",\r\n  \"termination_date\": \"\",\r\n  \"rehirable\": true,\r\n  \"bonus_eligible_date\": \"2023-02-01\",\r\n  \"employment_notes\": \"Received Employee of the Month in March 2023.\",\r\n  \"insurance_co\": \"XYZ Insurance\",\r\n  \"group_number\": \"G123456\",\r\n  \"id_number\": 123456789,\r\n  \"license_expiration_date\": \"2025-05-15\",\r\n  \"twic_card_expiration_date\": \"2024-08-01\",\r\n  \"hazmat_endorsement_expiration_date\": \"2024-12-31\",\r\n  \"dot_medical_expiration_date\": \"2023-07-01\",\r\n  \"insurance_expiration_date\": \"2023-12-31\",\r\n  \"last_road_test_date\": \"2022-01-30\",\r\n  \"last_drug_test_date\": \"2023-06-15\",\r\n  \"last_alcohol_test_date\": \"2023-06-15\",\r\n  \"type_experience\": \"Dry van, Reefer\",\r\n  \"carrier_id\": \"65d111e7d19e540a700b5866\",\r\n  \"created_at\": \"2022-01-01T08:00:00Z\",\r\n  \"updated_at\": \"2024-03-19T10:15:00Z\"\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/api/v1/driver/create",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"driver",
+						"create"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetDriverByCarrierId",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/api/v1/driver/get",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"driver",
+						"get"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetSingleDriver",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/api/v1/driver/get/driver/65d112ffd19e540a700b5893",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"driver",
+						"get",
+						"driver",
+						"65d112ffd19e540a700b5893"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "updateDriver",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"driver_name\": \"admin test data\",\r\n  \"phone_number\": 1234567890,\r\n  \"email\": \"driver5@gmail.com\",\r\n  \"dob\":\"2002-12-09\",\r\n  \"cdl_licence\": \"\",\r\n  \"address\": \"\",\r\n  \"notes\": \"\",\r\n  \"commercial_licence_yr\": \"\",\r\n  \"experience_type\": \"\",\r\n  \"driving_school\": \"\",\r\n  \"application_date\": \"\",\r\n  \"hire_date\": \"\",\r\n  \"termination_date\": \"\",\r\n  \"rehirable\": \"\",\r\n  \"bonus_eligible_date\": \"\",\r\n  \"employment_notes\": \"\",\r\n  \"insurance_co\": \"\",\r\n  \"group_number\": \"\",\r\n  \"id_number\": 0,\r\n  \"license_expiration_date\": \"\",\r\n  \"twic_card_expiration_date\": \"\",\r\n  \"hazmat_endorsement_expiration_date\": \"\",\r\n  \"dot_medical_expiration_date\": \"\",\r\n  \"insurance_expiration_date\": \"\",\r\n  \"last_road_test_date\": \"\",\r\n  \"last_drug_test_date\": \"\",\r\n  \"last_alcohol_test_date\": \"\",\r\n  \"type_experience\": \"\",\r\n  \"carrier_id\": \"65beac4e093bf063ab56a74f\",\r\n  \"created_at\": \"\",\r\n  \"updated_at\": \"\" \r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/api/v1/driver/update/65d795f8300bb2c401936855",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"driver",
+						"update",
+						"65d795f8300bb2c401936855"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "driver_deleted",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/api/v1/driver/delete/65c7d4d9afcfa2c1492b4f0e",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"driver",
+						"delete",
+						"65c7d4d9afcfa2c1492b4f0e"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

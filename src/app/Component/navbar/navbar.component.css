@@ -1,0 +1,37 @@
+
+.header {
+    background-color: #f8f9fa; /* Set header background color */
+    padding: 15px; /* Add padding to the header */
+    color: black;
+  }
+  
+  .nav-link {
+    color: black !important; /* Default color */
+  }
+
+  .nav-link:hover,
+  .nav-link.active {
+    color: blue !important; /* Color on hover and when active */
+  }
+  
+  .navbar {
+    margin-top: 15px; 
+  }
+  
+  .header-nav {
+    margin-top: 10px;
+  }
+  
+  .nav-item {
+    margin-right: 15px; 
+  }
+  
+
+  .main {
+    padding: 20px; 
+  }
+  
+  .btn {
+   
+  }
+  

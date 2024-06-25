@@ -1,0 +1,4 @@
+.text-hover-primary:hover,
+.text-hover-primary:focus {
+    color: #717ff5 !important;
+}

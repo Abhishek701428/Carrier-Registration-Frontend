@@ -1,0 +1,183 @@
+{
+	"info": {
+		"_postman_id": "b06cda25-f81d-498d-92aa-e017303cd626",
+		"name": "trailer",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "22820227",
+		"_collection_link": "https://orange-star-736945.postman.co/workspace/d64a7223-9067-4a4f-8dce-78c46da897cd/collection/22820227-b06cda25-f81d-498d-92aa-e017303cd626?action=share&source=collection_link&creator=22820227"
+	},
+	"item": [
+		{
+			"name": "createTrailer",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"trailer_number\":\"RJ47897\",\r\n    \"year\":\"2020\",\r\n    \"make\":\"YES\",\r\n    \"model\":\"2015\",\r\n    \"vin\":\"VIN5647\",\r\n    \"license_state\":\"RAJASTHAN\",\r\n    \"carb_id\":1478525,\r\n    \"purchased_new\":true,\r\n    \"purchased_date\":\"2024-09-25\",\r\n    \"purchased_price\":\"1485\",\r\n    \"used\":\"1\",\r\n    \"carrier_id\":\"65d111e7d19e540a700b5866\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/api/v1/trailer/create",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"trailer",
+						"create"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetTraileByCarrierId",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/api/v1/trailer/get/carrier",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"trailer",
+						"get",
+						"carrier"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetTrailerById",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/api/v1/trailer/get/65d63cd6a16ae2e3b221d30d",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"trailer",
+						"get",
+						"65d63cd6a16ae2e3b221d30d"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "updateTrailer",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"year\":\"2025-09-17\",\r\n    \"make\":\"YES\",\r\n    \"model\":\"2017\",\r\n    \"vin\":\"VIN5648\",\r\n    \"license_state\":\"RAJASTHAN\",\r\n    \"carb_id\":1478525,\r\n    \"purchased_new\":true,\r\n    \"purchased_date\":\"2024-09-25\",\r\n    \"purchased_price\":\"1485\",\r\n    \"used\":\"1\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/api/v1/trailer/update/65d63cd6a16ae2e3b221d30d",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"trailer",
+						"update",
+						"65d63cd6a16ae2e3b221d30d"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "deleteTrailerById",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/api/v1/trailer/delete/65d11311d19e540a700b589a",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"trailer",
+						"delete",
+						"65d11311d19e540a700b589a"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

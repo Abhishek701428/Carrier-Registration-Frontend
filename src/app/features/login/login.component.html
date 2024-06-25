@@ -1,0 +1,45 @@
+<main class="account login-area position-relative">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-xxl-12 col-xl-12 col-lg-12 col-md-12">
+                <div class="right-panel">
+                    <div class="border rounded p-5 bg-white">
+                        <img src="assets/img/3pltek-logo.png" style="width:218px;" class="img-fluid right-logo d-block mx-auto"/>
+                        <div class="form-area mt-5">
+                            <div class="form-text text-center">
+                                <h5 class="text-uppercase">User Login</h5>
+                                <span>Enter your details to login to your account</span>
+                            </div>
+                            <form (submit)="login()">
+                                <div class="form-group mb-2">
+                                    <input type="text" name="email" class="form-control" placeholder="Enter User ID" [(ngModel)]="email"/>
+                                </div>
+                                <div class="form-group mb-2">
+                                    <input type="password"  name="password" class="form-control" placeholder="Enter Password" [(ngModel)]="password"/>
+                                </div>
+                                <div class="row">
+                                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-6">
+                                        <div class="form-group form-check mb-0">
+                                            <input class="form-check-input" type="checkbox" id="rememberMeCheckbox" [(ngModel)]="rememberMe">
+                                            <label class="form-check-label" for="rememberMeCheckbox">Remember me</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-6 text-end">
+                                        <a href="#" class="font-weight-400">Forgot Password?</a>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-xl-12 col-lg-12 d-grid submit-btn">
+                                        <button type="submit" class="btn btn-success py-2 text-uppercase" style="width: 100%;">Sign In</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+
+   

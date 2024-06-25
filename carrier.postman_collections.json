@@ -1,0 +1,213 @@
+{
+	"info": {
+		"_postman_id": "8276be79-bb5c-439e-b9ef-9819a9583798",
+		"name": "carrier",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "22820227",
+		"_collection_link": "https://orange-star-736945.postman.co/workspace/d64a7223-9067-4a4f-8dce-78c46da897cd/collection/22820227-8276be79-bb5c-439e-b9ef-9819a9583798?action=share&source=collection_link&creator=22820227"
+	},
+	"item": [
+		{
+			"name": "CreateCarrier",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"company_name\": \"OnGraph\",\r\n  \"email\": \"carrier6@gmail.com\",\r\n  \"password\": \"admin1\",\r\n  \"confirm_password\": \"admin1\",\r\n  \"company_dba\": \"2015\",\r\n  \"address\": \"jaipur\",\r\n  \"city\": \"jaipur\",\r\n  \"state\": \"Rajasthan\",\r\n  \"role\": 1,\r\n  \"phone\": \"7894536985\",\r\n  \"mc\": \"MC123456\",\r\n  \"dot_number\": 478956,\r\n  \"owner_name\": \"Kishan\",\r\n  \"twic_card\": \"Yes\",\r\n  \"tanker_endorsed\": \"Endorsed\",\r\n  \"hazmat_certified\": \"Certified\",\r\n  \"hazmat_drivers\": \"John Doe, Jane Smith\",\r\n  \"carb_certified\": \"Certified\",\r\n  \"power_units\": 10,\r\n  \"dry_van\": 5,\r\n  \"reefer_units\": 3,\r\n  \"flat_beds\": 2,\r\n  \"owner_operators\": 8,\r\n  \"straight_truck\": 4,\r\n  \"cargo\": 20,\r\n  \"lift_gate\": 15,\r\n  \"other\": \"Additional details here\",\r\n  \"quantity\": 100,\r\n  \"team_service\": \"Available\",\r\n  \"after_hour_capacity\": \"Available\",\r\n  \"drop_trailer_routes\": \"Route A, Route B\",\r\n  \"access_to_ease\": \"Yes\",\r\n  \"quick_pay\": \"Yes\",\r\n  \"factoring_company\": \"ABC Factoring\",\r\n  \"bank_name\": \"Bank of XYZ\",\r\n  \"routing_no\": \"123456789\",\r\n  \"account_no\": 234567893456,\r\n  \"account_name\": \"OnGraph Inc.\",\r\n  \"bank_file\": \"Bank file details here\",\r\n  \"factoringCompanyId\": \"F123\",\r\n  \"insurance_company_name\": \"XYZ Insurance\",\r\n  \"insurance_company_email\": \"contact@xyzinsurance.com\",\r\n  \"primary_insurance_expiration\": \"2024-12-31\",\r\n  \"cargo_insurance_expiration\": \"2024-12-31\",\r\n  \"owner_type\": \"Individual\",\r\n  \"country\": \"India\",\r\n  \"thirty_normal_process\": \"Details here\",\r\n  \"carrier_status\": \"Active\",\r\n  \"do_not_load_reason\": \"Details here\",\r\n  \"mc_authority\": \"Authorized\",\r\n  \"w9\": \"W9 details here\",\r\n  \"insurance\": \"Insurance details here\",\r\n  \"packet\": \"Packet details here\",\r\n  \"certificate_holder\": \"Holder details here\",\r\n  \"phone_carrier\": \"Carrier phone details here\"\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/api/v1/carrier/create",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"carrier",
+						"create"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getAllCarrier",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/api/v1/carrier/get",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"carrier",
+						"get"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetSingleCarrierById",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/api/v1/carrier/get/single",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"carrier",
+						"get",
+						"single"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "updateCarrierById",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"company_name\": \"test\",\r\n    \"name\": \"test\",\r\n    \"first_name\": \"testing\",\r\n    \"username\": \"test\",\r\n    \"last_name\": \"test\",\r\n    \"email\": \"admin10@admin.com\",\r\n    \"password\": \"test\",\r\n    \"company_dba\": \"2015\",\r\n    \"address\": \"jaipur\",\r\n    \"city\": \"jaipur\",\r\n    \"state\": \"Rajasthan\",\r\n    \"phone\": \"7894536985\",\r\n    \"mc\": \"MC123456\",\r\n    \"dot_number\": 478956,\r\n    \"owner_name\": \"Kishan\",\r\n    \"twic_card\": \"Yes\",\r\n    \"tanker_endorsed\": \"Endorsed\",\r\n    \"hazmat_certified\": \"Certified\",\r\n    \"hazmat_drivers\": \"John Doe, Jane Smith\",\r\n    \"carb_certified\": \"Certified\",\r\n    \"power_units\": 10,\r\n    \"dry_van\": 5,\r\n    \"reefer_units\": 3,\r\n    \"flat_beds\": 2,\r\n    \"owner_operators\": 8,\r\n    \"straight_truck\": 4,\r\n    \"cargo\": 20,\r\n    \"lift_gate\": 15,\r\n    \"other\": \"Additional details here\",\r\n    \"quantity\": 100,\r\n    \"team_service\": \"Available\",\r\n    \"after_hour_capacity\": \"Available\",\r\n    \"drop_trailer_routes\": \"Route A, Route B\",\r\n    \"access_to_ease\": \"Yes\",\r\n    \"quick_pay\": \"Yes\",\r\n    \"factoring_company\": \"ABC Factoring\",\r\n    \"bank_name\": \"Bank of XYZ\",\r\n    \"routing_no\": \"123456789\",\r\n    \"account_no\": 234567893456,\r\n    \"account_name\": \"OnGraph Inc.\",\r\n    \"bank_file\": \"Bank file details here\",\r\n    \"factoringCompanyId\": \"F123\",\r\n    \"insurance_company_name\": \"XYZ Insurance\",\r\n    \"insurance_company_email\": \"contact@xyzinsurance.com\",\r\n    \"primary_insurance_expiration\": \"2024-12-31T00:00:00.000Z\",\r\n    \"cargo_insurance_expiration\": \"2024-12-31T00:00:00.000Z\",\r\n    \"owner_type\": \"Individual\",\r\n    \"country\": \"India\",\r\n    \"thirty_normal_process\": \"Details here\",\r\n    \"carrier_status\": \"Active\",\r\n    \"do_not_load_reason\": \"Details here\",\r\n    \"mc_authority\": \"Authorized\",\r\n    \"w9\": \"W9 details here\",\r\n    \"insurance\": \"Insurance details here\",\r\n    \"packet\": \"Packet details here\",\r\n    \"certificate_holder\": \"Holder details here\",\r\n    \"phone_carrier\": \"Carrier phone details here\",\r\n    \"created_at\": \"2024-02-03T21:11:08.005Z\",\r\n    \"updated_at\": \"2024-02-03T21:11:08.005Z\"\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/api/v1/carrier/update/65beabeb97dc833effb4ddd6",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"carrier",
+						"update",
+						"65beabeb97dc833effb4ddd6"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "delete_carrier",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/api/v1/carrier/delete/65beabeb97dc833effb4ddd6",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"carrier",
+						"delete",
+						"65beabeb97dc833effb4ddd6"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetTruckTrailerDriverByCarrierId",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/api/v1/carrier/get/all",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"carrier",
+						"get",
+						"all"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

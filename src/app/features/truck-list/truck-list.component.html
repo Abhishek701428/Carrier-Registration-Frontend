@@ -1,0 +1,251 @@
+<app-navbar></app-navbar>
+
+<main id="main" class="main mt-0 p-0">
+    <div id="kt_app_content" class="app-content  flex-column-fluid">
+        <div class="container-fluid px-5">
+          <div class="row bg-white px-3 py-4 mt-3 rounded">
+            <div class="col-md-12">
+                <!-- Default Tabs -->
+                <ul class="nav nav-pills gap-2 border-bottom pb-4" id="myTab" role="tablist">
+                  <li class="nav-item" role="presentation">
+                    <button class="nav-link rounded-pill active bg-nav-info" id="home-tab" data-bs-toggle="tab" data-bs-target="#customer" type="button" role="tab" aria-controls="home" aria-selected="true">Truck List</button>
+                  </li>
+                  <li class="nav-item" role="presentation">
+                    <button class="nav-link rounded-pill bg-nav-success" id="profile-tab" data-bs-toggle="tab" data-bs-target="#file" type="button" role="tab" aria-controls="profile" aria-selected="false" tabindex="-1">Non-Compliant Trucks</button>
+                  </li>
+                  <li class="nav-item" role="presentation">
+                    <button class="nav-link rounded-pill bg-nav-warning" id="contact-tab" data-bs-toggle="tab" data-bs-target="#forms" type="button" role="tab" aria-controls="contact" aria-selected="false" tabindex="-1">Compliant Trucks</button>
+                  </li>
+                  <li class="nav-item" role="presentation">
+                    <button class="nav-link rounded-pill bg-nav-danger" id="contact-tab" data-bs-toggle="tab" data-bs-target="#email" type="button" role="tab" aria-controls="contact" aria-selected="false" tabindex="-1">Expiring Trucks</button>
+                  </li>
+                </ul>
+                <div class="tab-content" id="myTabContent">
+                  <div class="tab-pane fade active show" id="customer" role="tabpanel" aria-labelledby="home-tab">
+                      <div id="kt_app_content" class="app-content  flex-column-fluid">
+                        <div class="my-4">
+                          <div class="row">
+                            <div class="col-md-12">
+                              <div class="d-flex justify-content-between">
+                                <div class="form-group has-search mb-0">
+                                  <span class="fa fa-search form-control-feedback"></span>
+                                  <input style="height: 36px !important;" type="text" name="Search" class="form-control" placeholder="Search...">
+                                </div>
+                                <div>
+                                  <button type="button" class="btn btn-success rounded-pill font-14" data-bs-toggle="modal" data-bs-target="#ExtralargeModal">
+                                  <i class="fa fa-plus me-2" aria-hidden="true"></i>Add Truck
+                                  </button>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="row">
+                          <div class="col-lg-12">
+                            <div class="table-responsive">
+                                <table class="table table-bordered">
+                        <thead>
+                          <tr>
+                            <th scope="col">Unit Number</th>
+                            <th scope="col">Vin Number</th>
+                            <th scope="col">Purchase Date</th>
+                            <th scope="col">Monthly Payment</th>
+                            <th scope="col">Status</th>
+                            <th scope="col" width="30px">Actions</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+
+                          <tr *ngFor="let truck of trucks">
+                            <td><a class="text-primary" href="truck-info-view.html">{{ truck.unitNumber }}</a></td>
+                            <td>{{ truck.vinNumber }}</td>
+                            <td>{{ truck.purchaseDate }}</td>
+                            <td>{{ truck.monthlyPayment }}</td>
+                            <td>
+                              <span [ngClass]="{
+                                        'badge bg-label-success font-13 font-weight-700 text-uppercase': truck.status === 'APPROVED',
+                                        'badge bg-label-warning font-13 font-weight-700 text-uppercase': truck.status === 'PENDING',
+                                        'badge bg-label-danger font-13 font-weight-700 text-uppercase': truck.status === 'CANCELLED'
+                                      }">{{ truck.status }}</span>
+                            </td>
+                            <td class="text-capitalize text-center">
+                              <div class="dropdown filter-dropdown">
+                                <span class="dropdown-toggle font-16 px-3" type="button" id="dropdownMenuButton23"
+                                  data-bs-toggle="dropdown" aria-expanded="false"><i
+                                    class="fa fa-ellipsis-v"></i></span>
+                                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton2" style="">
+                                  <a class="dropdown-item dispatch font-13" href="javascript:;" data-bs-toggle="modal"
+                                    data-bs-target="#ExtralargeModalEdit"
+                                    onclick="dropdownevent('dropdownMenuButton2', 'dispatch')">Edit</a>
+                                  <a class="dropdown-item assiened font-13" href="javascript:;" data-bs-toggle="modal"
+                                    data-bs-target="#ExtralargeModalDelete"
+                                    onclick="dropdownevent('dropdownMenuButton2', 'assigned')">Delete</a>
+                                </div>
+                              </div>
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                </div>
+                <div class="row bg-white px-3 py-4 mt-3 rounded">
+                  <div class="col-md-12">
+                    <nav aria-label="Page navigation example ms-auto me-auto">
+                      <ul class="pagination justify-content-center gap-2 mb-0">
+                        <li class="page-item">
+                          <a class="page-link font-22" href="javascript:;" aria-label="Previous"><i
+                              class="fa fa-angle-left font-weight-300"></i></a>
+                        </li>
+                        <li class="page-item active"><a class="page-link font-14" href="javascript:;">1</a></li>
+                        <li class="page-item"><a class="page-link font-14" href="javascript:;">2</a></li>
+                        <li class="page-item"><a class="page-link font-14" href="javascript:;">3</a></li>
+                        <li class="page-item"><a class="page-link font-14" href="javascript:;">4</a></li>
+                        <li class="page-item"><a class="page-link font-14" href="javascript:;">5</a></li>
+                        <li class="page-item"><a class="page-link font-22" href="javascript:;" aria-label="Next"><i
+                              class="fa fa-angle-right font-weight-300"></i></a></li>
+                      </ul>
+                    </nav>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div><!-- End Default Tabs -->
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
+
+
+
+        
+      
+     
+
+
+<!-- //form models -->
+
+
+<a href="#" class="back-to-top d-flex align-items-center justify-content-center btn-success"><i
+    class="bi bi-arrow-up-short"></i></a>
+
+
+
+
+
+
+
+<div class="modal fade" id="ExtralargeModal" tabindex="-1" style="display: none;" aria-hidden="true">
+  <div class="modal-dialog modal-xl">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Add Truck List</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form class="row g-3" (ngSubmit)="submitForm()">
+          <!-- Your form inputs -->
+          <div class="col-md-4">
+            <h2 class="font-14 font-weight-700"> Unit Number</h2>
+            <input type="text" class="form-control" id="unitNumber" placeholder="Enter unit number"
+              [(ngModel)]="newTruck.unitNumber" name="unitNumber" required>
+          </div>
+          <div class="col-md-4">
+            <h2 class="font-14 font-weight-700">VIN Number</h2>
+            <input type="text" class="form-control" id="validationDefault02" placeholder="VIN Number" required="">
+          </div>
+          <div class="col-md-4">
+            <h2 class="font-14 font-weight-700">Plate Number</h2>
+            <input type="text" class="form-control" id="validationDefault02" placeholder="Plate Number" required="">
+          </div>
+          <div class="col-md-4">
+            <h2 class="font-14 font-weight-700">Expiration Date</h2>
+            <input type="date" class="form-control" id="validationDefault02" placeholder="Expiration Date" required="">
+          </div>
+          <div class="col-md-4">
+            <h2 class="font-14 font-weight-700">Cab Card</h2>
+            <input type="text" class="form-control" id="validationDefault02" placeholder="Cab Card" required="">
+          </div>
+          <div class="col-md-4">
+            <h2 class="font-14 font-weight-700">Upload Documents</h2>
+            <input type="file" class="form-control" id="validationDefault02" placeholder="Document.pdf" required="">
+          </div>
+
+          <hr class="hr" />
+
+          <div class="col-md-4">
+            <h2 class="font-14 font-weight-700">Annual DOT Insp</h2>
+            <input type="text" class="form-control" id="validationDefault02" placeholder="Annual DOT Insp" required="">
+          </div>
+          <div class="col-md-4">
+            <h2 class="font-14 font-weight-700">Upload Document</h2>
+            <input type="file" class="form-control" id="validationDefault02" placeholder="Document.pdf" required="">
+          </div>
+          <div class="col-md-4">
+            <h2 class="font-14 font-weight-700">Renewal Date</h2>
+            <input type="date" class="form-control" id="validationDefault02" placeholder="Renewal Date" required="">
+          </div>
+          <div class="col-md-4">
+            <h2 class="font-14 font-weight-700">Purchase Date</h2>
+            <input type="date" class="form-control" id="validationDefault02" placeholder="Purchase Date" required="">
+          </div>
+          <div class="col-md-4">
+            <h2 class="font-14 font-weight-700">Purchase Price</h2>
+            <input type="text" class="form-control" id="validationDefault02" placeholder="Purchase Price" required="">
+          </div>
+          <div class="col-md-4">
+            <h2 class="font-14 font-weight-700">Upload Documents</h2>
+            <input type="file" class="form-control" id="validationDefault02" placeholder="Document.pdf" required="">
+          </div>
+          <div class="col-md-4">
+            <h2 class="font-14 font-weight-700">Loan Bank Name</h2>
+            <input type="text" class="form-control" id="validationDefault02" placeholder="Loan Bank Name" required="">
+          </div>
+
+          <div class="col-md-4">
+            <h2 class="font-14 font-weight-700">Loan ACC Number</h2>
+            <input type="text" class="form-control" id="validationDefault02" placeholder="Loan ACC Number" required="">
+          </div>
+          <div class="col-md-4">
+            <h2 class="font-14 font-weight-700">Upload Documents</h2>
+            <input type="file" class="form-control" id="validationDefault02" placeholder="Document.pdf" required="">
+          </div>
+          <div class="col-md-4">
+            <h2 class="font-14 font-weight-700">Bank Contact</h2>
+            <input type="text" class="form-control" id="validationDefault02" placeholder="Bank Contact" required="">
+          </div>
+          <div class="col-md-4">
+            <h2 class="font-14 font-weight-700">Interest Rate</h2>
+            <input type="text" class="form-control" id="validationDefault02" placeholder="Interest Rate" required="">
+          </div>
+          <div class="col-md-4">
+            <h2 class="font-14 font-weight-700">Monthly Payment</h2>
+            <input type="text" class="form-control" id="validationDefault02" placeholder="Monthly Payment" required="">
+          </div>
+          <div class="col-md-4">
+            <h2 class="font-14 font-weight-700">Payoff Date</h2>
+            <input type="date" class="form-control" id="validationDefault02" placeholder="Payoff Date" required="">
+          </div>
+          <div class="col-md-4">
+            <h2 class="font-14 font-weight-700">Prepass Transponder Number</h2>
+            <input type="text" class="form-control" id="validationDefault02" placeholder="Prepass Transponder Number"
+              required="">
+          </div>
+          <div class="col-md-4">
+            <h2 class="font-14 font-weight-700">Fuel Card Number</h2>
+            <input type="text" class="form-control" id="validationDefault02" placeholder="Fuel Card Number" required="">
+          </div>
+          <div class="col-md-4">
+            <h2 class="font-14 font-weight-700">Status</h2>
+            <input type="text" class="form-control" id="validationDefault02" placeholder="Status" required="">
+          </div>
+          <div class="modal-footer justify-content-center">
+            <button type="button" class="btn btn-outline-secondary btn-sm text-uppercase rounded-pill"
+              data-bs-dismiss="modal">Close</button>
+            <button type="submit" class="btn btn-success btn-sm text-uppercase rounded-pill">Save changes</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>

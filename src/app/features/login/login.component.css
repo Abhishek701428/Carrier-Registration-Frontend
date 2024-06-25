@@ -1,0 +1,51 @@
+/* Style for the login container */
+.login-area {
+    background-color: #f0f0f0; /* Set your desired background color */
+    height: 100vh; /* Adjust the height as needed */
+  }
+  
+  /* Style for the login form */
+  .form-area {
+    max-width: 400px; /* Set the maximum width of the form */
+    margin: 0 auto; /* Center the form horizontally */
+  }
+  
+  /* Style for the form text */
+  .form-text {
+    margin-bottom: 20px; /* Adjust spacing as needed */
+  }
+  
+  /* Style for the form input fields */
+  .form-control {
+    border: 1px solid #ced4da; /* Set border color */
+    border-radius: 5px; /* Set border radius */
+    padding: 10px; /* Adjust padding as needed */
+    margin-bottom: 15px; /* Adjust spacing as needed */
+  }
+  
+  /* Style for the remember me checkbox */
+  .form-check-input {
+    margin-right: 5px; /* Adjust spacing between checkbox and label */
+  }
+  
+  /* Style for the forgot password link */
+  .forgot-password {
+    text-decoration: none; /* Remove underline */
+    color: #007bff; /* Set link color */
+  }
+  
+  /* Style for the submit button */
+  .submit-btn button {
+    border-radius: 5px; /* Set border radius */
+    padding: 10px; /* Adjust padding as needed */
+    background-color: #28a745; /* Set button background color */
+    border: none; /* Remove border */
+    color: #fff; /* Set text color */
+    cursor: pointer; /* Change cursor to pointer on hover */
+  }
+  
+  /* Hover effect for the submit button */
+  .submit-btn button:hover {
+    background-color: #218838; /* Change button background color on hover */
+  }
+  
