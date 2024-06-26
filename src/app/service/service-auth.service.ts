@@ -6,9 +6,9 @@ import { tap } from 'rxjs/operators';
   providedIn: 'root'
 })
 export class ServiceAuthService {
-  apiUrl: string = 'https://carrier-registration-backend-wt46.onrender.com/api/truckList/truck';
-  loginUrl: string = 'https://carrier-registration-backend-wt46.onrender.com/api/login';
-  createUrl: string = 'https://carrier-registration-backend-wt46.onrender.com/api/truckList/truck/create'; // Add create API URL
+  apiUrl: string = 'https://carrier-registration-backend-1.onrender.com/api/truckList/truck';
+  loginUrl: string = 'https://carrier-registration-backend-1.onrender.com/api/login';
+  createUrl: string = 'https://carrier-registration-backend-1.onrender.com/api/truckList/truck/create'; // Add create API URL
 
   constructor(private http: HttpClient) { }
 
