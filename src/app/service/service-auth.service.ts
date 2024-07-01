@@ -6,9 +6,14 @@ import { tap } from 'rxjs/operators';
   providedIn: 'root'
 })
 export class ServiceAuthService {
-  apiUrl: string = 'https://carrier-registration-backend-1.onrender.com/api/truckList/truck';
   loginUrl: string = 'https://carrier-registration-backend-1.onrender.com/api/login';
+  apiUrl: string = 'https://carrier-registration-backend-1.onrender.com/api/truckList/truck';
   createUrl: string = 'https://carrier-registration-backend-1.onrender.com/api/truckList/truck/create'; // Add create API URL
+  trailerapiUrl: string = 'https://carrier-registration-backend-1.onrender.com/api/trailerList/trailer';
+  trailercreateUrl: string = 'https://carrier-registration-backend-1.onrender.com/api/trailerList/trailer/create'; // Add create API URL
+  driverapiUrl: string = 'https://carrier-registration-backend-1.onrender.com/api/driverList/driver';
+  drivercreateUrl: string = 'https://carrier-registration-backend-1.onrender.com/api/driverList/driver/create'; // Add create API URL
+
 
   constructor(private http: HttpClient) { }
 
@@ -62,4 +67,55 @@ export class ServiceAuthService {
 
     return this.http.post(this.createUrl, truckData,{ headers });
   }
+
+
+  getTrailersFromAPI() {
+    const token = this.getToken();
+    if (!token) {
+      throw new Error('No token stored');
+    }
+
+    // Include token in headers
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+
+    return this.http.get(`${this.trailerapiUrl}/getAll`, { headers });
+  }
+
+  createTrailer(trailerData: any) {
+    const token = this.getToken();
+    if (!token) {
+      throw new Error('No token stored');
+    }
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+
+    return this.http.post(this.trailercreateUrl, trailerData,{ headers });
+  }
+
+
+
+  
+  getDriversFromAPI() {
+    const token = this.getToken();
+    if (!token) {
+      throw new Error('No token stored');
+    }
+
+    // Include token in headers
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+
+    return this.http.get(`${this.driverapiUrl}/getAll`, { headers });
+  }
+
+  createDriver(driverData: any) {
+    const token = this.getToken();
+    if (!token) {
+      throw new Error('No token stored');
+    }
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+
+    return this.http.post(this.drivercreateUrl, driverData,{ headers });
+  }
 }
+
+
+

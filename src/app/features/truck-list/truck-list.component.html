@@ -5,29 +5,43 @@
     <div class="container-fluid px-5">
       <div class="row bg-white px-3 py-4 mt-3 rounded">
         <div class="col-md-12">
+
+
           <!-- Default Tabs -->
           <ul class="nav nav-pills gap-2 border-bottom pb-4" id="myTab" role="tablist">
+
             <li class="nav-item" role="presentation">
               <button class="nav-link rounded-pill active bg-nav-info" id="home-tab" data-bs-toggle="tab"
                 data-bs-target="#customer" type="button" role="tab" aria-controls="home" aria-selected="true">Truck
                 List</button>
             </li>
+
+
+
             <li class="nav-item" role="presentation">
               <button class="nav-link rounded-pill bg-nav-success" id="profile-tab" data-bs-toggle="tab"
                 data-bs-target="#file" type="button" role="tab" aria-controls="profile" aria-selected="false"
                 tabindex="-1">Non-Compliant Trucks</button>
             </li>
+
+
             <li class="nav-item" role="presentation">
               <button class="nav-link rounded-pill bg-nav-warning" id="contact-tab" data-bs-toggle="tab"
                 data-bs-target="#forms" type="button" role="tab" aria-controls="contact" aria-selected="false"
                 tabindex="-1">Compliant Trucks</button>
             </li>
+
+
             <li class="nav-item" role="presentation">
               <button class="nav-link rounded-pill bg-nav-danger" id="contact-tab" data-bs-toggle="tab"
                 data-bs-target="#email" type="button" role="tab" aria-controls="contact" aria-selected="false"
                 tabindex="-1">Expiring Trucks</button>
             </li>
+
+
           </ul>
+
+
           <div class="tab-content" id="myTabContent">
             <div class="tab-pane fade active show" id="customer" role="tabpanel" aria-labelledby="home-tab">
               <div id="kt_app_content" class="app-content  flex-column-fluid">
@@ -73,10 +87,10 @@
                             <td>{{ truck.monthlyPayment }}</td>
                             <td>
                               <span [ngClass]="{
-                                        'badge bg-label-success font-13 font-weight-700 text-uppercase': truck.status === 'APPROVED',
-                                        'badge bg-label-warning font-13 font-weight-700 text-uppercase': truck.status === 'PENDING',
-                                        'badge bg-label-danger font-13 font-weight-700 text-uppercase': truck.status === 'CANCELLED'
-                                      }">{{ truck.status }}</span>
+                                          'badge bg-label-success font-13 font-weight-700 text-uppercase': truck.status === 'APPROVED',
+                                          'badge bg-label-warning font-13 font-weight-700 text-uppercase': truck.status === 'PENDING',
+                                          'badge bg-label-danger font-13 font-weight-700 text-uppercase': truck.status === 'CANCELLED'
+                                        }">{{ truck.status }}</span>
                             </td>
                             <td class="text-capitalize text-center">
                               <div class="dropdown filter-dropdown">
@@ -155,7 +169,20 @@
       </div>
       <div class="modal-body">
         <form class="row g-3" (ngSubmit)="submitForm()">
+
+
+
+
+
+
+
+          
           <!-- Your form inputs -->
+
+
+
+
+
           <div class="col-md-4">
             <h2 class="font-14 font-weight-700"> Unit Number</h2>
             <input type="text" class="form-control" id="unitNumber" placeholder="Enter unit number"
@@ -169,7 +196,7 @@
           <div class="col-md-4">
             <h2 class="font-14 font-weight-700">Plate Number</h2>
             <input type="text" class="form-control" id="validationDefault02" placeholder="Plate Number"
-              [(ngModel)]="newTruck.plateNumber" name="validationDefault02"  required="">
+              [(ngModel)]="newTruck.plateNumber" name="validationDefault02" required="">
           </div>
           <div class="col-md-4">
             <h2 class="font-14 font-weight-700">Expiration Date</h2>
@@ -184,7 +211,7 @@
           <div class="col-md-4">
             <h2 class="font-14 font-weight-700">Upload Documents</h2>
             <input type="file" class="form-control" id="validationDefault02" placeholder="Document.pdf"
-              [(ngModel)]="newTruck.uploadDocument"  name="validationDefault02"  required="">
+              [(ngModel)]="newTruck.uploadDocument" name="validationDefault02" required="">
           </div>
 
           <hr class="hr" />
@@ -278,4 +305,6 @@
         </form>
       </div>
     </div>
-  </div>
+  </div> 
+
+
