@@ -8,7 +8,6 @@
         <div class="col-md-12">
 
 
-
           <!-- Default Tabs -->
           <ul class="nav nav-pills gap-2 border-bottom pb-4" id="myTab" role="tablist">
 
@@ -73,7 +72,7 @@
                     <div class="table-responsive">
                       <table class="table table-bordered">
                         <thead>
-                          <tr>
+                          <!-- <tr>
                             <th scope="col">Driver Name</th>
                             <th scope="col">Email</th>
                             <th scope="col">Phone</th>
@@ -89,6 +88,22 @@
                             <td>{{ driver.email }}</td>
                             <td>{{ driver.phone }}</td>
                             <td>{{ driver.mcNumber }}</td>
+                            <td> -->
+
+                          <tr>
+                            <th scope="col">Driver Name</th>
+                            <th scope="col">Email</th>
+                            <th scope="col">Phone</th>
+                            <th scope="col">Status</th>
+                            <th scope="col" width="30px">Actions</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+
+                          <tr *ngFor="let driver of drivers">
+                            <td><a class="text-primary" href="driver-profile-view.html">{{ driver.driverName }}</a></td>
+                            <td>{{ driver.email }}</td>
+                            <td>{{ driver.number }}</td>
                             <td>
                               <span [ngClass]="{
                                                 'badge bg-label-success font-13 font-weight-700 text-uppercase': driver.status === 'APPROVED',
@@ -96,6 +111,7 @@
                                                 'badge bg-label-danger font-13 font-weight-700 text-uppercase': driver.status === 'CANCELLED'
                                               }">{{ driver.status }}</span>
                             </td>
+                            
                             <td class="text-capitalize text-center">
                               <div class="dropdown filter-dropdown">
                                 <span class="dropdown-toggle font-16 px-3" type="button" id="dropdownMenuButton23"
@@ -376,8 +392,7 @@
               Carrier Safety
               Regulations During this Period</h2>
             <input type="text" class="form-control" id="validationDefault02" placeholder="Yes/No"
-              [(ngModel)]="newDriver.federalMotorCarrierSafetyRegulations1"
-              name="validationDefault02" required="">
+              [(ngModel)]="newDriver.federalMotorCarrierSafetyRegulations1" name="validationDefault02" required="">
           </div>
 
           <div class="col-md-4">
@@ -385,8 +400,7 @@
               Carrier Safety
               Regulations During this Period</h2>
             <input type="text" class="form-control" id="validationDefault02" placeholder="Yes/No"
-              [(ngModel)]="newDriver.federalMotorCarrierSafetyRegulations2"
-              name="validationDefault02" required="">
+              [(ngModel)]="newDriver.federalMotorCarrierSafetyRegulations2" name="validationDefault02" required="">
           </div>
 
           <div class="col-md-4">
@@ -511,16 +525,17 @@
           </div>
 
           <!-- </form> -->
-      
-      <div class="modal-footer justify-content-center">
-        <button type="button" class="btn btn-outline-secondary btn-sm text-uppercase rounded-pill"
-          data-bs-dismiss="modal">Close</button>
-        <button type="submit" class="btn btn-success btn-sm text-uppercase rounded-pill">Save changes</button>
+
+          <div class="modal-footer justify-content-center">
+            <button type="button" class="btn btn-outline-secondary btn-sm text-uppercase rounded-pill"
+              data-bs-dismiss="modal">Close</button>
+            <button type="submit" class="btn btn-success btn-sm text-uppercase rounded-pill">Save changes</button>
+          </div>
+        </form>
       </div>
-    </form>
+    </div>
+      
   </div>
-  </div>
-  </div>
 </div>
 
 
@@ -575,14 +590,14 @@
 
 
 
-              <!-- Default Tabs -->
+<!-- Default Tabs -->
 
 
 
 
 
 
-              <!-- <ul class="nav nav-pills gap-2 border-bottom pb-4" id="myTab" role="tablist">
+<!-- <ul class="nav nav-pills gap-2 border-bottom pb-4" id="myTab" role="tablist">
 
                 <li class="nav-item" role="presentation">
                   <button class="nav-link rounded-pill active bg-nav-info" id="home-tab" data-bs-toggle="tab"
@@ -709,8 +724,8 @@
                     </div>
                   </div>
                 </div> -->
-                <!-- End Default Tabs -->
-              <!-- </div>
+<!-- End Default Tabs -->
+<!-- </div>
             </div>
           </div>
         </div>
@@ -746,10 +761,10 @@
 
 
 
-               <!-- Your form inputs -->
+<!-- Your form inputs -->
 
 
-          
+
 <!-- 
 
           <div class="col-md-4">
