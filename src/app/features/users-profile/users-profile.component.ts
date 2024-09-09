@@ -1,12 +1,12 @@
-import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
+import { ChangeDetectorRef, Component } from '@angular/core';
 import { ServiceAuthService } from '../../service/service-auth.service';
 
 @Component({
-  selector: 'app-company-profile',
-  templateUrl: './company-profile.component.html',
-  styleUrls: ['./company-profile.component.css']
+  selector: 'app-users-profile',
+  templateUrl: './users-profile.component.html',
+  styleUrl: './users-profile.component.css'
 })
-export class CompanyProfileComponent implements OnInit {
+export class UsersProfileComponent {
   totalTrucks: number = 0;
   totalTrailers: number = 0;
   totalDrivers: number = 0;
@@ -86,3 +86,5 @@ export class CompanyProfileComponent implements OnInit {
     }, 10);
   }
 }
+
+

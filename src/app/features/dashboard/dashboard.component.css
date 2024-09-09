@@ -1,0 +1,56 @@
+.offcanvas-body.view-load {
+    padding: 20px;
+    background-color: #f8f9fa;
+  }
+  
+  .offcanvas-body.view-load .form-control {
+    border-radius: 5px;
+    border: 1px solid #ced4da;
+    background-color: #ffffff;
+    padding: 10px;
+    font-size: 14px;
+  }
+  
+  .offcanvas-body.view-load .form-label {
+    font-weight: 600;
+  }
+  
+  .offcanvas-body.view-load h2 {
+    margin-bottom: 20px;
+    font-size: 24px;
+    color: #343a40;
+  }
+  
+  .offcanvas-body.view-load h3 {
+    margin-top: 20px;
+    margin-bottom: 10px;
+    font-size: 18px;
+    color: #007bff;
+  }
+  
+  .offcanvas-body.view-load .btn-primary {
+    background-color: #007bff;
+    border-color: #007bff;
+    font-size: 16px;
+    padding: 10px 20px;
+  }
+  
+  .offcanvas-body.view-load .btn-primary:hover {
+    background-color: #0056b3;
+    border-color: #004085;
+  }
+  
+  .offcanvas-body.view-load .form-control:hover,
+  .offcanvas-body.view-load .form-control:focus {
+    border-color: #80bdff;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+  }
+  
+  .offcanvas-body.view-load .row {
+    margin-bottom: 20px;
+  }
+  
+  .offcanvas-body.view-load h3,
+  .offcanvas-body.view-load .form-control {
+    transition: all 0.3s ease;
+  }

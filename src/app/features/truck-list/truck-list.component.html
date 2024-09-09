@@ -1,4 +1,10 @@
 <app-navbar></app-navbar>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
 
 <main id="main" class="main mt-0 p-0">
   <div id="kt_app_content" class="app-content  flex-column-fluid">
@@ -9,36 +15,29 @@
 
           <!-- Default Tabs -->
           <ul class="nav nav-pills gap-2 border-bottom pb-4" id="myTab" role="tablist">
-
             <li class="nav-item" role="presentation">
               <button class="nav-link rounded-pill active bg-nav-info" id="home-tab" data-bs-toggle="tab"
-                data-bs-target="#customer" type="button" role="tab" aria-controls="home" aria-selected="true">Truck
-                List</button>
+                data-bs-target="#customer" type="button" role="tab" aria-controls="home" aria-selected="true"
+                (click)="filterTrucks('all')">Truck List</button>
             </li>
 
-
-
+              <li class="nav-item" role="presentation">
+              <button class="nav-link rounded-pill bg-nav-success" id="home-tab" data-bs-toggle="tab"
+                data-bs-target="#customer" type="button" role="tab" aria-controls="home" aria-selected="true"
+                (click)="filterTrucks('nonCompliant')">Compliant Trucks</button>
+            </li>
             <li class="nav-item" role="presentation">
-              <button class="nav-link rounded-pill bg-nav-success" id="profile-tab" data-bs-toggle="tab"
-                data-bs-target="#file" type="button" role="tab" aria-controls="profile" aria-selected="false"
-                tabindex="-1">Non-Compliant Trucks</button>
+              <button class="nav-link rounded-pill bg-nav-warning" (click)="filterTrucks('compliant')" id="home-tab"
+                data-bs-toggle="tab" data-bs-target="#customer" type="button" role="tab" aria-controls="home"
+                aria-selected="true">Non-Compliant Trucks</button>
             </li>
-
-
+          
+            
             <li class="nav-item" role="presentation">
-              <button class="nav-link rounded-pill bg-nav-warning" id="contact-tab" data-bs-toggle="tab"
-                data-bs-target="#forms" type="button" role="tab" aria-controls="contact" aria-selected="false"
-                tabindex="-1">Compliant Trucks</button>
+              <button class="nav-link rounded-pill bg-nav-danger" id="home-tab" data-bs-toggle="tab"
+                data-bs-target="#customer" type="button" role="tab" aria-controls="home" aria-selected="true"
+                (click)="filterTrucks('expiring')">Expiring Trucks</button>
             </li>
-
-
-            <li class="nav-item" role="presentation">
-              <button class="nav-link rounded-pill bg-nav-danger" id="contact-tab" data-bs-toggle="tab"
-                data-bs-target="#email" type="button" role="tab" aria-controls="contact" aria-selected="false"
-                tabindex="-1">Expiring Trucks</button>
-            </li>
-
-
           </ul>
 
 
@@ -55,8 +54,7 @@
                             placeholder="Search...">
                         </div>
                         <div>
-                          <button type="button" class="btn btn-success rounded-pill font-14" data-bs-toggle="modal"
-                            data-bs-target="#ExtralargeModal">
+                          <button type="button" class="btn btn-success rounded-pill font-14" data-bs-toggle="offcanvas" data-bs-target="#addLocation">
                             <i class="fa fa-plus me-2" aria-hidden="true"></i>Add Truck
                           </button>
                         </div>
@@ -79,35 +77,34 @@
                           </tr>
                         </thead>
                         <tbody>
-
-                          <tr *ngFor="let truck of trucks">
-                            <td><a class="text-primary" href="truck-info-view.html">{{ truck.unitNumber }}</a></td>
+                          <tr *ngFor="let truck of filteredTrucks">
+                            <td><a class="text-primary" [routerLink]="['/truck-list-view',truck._id]">{{
+                                truck.unitNumber }}</a></td>
                             <td>{{ truck.vinNumber }}</td>
                             <td>{{ truck.purchaseDate }}</td>
                             <td>{{ truck.monthlyPayment }}</td>
                             <td>
-                              <span [ngClass]="{
-                                          'badge bg-label-success font-13 font-weight-700 text-uppercase': truck.status === 'APPROVED',
-                                          'badge bg-label-warning font-13 font-weight-700 text-uppercase': truck.status === 'PENDING',
-                                          'badge bg-label-danger font-13 font-weight-700 text-uppercase': truck.status === 'CANCELLED'
-                                        }">{{ truck.status }}</span>
+                              <span class="badge font-13 font-weight-700 text-uppercase" [ngClass]="{
+                                'bg-label-success': truck.status === 'APPROVED',
+                                'bg-label-warning': truck.status === 'PENDING',
+                                'bg-label-danger': truck.status === 'EXPIRING'}">{{ truck.status }}</span>
                             </td>
                             <td class="text-capitalize text-center">
                               <div class="dropdown filter-dropdown">
                                 <span class="dropdown-toggle font-16 px-3" type="button" id="dropdownMenuButton23"
-                                  data-bs-toggle="dropdown" aria-expanded="false"><i
-                                    class="fa fa-ellipsis-v"></i></span>
-                                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton2" style="">
-                                  <a class="dropdown-item dispatch font-13" href="javascript:;" data-bs-toggle="modal"
-                                    data-bs-target="#ExtralargeModalEdit"
-                                    onclick="dropdownevent('dropdownMenuButton2', 'dispatch')">Edit</a>
-                                  <a class="dropdown-item assiened font-13" href="javascript:;" data-bs-toggle="modal"
+                                  data-bs-toggle="dropdown" aria-expanded="false"><i class="fa fa-ellipsis-v"></i>
+                                </span>
+                                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton2">
+                                  <a href="javascript:;" class="dropdown-item assigned font-13"
+                                    (click)="editTruck(truck)" type="button" data-bs-toggle="offcanvas"
+                                    data-bs-target="#ExtralargeModalEdit" aria-controls="offcanvasRight">Edit</a>
+                                  <a class="dropdown-item assigned font-13" href="javascript:;" data-bs-toggle="modal"
                                     data-bs-target="#ExtralargeModalDelete"
-                                    onclick="dropdownevent('dropdownMenuButton2', 'assigned')">Delete</a>
+                                    (click)="setTruckToDelete(truck._id)">Delete</a>
                                 </div>
                               </div>
                             </td>
-                          </tr>
+                            </tr>
                         </tbody>
                       </table>
                     </div>
@@ -134,177 +131,513 @@
                 </div>
               </div>
             </div>
-          </div><!-- End Default Tabs -->
+          </div>
         </div>
       </div>
     </div>
+      
   </div>
 </main>
 
+<!-- End Default Tabs -->
 
 
-
-
-
-
-
-<!-- //form models -->
-
-
-<a href="#" class="back-to-top d-flex align-items-center justify-content-center btn-success"><i
-    class="bi bi-arrow-up-short"></i></a>
-
-
-
-
-
-
-
-<div class="modal fade" id="ExtralargeModal" tabindex="-1" style="display: none;" aria-hidden="true">
-  <div class="modal-dialog modal-xl">
+<div class="modal fade" id="ExtralargeModalDelete" tabindex="-1" style="display: none;" aria-hidden="true">
+  <div class="modal-dialog modal-md modal-dialog-centered">
     <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title">Add Truck List</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
       <div class="modal-body">
-        <form class="row g-3" (ngSubmit)="submitForm()">
-
-
-
-
-
-
-
-          
-          <!-- Your form inputs -->
-
-
-
-
-
-          <div class="col-md-4">
-            <h2 class="font-14 font-weight-700"> Unit Number</h2>
-            <input type="text" class="form-control" id="unitNumber" placeholder="Enter unit number"
-              [(ngModel)]="newTruck.unitNumber" name="unitNumber" required>
-          </div>
-          <div class="col-md-4">
-            <h2 class="font-14 font-weight-700">VIN Number</h2>
-            <input type="text" class="form-control" id="validationDefault02" placeholder="VIN Number"
-              [(ngModel)]="newTruck.vinNumber" name="validationDefault02" required="">
-          </div>
-          <div class="col-md-4">
-            <h2 class="font-14 font-weight-700">Plate Number</h2>
-            <input type="text" class="form-control" id="validationDefault02" placeholder="Plate Number"
-              [(ngModel)]="newTruck.plateNumber" name="validationDefault02" required="">
-          </div>
-          <div class="col-md-4">
-            <h2 class="font-14 font-weight-700">Expiration Date</h2>
-            <input type="date" class="form-control" id="validationDefault02" placeholder="Expiration Date"
-              [(ngModel)]="newTruck.expirationDate" name="validationDefault02" required="">
-          </div>
-          <div class="col-md-4">
-            <h2 class="font-14 font-weight-700">Cab Card</h2>
-            <input type="text" class="form-control" id="validationDefault02" placeholder="Cab Card"
-              [(ngModel)]="newTruck.cabCard" name="validationDefault02" required="">
-          </div>
-          <div class="col-md-4">
-            <h2 class="font-14 font-weight-700">Upload Documents</h2>
-            <input type="file" class="form-control" id="validationDefault02" placeholder="Document.pdf"
-              [(ngModel)]="newTruck.uploadDocument" name="validationDefault02" required="">
-          </div>
-
-          <hr class="hr" />
-
-          <div class="col-md-4">
-            <h2 class="font-14 font-weight-700">Annual DOT Insp</h2>
-            <input type="text" class="form-control" id="validationDefault02" placeholder="Annual DOT Insp"
-              [(ngModel)]="newTruck.annualDotInspDocument" name="validationDefault02" required="">
-          </div>
-          <div class="col-md-4">
-            <h2 class="font-14 font-weight-700">Upload Document</h2>
-            <input type="file" class="form-control" id="validationDefault02" placeholder="Document.pdf"
-              [(ngModel)]="newTruck.uploadDocument1" name="validationDefault02" required="">
-          </div>
-          <div class="col-md-4">
-            <h2 class="font-14 font-weight-700">Renewal Date</h2>
-            <input type="date" class="form-control" id="validationDefault02" placeholder="Renewal Date"
-              [(ngModel)]="newTruck.renewalDate" name="validationDefault02" required="">
-          </div>
-          <div class="col-md-4">
-            <h2 class="font-14 font-weight-700">Purchase Date</h2>
-            <input type="date" class="form-control" id="validationDefault02" placeholder="Purchase Date"
-              [(ngModel)]="newTruck.purchaseDate" name="validationDefault02" required="">
-          </div>
-          <div class="col-md-4">
-            <h2 class="font-14 font-weight-700">Purchase Price</h2>
-            <input type="text" class="form-control" id="validationDefault02" placeholder="Purchase Price"
-              [(ngModel)]="newTruck.purchasePrice" name="validationDefault02" required="">
-          </div>
-          <div class="col-md-4">
-            <h2 class="font-14 font-weight-700">Upload Documents</h2>
-            <input type="file" class="form-control" id="validationDefault02" placeholder="Document.pdf"
-              [(ngModel)]="newTruck.uploadDocument2" name="validationDefault02" required="">
-          </div>
-          <div class="col-md-4">
-            <h2 class="font-14 font-weight-700">Loan Bank Name</h2>
-            <input type="text" class="form-control" id="validationDefault02" placeholder="Loan Bank Name"
-              [(ngModel)]="newTruck.loanBankName" name="validationDefault02" required="">
-          </div>
-
-          <div class="col-md-4">
-            <h2 class="font-14 font-weight-700">Loan ACC Number</h2>
-            <input type="text" class="form-control" id="validationDefault02" placeholder="Loan ACC Number"
-              [(ngModel)]="newTruck.loanAccNumber" name="validationDefault02" required="">
-          </div>
-          <div class="col-md-4">
-            <h2 class="font-14 font-weight-700">Upload Documents</h2>
-            <input type="file" class="form-control" id="validationDefault02" placeholder="Document.pdf"
-              [(ngModel)]="newTruck.uploadDocument3" name="validationDefault02" required="">
-          </div>
-          <div class="col-md-4">
-            <h2 class="font-14 font-weight-700">Bank Contact</h2>
-            <input type="text" class="form-control" id="validationDefault02" placeholder="Bank Contact"
-              [(ngModel)]="newTruck.bankContact" name="validationDefault02" required="">
-          </div>
-          <div class="col-md-4">
-            <h2 class="font-14 font-weight-700">Interest Rate</h2>
-            <input type="text" class="form-control" id="validationDefault02" placeholder="Interest Rate"
-              [(ngModel)]="newTruck.interestRate" name="validationDefault02" required="">
-          </div>
-          <div class="col-md-4">
-            <h2 class="font-14 font-weight-700">Monthly Payment</h2>
-            <input type="text" class="form-control" id="validationDefault02" placeholder="Monthly Payment"
-              [(ngModel)]="newTruck.monthlyPayment" name="validationDefault02" required="">
-          </div>
-          <div class="col-md-4">
-            <h2 class="font-14 font-weight-700">Payoff Date</h2>
-            <input type="date" class="form-control" id="validationDefault02" placeholder="Payoff Date"
-              [(ngModel)]="newTruck.payoffDate" name="validationDefault02" required="">
-          </div>
-          <div class="col-md-4">
-            <h2 class="font-14 font-weight-700">Prepass Transponder Number</h2>
-            <input type="text" class="form-control" id="validationDefault02" placeholder="Prepass Transponder Number"
-              [(ngModel)]="newTruck.prepassTransponderNumber" name="validationDefault02" required="">
-          </div>
-          <div class="col-md-4">
-            <h2 class="font-14 font-weight-700">Fuel Card Number</h2>
-            <input type="text" class="form-control" id="validationDefault02" placeholder="Fuel Card Number"
-              [(ngModel)]="newTruck.fuelCardNumber" name="validationDefault02" required="">
-          </div>
-          <div class="col-md-4">
-            <h2 class="font-14 font-weight-700">Status</h2>
-            <input type="text" class="form-control" id="validationDefault02" placeholder="Status"
-              [(ngModel)]="newTruck.status" name="validationDefault02" required="">
-          </div>
-          <div class="modal-footer justify-content-center">
-            <button type="button" class="btn btn-outline-secondary btn-sm text-uppercase rounded-pill"
-              data-bs-dismiss="modal">Close</button>
-            <button type="submit" class="btn btn-success btn-sm text-uppercase rounded-pill">Save changes</button>
-          </div>
-        </form>
+        <h2 class="my-5 text-center"><i class="fa fa-exclamation-triangle text-danger" style="font-size: 60px;"></i>
+        </h2>
+        <h3 class="font-18 font-weight-700 text-center">Are you sure you want to delete this product</h3>
+      </div>
+      <div class="modal-footer justify-content-center">
+        <button type="button" class="btn btn-success btn-sm text-uppercase rounded-pill px-3" data-bs-dismiss="modal"
+          (click)="truckIdToDelete && deleteTruck(truckIdToDelete)">Yes</button>
+        <button type="button" class="btn btn-outline-secondary btn-sm text-uppercase rounded-pill px-3"
+          data-bs-dismiss="modal">No</button>
       </div>
     </div>
-  </div> 
+  </div>
+</div>
+
+<div class="offcanvas offcanvas-end" tabindex="-1" id="ExtralargeModalEdit" aria-labelledby="offcanvasRightLabel"
+    style="width: 80%;" data-bs-backdrop="static" data-bs-keyboard="false">
+    <div class="modal-header" style="padding: 15px; border-bottom: 1px solid #ccc;">
+      <h5 class="modal-title">Edit Truck</h5>
+      <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+    </div>
+    <div class="offcanvas-body view-load position-relative">
+      <form class="row g-3" (ngSubmit)="updateTruck()">
+        <div class="col-md-4">
+          <h2 class="font-14 font-weight-700">Unit Number</h2>
+          <input type="text" class="form-control" [(ngModel)]="truckToEdit.unitNumber" name="unitNumber" required>
+        </div>
+        <div class="col-md-4">
+          <h2 class="font-14 font-weight-700">VIN Number</h2>
+          <input type="text" class="form-control" [(ngModel)]="truckToEdit.vinNumber" name="vinNumber" required>
+        </div>
+        <div class="col-md-4">
+          <h2 class="font-14 font-weight-700">Plate Number</h2>
+          <input type="text" class="form-control" [(ngModel)]="truckToEdit.plateNumber" name="plateNumber" required>
+        </div>
+        <div class="col-md-4">
+          <h2 class="font-14 font-weight-700">Expiration Date</h2>
+          <input type="text" class="form-control" [(ngModel)]="truckToEdit.expirationDate" name="expirationDate"
+            required>
+        </div>
+        <div class="col-md-4">
+          <h2 class="font-14 font-weight-700">Cab Card</h2>
+          <input type="text" class="form-control" [(ngModel)]="truckToEdit.cabCard" name="cabCard" required>
+        </div>
+        <div class="col-md-4">
+          <h2 class="font-14 font-weight-700">Upload Documents</h2>
+          <input type="file" class="form-control" (change)="truckEditFile($event, 'uploadDocument')"
+            name="uploadDocuments" required>
+        </div>
+
+        <hr class="hr">
+
+        <div class="col-md-4">
+          <h2 class="font-14 font-weight-700">Annual DOT Insp</h2>
+          <input type="text" class="form-control" [(ngModel)]="truckToEdit.annualDotInspDocument" name="annualDOTInsp"
+            required>
+        </div>
+        <div class="col-md-4">
+          <h2 class="font-14 font-weight-700">Upload Document</h2>
+          <input type="file" class="form-control" (change)="truckEditFile($event, 'uploadDocument1')"
+            name="uploadDocument" required>
+        </div>
+        <div class="col-md-4">
+          <h2 class="font-14 font-weight-700">Renewal Date</h2>
+          <input type="text" class="form-control" [(ngModel)]="truckToEdit.renewalDate" name="renewalDate" required>
+        </div>
+        <div class="col-md-4">
+          <h2 class="font-14 font-weight-700">Purchase Date</h2>
+          <input type="text" class="form-control" [(ngModel)]="truckToEdit.purchaseDate" name="purchaseDate" required>
+        </div>
+        <div class="col-md-4">
+          <h2 class="font-14 font-weight-700">Purchase Price</h2>
+          <input type="text" class="form-control" [(ngModel)]="truckToEdit.purchasePrice" name="purchasePrice" required>
+        </div>
+        <div class="col-md-4">
+          <h2 class="font-14 font-weight-700">Upload Documents</h2>
+          <input type="file" class="form-control" (change)="truckEditFile($event, 'uploadDocument2')"
+            name="uploadDocuments" required>
+        </div>
+        <div class="col-md-4">
+          <h2 class="font-14 font-weight-700">Loan Bank Name</h2>
+          <input type="text" class="form-control" [(ngModel)]="truckToEdit.loanBankName" name="loanBankName" required>
+        </div>
+        <div class="col-md-4">
+          <h2 class="font-14 font-weight-700">Loan ACC Number</h2>
+          <input type="text" class="form-control" [(ngModel)]="truckToEdit.loanAccNumber" name="loanACCNumber" required>
+        </div>
+        <div class="col-md-4">
+          <h2 class="font-14 font-weight-700">Upload Documents</h2>
+          <input type="file" class="form-control" (change)="truckEditFile($event, 'uploadDocument3')"
+            name="uploadDocuments" required>
+        </div>
+        <div class="col-md-4">
+          <h2 class="font-14 font-weight-700">Bank Contact</h2>
+          <input type="text" class="form-control" [(ngModel)]="truckToEdit.bankContact" name="bankContact" required>
+        </div>
+        <div class="col-md-4">
+          <h2 class="font-14 font-weight-700">Interest Rate</h2>
+          <input type="text" class="form-control" [(ngModel)]="truckToEdit.interestRate" name="interestRate" required>
+        </div>
+        <div class="col-md-4">
+          <h2 class="font-14 font-weight-700">Monthly Payment</h2>
+          <input type="text" class="form-control" [(ngModel)]="truckToEdit.monthlyPayment" name="monthlyPayment"
+            required>
+        </div>
+        <div class="col-md-4">
+          <h2 class="font-14 font-weight-700">Payoff Date</h2>
+          <input type="text" class="form-control" [(ngModel)]="truckToEdit.payoffDate" name="payoffDate" required>
+        </div>
+        <div class="col-md-4">
+          <h2 class="font-14 font-weight-700">Prepass Transponder Number</h2>
+          <input type="text" class="form-control" [(ngModel)]="truckToEdit.prepassTransponderNumber"
+            name="prepassTransponderNumber" required>
+        </div>
+        <div class="col-md-4">
+          <h2 class="font-14 font-weight-700">Fuel Card Number</h2>
+          <input type="text" class="form-control" [(ngModel)]="truckToEdit.fuelCardNumber" name="fuelCardNumber"
+            required>
+        </div>
+        <div class="col-md-4">
+          <h2 class="font-14 font-weight-700">Status</h2>
+          <select class="form-control" [(ngModel)]="truckToEdit.status" name="status" required>
+            <option value="APPROVED">APPROVED</option>
+            <option value="PENDING">PENDING</option>
+            <option value="EXPIRING">EXPIRING</option>
+          </select>
+        </div>
+        <div class="modal-footer justify-content-center"
+          style="border-top: 1px solid #ccc; padding-top: 15px; margin-top: 15px;">
+          <button type="button" class="btn btn-outline-secondary btn-sm text-uppercase rounded-pill"
+            data-bs-dismiss="offcanvas" style="margin: 10px;">Close</button>
+          <button type="submit" class="btn btn-success btn-sm text-uppercase rounded-pill" data-bs-dismiss="offcanvas">Save changes</button>
+        </div>
+      </form>
+     </div>
+</div>
 
 
+<!-- ======= Footer ======= -->
+<footer id="footer" class="footer">
+  <div class="text-dark text-center">
+    <span class="text-muted fw-semibold me-1">2023© all rights reserved</span>
+    <a class="text-muted fw-semibold text-hover-primary">Trucking</a> <!-- href="#" -->
+  </div>
+
+</footer>
+<!-- End Footer -->
+
+<!-- //form models -->
+<a href="#" class="back-to-top d-flex align-items-center justify-content-center btn-success">
+  <i class="bi bi-arrow-up-short"></i>
+</a>
+
+<div class="offcanvas offcanvas-end" id="addLocation" aria-labelledby="offcanvasRightLabel" style="width: 80%;" data-bs-backdrop="static" data-bs-keyboard="false">
+  <div class="modal-header" style="padding: 15px; border-bottom: 1px solid #ccc;">
+    <h5 class="modal-title">Add Truck</h5>
+    <div>
+      <!-- Optional: You can uncomment and use these links as needed -->
+      <!--
+      <a href="javascript:;" class="font-14 text-success text-uppercase font-weight-500 me-4">
+        <i class="ri-save-3-line"></i> Save
+      </a>
+      <a data-bs-dismiss="offcanvas" href="javascript:;" class="font-14 text-danger text-uppercase font-weight-500 me-4">
+        <i class="ri-delete-bin-6-line"></i> Delete
+      </a>
+      <a routerLink="/truck-list-view" class="font-14 text-uppercase font-weight-500 me-5" routerLinkActive="active">
+        View Profile
+      </a>
+      -->
+      <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+    </div>
+  </div>
+
+  <div class="offcanvas-body view-load position-relative">
+    <form class="row g-3" (ngSubmit)="submitForm(f)" #f="ngForm">
+      <!-- Unit Number -->
+      <div class="col-md-4">
+        <h2 class="font-14 font-weight-700">Unit Number</h2>
+        
+          <input type="text" class="form-control" id="unitNumber" placeholder="Enter unit number"
+            [(ngModel)]="newTruck.unitNumber" name="unitNumber" #unitNumber="ngModel" required
+            [ngClass]="{'is-invalid': unitNumber.invalid && (unitNumber.dirty || unitNumber.touched)}">
+        <div *ngIf="unitNumber.invalid && (unitNumber.dirty || unitNumber.touched)" class="invalid-feedback">
+          Unit number is required.
+        </div>
+      </div>
+      
+      <!-- VIN Number -->
+      <div class="col-md-4">
+        <h2 class="font-14 font-weight-700">VIN Number</h2>
+        <input type="text" class="form-control" id="vinNumber" placeholder="VIN Number"
+          [(ngModel)]="newTruck.vinNumber" name="vinNumber" #vinNumber="ngModel" required
+          [ngClass]="{'is-invalid': vinNumber.invalid && (vinNumber.dirty || vinNumber.touched)}">
+        <div *ngIf="vinNumber.invalid && (vinNumber.dirty || vinNumber.touched)" class="invalid-feedback">
+          VIN number is required.
+        </div>
+      </div>
+
+      <!-- Plate Number --> 
+      <div class="col-md-4">
+        <h2 class="font-14 font-weight-700">Plate Number</h2>
+        <input type="text" class="form-control" id="plateNumber" placeholder="Plate Number"
+        [(ngModel)]="newTruck.plateNumber" name="plateNumber" #plateNumber="ngModel" required
+        [ngClass]="{'is-invalid': plateNumber.invalid && (plateNumber.dirty || plateNumber.touched)}">
+      <div *ngIf="plateNumber.invalid && (plateNumber.dirty || plateNumber.touched)" class="invalid-feedback">
+        Plate Number is required.
+      </div>
+    </div>
+
+      <!-- Expiration Date -->
+      <div class="col-md-4">
+        <h2 class="font-14 font-weight-700">Expiration Date</h2>
+        <input type="date" class="form-control" id="expirationDate" placeholder="Expiration Date"
+          [(ngModel)]="newTruck.expirationDate" name="expirationDate"  #expirationDate="ngModel" required
+          [ngClass]="{'is-invalid':expirationDate.invalid && (expirationDate.dirty ||expirationDate.touched)}">
+          <div *ngIf="expirationDate.invalid && (expirationDate.dirty || expirationDate.touched)" class="invalid-feedback">
+            Plate Number is required.
+          </div>
+      </div>
+
+      <!-- Cab Card -->
+      <div class="col-md-4">
+        <h2 class="font-14 font-weight-700">Cab Card</h2>
+        <input type="text" class="form-control" id="cabCard" placeholder="Cab Card"
+          [(ngModel)]="newTruck.cabCard" name="cabCard" #cabCard ="ngModel" required
+          [ngClass]="{'is-invalid':cabCard.invalid && (cabCard.dirty ||cabCard.touched)}">
+          <div *ngIf="cabCard.invalid && (cabCard.dirty || cabCard.touched)" class="invalid-feedback">
+            Cab Card is required.
+          </div>
+      </div>
+
+      <!-- Upload Documents -->
+      <div class="col-md-4">
+        <h2 class="font-14 font-weight-700">Upload Documents</h2>
+        <input type="file" class="form-control" id="uploadDocument" (change)="onFileChange($event, 'uploadDocument')" name="uploadDocument" required>
+      </div>
+
+      <hr class="hr" />
+
+      <!-- Annual DOT Insp -->
+      <div class="col-md-4">
+        <h2 class="font-14 font-weight-700">Annual DOT Insp</h2>
+        <input type="text" class="form-control" id="annualDotInspDocument" placeholder="Annual DOT Insp"
+          [(ngModel)]="newTruck.annualDotInspDocument" name="annualDotInspDocument" #annualDotInspDocument = "ngModel" required
+          [ngClass]="{'is-invalid':annualDotInspDocument.invalid && (annualDotInspDocument.dirty ||annualDotInspDocument.touched)}">
+          <div *ngIf="annualDotInspDocument.invalid && (annualDotInspDocument.dirty || annualDotInspDocument.touched)" class="invalid-feedback">
+            Annual DOT Insp is required.
+          </div>
+      </div>
+
+    <!-- Upload Document -->
+   
+    <div class="col-md-4">
+      <h2 class="font-14 font-weight-700">Upload Document</h2>
+      <input type="file" class="form-control" id="uploadDocument1" placeholder="Document.pdf"
+        (change)="onFileChange($event, 'uploadDocument1')" name="uploadDocument1" required>
+    </div>
+
+<!-- Renewal Date -->
+<div class="col-md-4">
+  <h2 class="font-14 font-weight-700">Renewal Date</h2>
+  <input 
+    type="date" 
+    class="form-control" 
+    id="renewalDate" 
+    placeholder="Renewal Date"
+    [(ngModel)]="newTruck.renewalDate" 
+    name="renewalDate" 
+    #renewalDate="ngModel" 
+    required
+    [ngClass]="{'is-invalid': renewalDate.invalid && (renewalDate.dirty || renewalDate.touched)}">
+  <div *ngIf="renewalDate.invalid && (renewalDate.dirty || renewalDate.touched)" class="invalid-feedback">
+    <i class="fa fa-exclamation-circle"></i> Renewal Date is required.
+  </div>
+</div>
+
+<!-- Purchase Date -->
+<div class="col-md-4">
+  <h2 class="font-14 font-weight-700">Purchase Date</h2>
+  <input 
+    type="date" 
+    class="form-control" 
+    id="purchaseDate" 
+    placeholder="Purchase Date"
+    [(ngModel)]="newTruck.purchaseDate" 
+    name="purchaseDate" 
+    #purchaseDate="ngModel" 
+    required
+    [ngClass]="{'is-invalid': purchaseDate.invalid && (purchaseDate.dirty || purchaseDate.touched)}">
+  <div *ngIf="purchaseDate.invalid && (purchaseDate.dirty || purchaseDate.touched)" class="invalid-feedback">
+    <i class="fa fa-exclamation-circle"></i> Purchase Date is required.
+  </div>
+</div>
+
+<!-- Purchase Price -->
+<div class="col-md-4">
+  <h2 class="font-14 font-weight-700">Purchase Price</h2>
+  <input 
+    type="number" 
+    class="form-control" 
+    id="purchasePrice" 
+    placeholder="Purchase Price"
+    [(ngModel)]="newTruck.purchasePrice" 
+    name="purchasePrice" 
+    #purchasePrice="ngModel" 
+    required
+    [ngClass]="{'is-invalid': purchasePrice.invalid && (purchasePrice.dirty || purchasePrice.touched)}">
+  <div *ngIf="purchasePrice.invalid && (purchasePrice.dirty || purchasePrice.touched)" class="invalid-feedback">
+    <i class="fa fa-exclamation-circle"></i> Purchase Price is required.
+  </div>
+</div>
+
+<!-- Upload Documents -->
+<div class="col-md-4">
+  <h2 class="font-14 font-weight-700">Upload Documents</h2>
+  <input type="file" class="form-control" id="uploadDocument2" placeholder="Document.pdf"
+    (change)="onFileChange($event, 'uploadDocument2')" name="uploadDocument2" required>
+</div>
+<!-- Loan Bank Name -->
+<div class="col-md-4">
+  <h2 class="font-14 font-weight-700">Loan Bank Name</h2>
+  <input 
+    type="text" 
+    class="form-control" 
+    id="loanBankName" 
+    placeholder="Loan Bank Name"
+    [(ngModel)]="newTruck.loanBankName" 
+    name="loanBankName" 
+    #loanBankName="ngModel" 
+    required
+    [ngClass]="{'is-invalid': loanBankName.invalid && (loanBankName.dirty || loanBankName.touched)}">
+  <div *ngIf="loanBankName.invalid && (loanBankName.dirty || loanBankName.touched)" class="invalid-feedback">
+    <i class="fa fa-exclamation-circle"></i> Loan Bank Name is required.
+  </div>
+</div>
+
+<!-- Loan ACC Number -->
+<div class="col-md-4">
+  <h2 class="font-14 font-weight-700">Loan ACC Number</h2>
+  <input 
+    type="text" 
+    class="form-control" 
+    id="loanAccNumber" 
+    placeholder="Loan ACC Number"
+    [(ngModel)]="newTruck.loanAccNumber" 
+    name="loanAccNumber" 
+    #loanAccNumber="ngModel" 
+    required
+    [ngClass]="{'is-invalid': loanAccNumber.invalid && (loanAccNumber.dirty || loanAccNumber.touched)}">
+  <div *ngIf="loanAccNumber.invalid && (loanAccNumber.dirty || loanAccNumber.touched)" class="invalid-feedback">
+    <i class="fa fa-exclamation-circle"></i> Loan ACC Number is required.
+  </div>
+</div>
+
+<!-- Upload Documents -->
+<div class="col-md-4">
+  <h2 class="font-14 font-weight-700">Upload Documents</h2>
+  <input type="file" class="form-control" id="uploadDocument3" placeholder="Document.pdf"
+    (change)="onFileChange($event, 'uploadDocument3')" name="uploadDocument3" required>
+</div>
+
+<!-- Bank Contact -->
+<div class="col-md-4">
+  <h2 class="font-14 font-weight-700">Bank Contact</h2>
+  <input 
+    type="text" 
+    class="form-control" 
+    id="bankContact" 
+    placeholder="Bank Contact"
+    [(ngModel)]="newTruck.bankContact" 
+    name="bankContact" 
+    #bankContact="ngModel" 
+    required
+    [ngClass]="{'is-invalid': bankContact.invalid && (bankContact.dirty || bankContact.touched)}">
+  <div *ngIf="bankContact.invalid && (bankContact.dirty || bankContact.touched)" class="invalid-feedback">
+    <i class="fa fa-exclamation-circle"></i> Bank Contact is required.
+  </div>
+</div>
+
+<!-- Interest Rate -->
+<div class="col-md-4">
+  <h2 class="font-14 font-weight-700">Interest Rate</h2>
+  <input 
+    type="number" 
+    class="form-control" 
+    id="interestRate" 
+    placeholder="Interest Rate"
+    [(ngModel)]="newTruck.interestRate" 
+    name="interestRate" 
+    #interestRate="ngModel" 
+    required
+    [ngClass]="{'is-invalid': interestRate.invalid && (interestRate.dirty || interestRate.touched)}">
+  <div *ngIf="interestRate.invalid && (interestRate.dirty || interestRate.touched)" class="invalid-feedback">
+    <i class="fa fa-exclamation-circle"></i> Interest Rate is required.
+  </div>
+</div>
+
+<!-- Monthly Payment -->
+<div class="col-md-4">
+  <h2 class="font-14 font-weight-700">Monthly Payment</h2>
+  <input 
+    type="number" 
+    class="form-control" 
+    id="monthlyPayment" 
+    placeholder="Monthly Payment"
+    [(ngModel)]="newTruck.monthlyPayment" 
+    name="monthlyPayment" 
+    #monthlyPayment="ngModel" 
+    required
+    [ngClass]="{'is-invalid': monthlyPayment.invalid && (monthlyPayment.dirty || monthlyPayment.touched)}">
+  <div *ngIf="monthlyPayment.invalid && (monthlyPayment.dirty || monthlyPayment.touched)" class="invalid-feedback">
+    <i class="fa fa-exclamation-circle"></i> Monthly Payment is required.
+  </div>
+</div>
+
+<!-- Payoff Date -->
+<div class="col-md-4">
+  <h2 class="font-14 font-weight-700">Payoff Date</h2>
+  <input 
+    type="date" 
+    class="form-control" 
+    id="payoffDate" 
+    placeholder="Payoff Date"
+    [(ngModel)]="newTruck.payoffDate" 
+    name="payoffDate" 
+    #payoffDate="ngModel" 
+    required
+    [ngClass]="{'is-invalid': payoffDate.invalid && (payoffDate.dirty || payoffDate.touched)}">
+  <div *ngIf="payoffDate.invalid && (payoffDate.dirty || payoffDate.touched)" class="invalid-feedback">
+    <i class="fa fa-exclamation-circle"></i> Payoff Date is required.
+  </div>
+</div>
+
+<!-- Prepass Transponder Number -->
+<div class="col-md-4">
+  <h2 class="font-14 font-weight-700">Prepass Transponder Number</h2>
+  <input 
+    type="text" 
+    class="form-control" 
+    id="prepassTransponderNumber" 
+    placeholder="Prepass Transponder Number"
+    [(ngModel)]="newTruck.prepassTransponderNumber" 
+    name="prepassTransponderNumber" 
+    #prepassTransponderNumber="ngModel" 
+    required
+    [ngClass]="{'is-invalid': prepassTransponderNumber.invalid && (prepassTransponderNumber.dirty || prepassTransponderNumber.touched)}">
+  <div *ngIf="prepassTransponderNumber.invalid && (prepassTransponderNumber.dirty || prepassTransponderNumber.touched)" class="invalid-feedback">
+    <i class="fa fa-exclamation-circle"></i> Prepass Transponder Number is required.
+  </div>
+</div>
+
+<!-- Fuel Card Number -->
+<div class="col-md-4">
+  <h2 class="font-14 font-weight-700">Fuel Card Number</h2>
+  <input 
+    type="text" 
+    class="form-control" 
+    id="fuelCardNumber" 
+    placeholder="Fuel Card Number"
+    [(ngModel)]="newTruck.fuelCardNumber" 
+    name="fuelCardNumber" 
+    #fuelCardNumber="ngModel" 
+    required
+    [ngClass]="{'is-invalid': fuelCardNumber.invalid && (fuelCardNumber.dirty || fuelCardNumber.touched)}">
+  <div *ngIf="fuelCardNumber.invalid && (fuelCardNumber.dirty || fuelCardNumber.touched)" class="invalid-feedback">
+    <i class="fa fa-exclamation-circle"></i> Fuel Card Number is required.
+  </div>
+</div>
+
+<!-- Status -->
+<div class="col-md-4">
+  <h2 class="font-14 font-weight-700">Status</h2>
+  <select 
+    class="form-control" 
+    [(ngModel)]="newTruck.status" 
+    name="status" 
+    #status="ngModel" 
+    required
+    [ngClass]="{'is-invalid': status.invalid && (status.dirty || status.touched)}">
+    <option value="APPROVED">APPROVED</option>
+    <option value="PENDING">PENDING</option>
+    <option value="EXPIRING">EXPIRING</option>
+  </select>
+  <div *ngIf="status.invalid && (status.dirty || status.touched)" class="invalid-feedback">
+    <i class="fa fa-exclamation-circle"></i> Status is required.
+  </div>
+</div>
+
+
+<div class="modal-footer justify-content-center" style="border-top: 1px solid #ccc; padding-top: 15px; margin-top: 15px;">
+  <button type="button" class="btn btn-outline-secondary btn-sm text-uppercase rounded-pill" data-bs-dismiss="offcanvas" style="margin: 10px;">Close</button>
+  <button type="submit" class="btn btn-success btn-sm text-uppercase rounded-pill" data-bs-dismiss="offcanvas">Save changes</button>
+</div>
+    </form>
+  </div>
+</div>

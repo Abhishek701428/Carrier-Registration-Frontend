@@ -15,6 +15,13 @@ import { DriverListComponent } from './features/driver-list/driver-list.componen
 import { DriverApplicationComponent } from './features/driver-application/driver-application.component';
 import { FileManagerComponent } from './features/file-manager/file-manager.component';
 import { DocumentComponent } from './features/document/document.component';
+import { DashboardComponent } from './features/dashboard/dashboard.component';
+import { TrucklistViewComponent } from './features/truck-list-view/truck-list-view.component';
+import { DriverProfileViewComponent } from './features/driver-profile-view/driver-profile-view.component';
+import { UsersProfileComponent } from './features/users-profile/users-profile.component';
+import { TrailerListViewComponent } from './features/trailer-list-view/trailer-list-view.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ToastrModule } from 'ngx-toastr';
 
 
 @NgModule({
@@ -31,12 +38,25 @@ import { DocumentComponent } from './features/document/document.component';
     DriverApplicationComponent,
     FileManagerComponent,
     DocumentComponent,
+    DashboardComponent,
+    TrucklistViewComponent,
+    DriverProfileViewComponent,
+    UsersProfileComponent,
+    TrailerListViewComponent,
+    
   ],
   imports: [
     BrowserModule,
     FormsModule,
     HttpClientModule, // Include HttpClientModule here
-    AppRoutingModule
+    AppRoutingModule,
+    BrowserAnimationsModule,
+    ToastrModule.forRoot({
+      timeOut: 3000,
+      positionClass: 'toast-top-right',
+      preventDuplicates: true,
+    }), // No need for explicit typing here
+    // other modules
   ],
   providers: [],
   bootstrap: [AppComponent]

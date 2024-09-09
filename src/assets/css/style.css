@@ -1440,7 +1440,7 @@ input[type = text], .form-select, input[type = number], .select2-selection, .for
     /* height: 36px !important; */
     color: #000000;
     padding: 12px 15px;
-    background: #e9ecef;
+    background: #ffffff;
 }
 
 
@@ -1486,7 +1486,7 @@ input[type = text], .form-select, input[type = number], .select2-selection, .for
 .bg-label-warning {
     background-color: #ffffff !important;
     color: #ff9f43 !important;
-    border: 1px solid #ff9f43;
+    border: 1px solid #ff9f43
 }
 .bg-label-danger {
     background-color: #ffffff !important;
@@ -1563,7 +1563,7 @@ input[type = text], .form-select, input[type = number], .select2-selection, .for
     line-height: 35px;
     text-align: center;
     pointer-events: none;
-    color: #aaa;
+    color: #ffff;
 }
 .has-search .form-control {
     padding-left: 2.375rem;

@@ -1,0 +1,825 @@
+<app-navbar></app-navbar>
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
+ 
+<section class="bg-color pb-5">
+    <div class="container-fluid px-5">
+      <div class="row">
+        <div class="col-xl-12">
+            <div class="my-4">
+              <a routerLink="/company-profile" class="btn btn-outline-secondary rounded-pill font-14">
+                  Back to Dashboard
+                </a>
+            </div>
+        </div>
+      </div>
+      <div class="row border rounded px-3 py-5">
+        <div class="col-xl-4">
+          <div class="mb-1 d-flex">
+            <h3 class="text-dark font-weight-700 mb-0">MANDEEP SINGH</h3>
+          </div>
+          <div class="d-flex align-items-center justify-content-left gap-5 mb-2">
+            <div class="detail-1">
+              <p class="text-capitalize">Driver</p>
+            </div>
+            <!-- <div class="detail-2">
+              <p class="text-capitalize">MC - <span class="fw-bold text-main font-16">084832</span></p>
+            </div> -->
+          </div>
+          <div class="row">
+            <div class="col-md-6">
+              <a href="#" class="d-flex align-items-center text-dark font-weight-500 me-5 mb-2">
+                <span class="svg-icon svg-icon-4 me-1"><i class="bx bxs-user-circle"></i>
+                </span>
+                Mandeep Singh
+              </a>
+              <a href="#" class="d-flex align-items-center text-dark font-weight-500 me-5 mb-2">
+                <span class="svg-icon svg-icon-4 me-1"><i class="bx bxl-periscope"></i></span>
+                Bakersfield, CA
+              </a>
+            </div>
+            <div class="col-md-6">
+              <a href="#" class="d-flex align-items-center text-dark font-weight-500 me-5 mb-2">
+                <span class="svg-icon svg-icon-4 me-1"><i class="bx bxs-envelope"></i></span>
+                emailgmail.com
+              </a>
+              <a href="#" class="d-flex align-items-center text-dark font-weight-500 mb-2">
+                <span class="svg-icon svg-icon-4 me-1"><i class="bx bx-mobile"></i></span>
+                905-456-8865
+              </a>
+            </div>
+            
+            
+          </div>
+        </div>
+        <div class="col-xl-7">    
+          <div class="row text-light">
+            <div class="col-lg-3">
+              <a routerLink="/truck-list">
+                <div class="counter mb-2 bg-label-info">
+                  <h2 class="timer count-title count-number" data-to="350" data-speed="1500">{{ totalTrucks }}</h2>
+                  <p class="count-text">Total Trucks</p>
+                </div>
+              </a>
+              <a routerLink="/trailer-list">
+                <div class="counter mb-2 bg-label-info">
+                  <h2 class="timer count-title count-number" data-to="250" data-speed="1500">{{ totalTrailers }}</h2>
+                  <p class="count-text ">Total Trailers</p>
+                </div>
+              </a>
+              <a routerLink="/driver-list">
+                <div class="counter bg-label-info">
+                  <h2 class="timer count-title count-number" data-to="100" data-speed="1500">{{ totalDrivers }}</h2>
+                  <p class="count-text ">Total Drivers</p>
+                </div>
+              </a>
+            </div>
+            <div class="col-lg-3">
+              <a>
+                <div class="counter mb-2 bg-label-danger">
+                  <h2 class="timer count-title count-number" data-to="270" data-speed="1500">{{ nonCompliantTrucks }}</h2>
+                  <p class="count-text ">Non-Compliant Trucks</p>
+                </div>
+              </a>
+              <a>
+                <div class="counter mb-2 bg-label-danger">
+                  <h2 class="timer count-title count-number" data-to="180" data-speed="1500">{{nonCompliantTrailers}}</h2>
+                  <p class="count-text ">Non-Compliant Trailers</p>
+                </div>
+              </a>
+              <a>
+                <div class="counter bg-label-danger">
+                  <h2 class="timer count-title count-number" data-to="120" data-speed="1500">{{nonCompliantDrivers}}</h2>
+                  <p class="count-text ">Non-Compliant Drivers</p>
+                </div>
+              </a>
+            </div>
+            <div class="col-lg-3">
+              <a>
+                <div class="counter mb-2 bg-label-success">
+                  <h2 class="timer count-title count-number" data-to="320" data-speed="1500">{{compliantTrucks}}</h2>
+                  <p class="count-text ">Compliant Trucks</p>
+                </div>
+              </a>
+              <a>
+                <div class="counter mb-2 bg-label-success">
+                  <h2 class="timer count-title count-number" data-to="200" data-speed="1500">{{compliantTrailers}}</h2>
+                  <p class="count-text ">Compliant Trailers</p>
+                </div>
+              </a>
+              <a>
+                <div class="counter bg-label-success">
+                  <h2 class="timer count-title count-number" data-to="90" data-speed="1500">{{compliantDrivers}}</h2>
+                  <p class="count-text ">Compliant Drivers</p>
+                </div>
+              </a>
+            </div>
+            <div class="col-lg-3">
+              <a>
+                <div class="counter mb-2 bg-label-warning">
+                  <h2 class="timer count-title count-number" data-to="210" data-speed="1500">{{expiringTrucks}}</h2>
+                  <p class="count-text ">Expiring Trucks</p>
+                </div>
+              </a>
+              <a>
+                <div class="counter mb-2 bg-label-warning">
+                  <h2 class="timer count-title count-number" data-to="160" data-speed="1500">{{expiringTrailers}}</h2>
+                  <p class="count-text ">Expiring Trailers</p>
+                </div>
+              </a>
+              <a>
+                <div class="counter bg-label-warning">
+                  <h2 class="timer count-title count-number" data-to="80" data-speed="1500">{{expiringDrivers}}</h2>
+                  <p class="count-text ">Expiring Drivers</p>
+                </div>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+</section>
+
+
+
+
+<main id="main" class="main mt-0 p-0">
+    <div id="kt_app_content" class="app-content  flex-column-fluid">
+        <div class="container-fluid px-5">
+            
+          <div class="row bg-white p-3 mt-3 rounded">
+            <div class="col-md-12">
+              <div class="d-flex justify-content-between">
+                <div>
+                <a routerLink="/company-profile" class="btn btn-success rounded-pill font-14 active me-2">
+                User Profile
+              </a>
+              <a routerLink="/document" class="btn btn-outline-secondary rounded-pill font-14">
+                Document
+              </a>
+              </div>
+              <div>                
+                <div class="btn-group" role="group" aria-label="Basic example">
+                  <a href="javascript:;" class="btn btn-success rounded-pill font-14" type="button" data-bs-toggle="offcanvas" data-bs-target="#addLocation" aria-controls="offcanvasRight"><i class="fa fa-pencil me-1" aria-hidden="true"></i> Edit</a>
+                </div>
+              </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="row bg-white px-3 py-4 mt-3 rounded">
+              <div class="col-md-12">
+               <form class="form" method="post" id="kt_careers_form">
+                <div class="row">
+                  <div class="col-md-4">
+                    <div class="border p-3 rounded mb-3">
+                      <h2 class="font-14 mb-1">Company Name DBA</h2>
+                      <p class="font-weight-700 mb-0">Company Name DBA</p>
+                    </div>
+                  </div>
+
+                  <div class="col-md-4">
+                    <div class="border p-3 rounded mb-3">
+                      <h2 class="font-14 mb-1">Corporation</h2>
+                      <p class="font-weight-700 mb-0">Shelton Corporation</p>
+                    </div>
+                  </div>
+
+                  <div class="col-md-4">
+                    <div class="border p-3 rounded mb-3">
+                      <h2 class="font-14 mb-1">DOT</h2>
+                      <p class="font-weight-700 mb-0 mb-0">588778</p>
+                    </div>
+                    
+                  </div>
+                </div>
+                <div class="row mb-5">
+                  <div class="col-md-4">
+                    <div class="border p-3 rounded mb-3">
+                      <h2 class="font-14 mb-1">MC</h2>
+                      <p class="font-weight-700 mb-0">165788</p>
+                    </div>
+                    
+                  </div>
+
+                  <div class="col-md-4">
+                    <div class="border p-3 rounded mb-3">
+                      <h2 class="font-14 mb-1 mb-2">Upload Document</h2>
+                      <p class="font-weight-700 mb-0">Document.pdf</p>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="row mb-5">
+                  <div class="col-md-4 mb-6">
+                    <div class="border p-3 rounded mb-3">
+                      <h2 class="font-14 mb-1">KYU</h2>
+                    <p class="font-weight-700 mb-0">KYU</p>
+                    </div>
+                    
+                  </div>
+                  <div class="col-md-4">
+                    <div class="border p-3 rounded mb-3">
+                      <h2 class="font-14 mb-1">Upload Document</h2>
+                    <p class="font-weight-700 mb-0">Document.pdf</p>
+                    </div>
+                    
+                  </div>
+
+                  <div class="col-md-4">
+                    <div class="border p-3 rounded mb-3">
+                      <h2 class="font-14 mb-1">KYU Expiration</h2>
+                    <p class="font-weight-700 mb-0">12/03/2023</p>
+                    </div>
+                    
+                  </div>
+
+                  <div class="col-md-4 mb-6">
+                    <div class="border p-3 rounded mb-3">
+                      <h2 class="font-14 mb-1">NY</h2>
+                    <p class="font-weight-700 mb-0">NY</p>
+                    </div>
+                    
+                  </div>
+
+                  <div class="col-md-4">
+                    <div class="border p-3 rounded mb-3">
+                      <h2 class="font-14 mb-1">Upload Document</h2>
+                    <p class="font-weight-700 mb-0">Document.pdf</p>
+                    </div>
+                    
+                  </div>
+
+                  <div class="col-md-4">
+                    <div class="border p-3 rounded mb-3">
+                      <h2 class="font-14 mb-1">NY Expiration</h2>
+                    <p class="font-weight-700 mb-0">25/02/2023</p>
+                    </div>
+                    
+                  </div>
+
+                  <div class="col-md-4">
+                    <div class="border p-3 rounded mb-3">
+                      <h2 class="font-14 mb-1">NM WDT</h2>
+                    <p class="font-weight-700 mb-0">NM WDT</p>
+                    </div>
+                    
+                  </div>
+
+                  <div class="col-md-4">
+                    <div class="border p-3 rounded mb-3">
+                      <h2 class="font-14 mb-1">Ein</h2>
+                    <p class="font-weight-700 mb-0">Ein</p>
+                    </div>
+                    
+                  </div>
+
+                  <div class="col-md-2">
+                    <div class="border p-3 rounded mb-3">
+                      <h2 class="font-14 mb-1">W9</h2>
+                    <p class="font-weight-700 mb-0">W9</p>
+                    </div>
+                    
+                  </div>
+
+                  <div class="col-md-2">
+                    <div class="border p-3 rounded mb-3">
+                      <h2 class="font-14 mb-1">Upload Document</h2>
+                    <p class="font-weight-700 mb-0">Document.pdf</p>
+                    </div>
+                    
+                  </div>
+                </div>
+
+                <div class="row mb-5">
+                  <div class="col-md-4 mb-6">
+                    <div class="border p-3 rounded mb-3">
+                      <h2 class="font-14 mb-1">IFTA ACC</h2>
+                    <p class="font-weight-700 mb-0">IFTA ACC4646</p>
+                    </div>
+                    
+                  </div>
+
+                  <div class="col-md-4">
+                    <div class="border p-3 rounded mb-3">
+                      <h2 class="font-14 mb-1">Prepass</h2>
+                    <p class="font-weight-700 mb-0">Prepass</p>
+                    </div>
+                    
+                  </div>
+
+                  <div class="col-md-4">
+                    <div class="border p-3 rounded mb-3">
+                      <h2 class="font-14 mb-1">IRP ACC</h2>
+                    <p class="font-weight-700 mb-0">IRP ACC 566918</p>
+                    </div>
+                    
+                  </div>
+
+                  <div class="col-md-4">
+                    <div class="border p-3 rounded mb-3">
+                      <h2 class="font-14 mb-1">IRP Renewal Date</h2>
+                    <p class="font-weight-700 mb-0">12/03/2023</p>
+                    </div>
+                    
+                  </div>
+
+                  <div class="col-md-4">
+                    <div class="border p-3 rounded mb-3">
+                      <h2 class="font-14 mb-1">Insurance Document</h2>
+                    <p class="font-weight-700 mb-0">Document.pdf</p>
+                    </div>
+                    
+                  </div>
+                </div>
+
+
+
+                <div class="row mb-5">
+                  <div class="col-md-4 mb-6">
+                    <div class="border p-3 rounded mb-3">
+                      <h2 class="font-14 mb-1">Address</h2>
+                    <p class="font-weight-700 mb-0">1258, Bakersfield, CA</p>
+                    </div>
+                    
+                  </div>
+                  <div class="col-md-4">
+                    <div class="border p-3 rounded mb-3">
+                      <h2 class="font-14 mb-1">Phone</h2>
+                    <p class="font-weight-700 mb-0">416-858-7788</p>
+                    </div>
+                    
+                  </div>
+
+                  <div class="col-md-4">
+                    <div class="border p-3 rounded mb-3">
+                      <h2 class="font-14 mb-1">Email Pull Noitce ACC</h2>
+                    <p class="font-weight-700 mb-0">4646467</p>
+                    </div>
+                    
+                  </div>
+
+                  <div class="col-md-4">
+                    <div class="border p-3 rounded mb-3">
+                      <h2 class="font-14 mb-1">Truck</h2>
+                    <p class="font-weight-700 mb-0">T458887</p>
+                    </div>
+                    
+                  </div>
+
+                  <div class="col-md-4">
+                    <div class="border p-3 rounded mb-3">
+                      <h2 class="font-14 mb-1">Registration</h2>
+                    <p class="font-weight-700 mb-0">588778</p>
+                    </div>
+                    
+                  </div>
+
+                  <div class="col-md-4">
+                    <div class="border p-3 rounded mb-3">
+                      <h2 class="font-14 mb-1">Upload Document</h2>
+                    <p class="font-weight-700 mb-0">Document.pdf</p>
+                    </div>
+                    
+                  </div>
+                </div>
+
+                <div class="row mb-5">
+                  <div class="col-md-4 mb-6">
+                    <div class="border p-3 rounded mb-3">
+                      <h2 class="font-14 mb-1">Owner Address</h2>
+                    <p class="font-weight-700 mb-0">1258, Bakersfield, CA</p>
+                    </div>
+                    
+                  </div>
+                  <div class="col-md-4">
+                    <div class="border p-3 rounded mb-3">
+                      <h2 class="font-14 mb-1">Phone</h2>
+                    <p class="font-weight-700 mb-0">905-456-8877</p>
+                    </div>
+                    
+                  </div>
+
+                  <div class="col-md-4">
+                    <div class="border p-3 rounded mb-3">
+                      <h2 class="font-14 mb-1">Email</h2>
+                    <p class="font-weight-700 mb-0">emailgmail.com</p>
+                    </div>
+                    
+                  </div>
+
+                  <div class="col-md-4 mb-8">
+                    <div class="border p-3 rounded mb-3">
+                      <h2 class="font-14 mb-1">Number of Trailer</h2>
+                    <p class="font-weight-700 mb-0">T-55875</p>
+                    </div>
+                    
+                  </div>
+
+                  <div class="col-md-4">
+                    <div class="border p-3 rounded mb-3">
+                      <h2 class="font-14 mb-1">Trailer Registration</h2>
+                    <p class="font-weight-700 mb-0">12/02/2023</p>
+                    </div>
+                    
+                  </div>
+
+                  <div class="col-md-4">
+                    <div class="border p-3 rounded mb-3">
+                      <h2 class="font-14 mb-1">Upload Document</h2>
+                    <p class="font-weight-700 mb-0">Document.pdf</p>
+                    </div>
+                    
+                  </div>
+
+                  <div class="col-md-4">
+                    <div class="border p-3 rounded mb-3">
+                      <h2 class="font-14 mb-1">Randon DT Enrollment Cert</h2>
+                    <p class="font-weight-700 mb-0">Trailer Registration</p>
+                    </div>
+                    
+                  </div>
+
+                  <div class="col-md-4">
+                    <div class="border p-3 rounded mb-3">
+                      <h2 class="font-14 mb-1">Upload Document</h2>
+                    <p class="font-weight-700 mb-0">Document.pdf</p>
+                    </div>
+                    
+                  </div>
+                </div>
+              </form>
+              </div>
+          </div>
+        </div>
+    </div>
+  </main><!-- End #main -->
+
+  <!-- ======= Footer ======= -->
+  <footer id="footer" class="footer">
+    <div class="text-dark text-center">
+      <span class="text-muted fw-semibold me-1">2023© all rights reserved</span>
+      <a href="#" class="font-weight-700 text-hover-dark text-dark text-uppercase">3PL TEK INC.</a>
+    </div>
+
+  </footer><!-- End Footer -->
+
+  <a href="#" class="back-to-top d-flex align-items-center justify-content-center btn-success"><i
+      class="bi bi-arrow-up-short"></i></a>
+
+
+
+
+
+          <div class="modal fade" id="ExtralargeModal" tabindex="-1" style="display: none;" aria-hidden="true">
+            <div class="modal-dialog modal-xl">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title">Edit Company Profile</h5>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-h2="Close"></button>
+                </div>
+                <div class="modal-body">
+
+                      <form class="row g-3">
+                        <div class="col-md-4">
+                          <h2 class="font-14 font-weight-700"> Company Name DBA</h2>
+                          <input type="text" class="form-control" id="validationDefault01" value=" Company Name DBA "
+                            required="">
+                        </div>
+                        <div class="col-md-4">
+                          <h2 class="font-14 font-weight-700">Corporation</h2>
+                          <input type="text" class="form-control" id="validationDefault02" value="Corporation"
+                            required="">
+                        </div>
+                        <div class="col-md-4">
+                          <h2 class="font-14 font-weight-700">DOT</h2>
+                          <input type="text" class="form-control" id="validationDefault02" value="DOT" required="">
+                        </div>
+                        <div class="col-md-4">
+                          <h2 class="font-14 font-weight-700">MC</h2>
+                          <input type="text" class="form-control" id="validationDefault02" value="MC" required="">
+                        </div>
+                        <div class="col-md-4">
+                          <h2 class="font-14 font-weight-700">Upload Document</h2>
+                          <input type="file" class="form-control" id="validationDefault02" value="MC" required="">
+                        </div>
+                        <hr class="hr" />
+
+                        <div class="col-md-4">
+                          <h2 class="font-14 font-weight-700">KYU</h2>
+                          <input type="text" class="form-control" id="validationDefault02" value="KYU" required="">
+                        </div>
+                        <div class="col-md-4">
+                          <h2 class="font-14 font-weight-700">Upload Document</h2>
+                          <input type="file" class="form-control" id="validationDefault02" value="MC" required="">
+                        </div>
+                        <div class="col-md-4">
+                          <h2 class="font-14 font-weight-700">KYU Expiration</h2>
+                          <input type="text" class="form-control" id="validationDefault02" value="dd/mm/yyyy"
+                            required="">
+                        </div>
+
+                        <div class="col-md-4">
+                          <h2 class="font-14 font-weight-700">NY</h2>
+                          <input type="text" class="form-control" id="validationDefault02" value="NY" required="">
+                        </div>
+                        <div class="col-md-4">
+                          <h2 class="font-14 font-weight-700">Upload Document</h2>
+                          <input type="file" class="form-control" id="validationDefault02" value="MC" required="">
+                        </div>
+                        <div class="col-md-4">
+                          <h2 class="font-14 font-weight-700">NY Expiration</h2>
+                          <input type="text" class="form-control" id="validationDefault02" value="dd/mm/yyyy"
+                            required="">
+                        </div>
+
+                        <div class="col-md-4">
+                          <h2 class="font-14 font-weight-700">NM WDT</h2>
+                          <input type="text" class="form-control" id="validationDefault02" value="NM WDT" required="">
+                        </div>
+                        <div class="col-md-4">
+                          <h2 class="font-14 font-weight-700">Ein</h2>
+                          <input type="text" class="form-control" id="validationDefault02" value="Ein" required="">
+                        </div>
+                        <div class="col-md-2">
+                          <h2 class="font-14 font-weight-700">W9</h2>
+                          <input type="text" class="form-control" id="validationDefault02" value="W9" required="">
+                        </div>
+                        <div class="col-md-2">
+                          <h2 class="font-14 font-weight-700">Upload Document</h2>
+                          <input type="file" class="form-control" id="validationDefault02" value="MC" required="">
+                        </div>
+
+                        <hr class="hr" />
+
+                        <div class="col-md-4">
+                          <h2 class="font-14 font-weight-700">IFTA ACC</h2>
+                          <input type="text" class="form-control" id="validationDefault02" value="IFTA ACC" required="">
+                        </div>
+                        <div class="col-md-4">
+                          <h2 class="font-14 font-weight-700">Prepass</h2>
+                          <input type="text" class="form-control" id="validationDefault02" value="Prepass" required="">
+                        </div>
+                        <div class="col-md-4">
+                          <h2 class="font-14 font-weight-700">IRP ACC</h2>
+                          <input type="text" class="form-control" id="validationDefault02" value="IRP ACC" required="">
+                        </div>
+                        <div class="col-md-4">
+                          <h2 class="font-14 font-weight-700">IRP Renewal Date</h2>
+                          <input type="text" class="form-control" id="validationDefault02" value="dd/mm/yyyy"
+                            required="">
+                        </div>
+                        <div class="col-md-4">
+                          <h2 class="font-14 font-weight-700">Insurance Document</h2>
+                          <input type="file" class="form-control" id="validationDefault02" value="MC" required="">
+                        </div>
+
+                        <hr class="hr" />
+
+                        <div class="col-md-4">
+                          <h2 class="font-14 font-weight-700">Address</h2>
+                          <input type="text" class="form-control" id="validationDefault02" value="Address" required="">
+                        </div>
+                        <div class="col-md-4">
+                          <h2 class="font-14 font-weight-700">Phone</h2>
+                          <input type="text" class="form-control" id="validationDefault02" value="Phone" required="">
+                        </div>
+                        <div class="col-md-4">
+                          <h2 class="font-14 font-weight-700">Email Pull Noitce ACC</h2>
+                          <input type="text" class="form-control" id="validationDefault02" value="Email Pull Noitce ACC"
+                            required="">
+                        </div>
+                        <div class="col-md-4">
+                          <h2 class="font-14 font-weight-700">Truck</h2>
+                          <input type="text" class="form-control" id="validationDefault02" value="Truck" required="">
+                        </div>
+                        <div class="col-md-4">
+                          <h2 class="font-14 font-weight-700">Registration</h2>
+                          <input type="text" class="form-control" id="validationDefault02" value="Registration"
+                            required="">
+                        </div>
+                        <div class="col-md-4">
+                          <h2 class="font-14 font-weight-700">Upload Document</h2>
+                          <input type="file" class="form-control" id="validationDefault02" value="MC" required="">
+                        </div>
+                        <div class="col-md-4">
+                          <h2 class="font-14 font-weight-700">Owner Address</h2>
+                          <input type="text" class="form-control" id="validationDefault02" value="Address" required="">
+                        </div>
+                        <div class="col-md-4">
+                          <h2 class="font-14 font-weight-700">Phone</h2>
+                          <input type="text" class="form-control" id="validationDefault02" value="Phone" required="">
+                        </div>
+                        <div class="col-md-4">
+                          <h2 class="font-14 font-weight-700">Email</h2>
+                          <input type="text" class="form-control" id="validationDefault02" value="Email" required="">
+                        </div>
+                        <div class="col-md-4">
+                          <h2 class="font-14 font-weight-700">Number of Trailer</h2>
+                          <input type="text" class="form-control" id="validationDefault02" value="Truck" required="">
+                        </div>
+                        <div class="col-md-4">
+                          <h2 class="font-14 font-weight-700">Trailer Registration</h2>
+                          <input type="text" class="form-control" id="validationDefault02" value="dd/mm/yyyy"
+                            required="">
+                        </div>
+                        <div class="col-md-4">
+                          <h2 class="font-14 font-weight-700">Upload Document</h2>
+                          <input type="file" class="form-control" id="validationDefault02" value="MC" required="">
+                        </div>
+                        <div class="col-md-4">
+                          <h2 class="font-14 font-weight-700">Randon DT Enrollment Cert</h2>
+                          <input type="text" class="form-control" id="validationDefault02"
+                            value="Randon DT Enrollment Cert" required="">
+                        </div>
+                        <div class="col-md-4">
+                          <h2 class="font-14 font-weight-700">Upload Document</h2>
+                          <input type="file" class="form-control" id="validationDefault02" value="MC" required="">
+                        </div>
+
+                      </form>
+                </div>
+                <div class="modal-footer justify-content-center">
+                  <button type="button" class="btn btn-outline-secondary btn-sm text-uppercase rounded-pill" data-bs-dismiss="modal">Close</button>
+                  <button type="button" class="btn btn-success btn-sm text-uppercase rounded-pill">Save changes</button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+
+          
+          <div class="offcanvas offcanvas-end" tabindex="-1" id="addLocation" aria-labelledby="offcanvasRightLabel" style="width: 80%;">
+            <div class="modal-header" style="padding: 15px; border-bottom: 1px solid #ccc;">
+              <h5 class="modal-title">Edit Company Profile</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-h2="Close"></button>
+            </div>
+            <div class="offcanvas-body view-load position-relative">
+              <form class="row g-3">
+                <div class="col-md-4">
+                  <h2 class="font-14 font-weight-700"> Company Name DBA</h2>
+                  <input type="text" class="form-control" id="validationDefault01" value=" Company Name DBA " required="">
+                </div>
+                <div class="col-md-4">
+                  <h2 class="font-14 font-weight-700">Corporation</h2>
+                  <input type="text" class="form-control" id="validationDefault02" value="Corporation" required="">
+                </div>
+                <div class="col-md-4">
+                  <h2 class="font-14 font-weight-700">DOT</h2>
+                  <input type="text" class="form-control" id="validationDefault02" value="DOT" required="">
+                </div>
+                <div class="col-md-4">
+                  <h2 class="font-14 font-weight-700">MC</h2>
+                  <input type="text" class="form-control" id="validationDefault02" value="MC" required="">
+                </div>
+                <div class="col-md-4">
+                  <h2 class="font-14 font-weight-700">Upload Document</h2>
+                  <input type="file" class="form-control" id="validationDefault02" value="MC" required="">
+                </div>
+                <hr class="hr">
+
+                <div class="col-md-4">
+                  <h2 class="font-14 font-weight-700">KYU</h2>
+                  <input type="text" class="form-control" id="validationDefault02" value="KYU" required="">
+                </div>
+                <div class="col-md-4">
+                  <h2 class="font-14 font-weight-700">Upload Document</h2>
+                  <input type="file" class="form-control" id="validationDefault02" value="MC" required="">
+                </div>
+                <div class="col-md-4">
+                  <h2 class="font-14 font-weight-700">KYU Expiration</h2>
+                  <input type="text" class="form-control" id="validationDefault02" value="dd/mm/yyyy" required="">
+                </div>
+
+                <div class="col-md-4">
+                  <h2 class="font-14 font-weight-700">NY</h2>
+                  <input type="text" class="form-control" id="validationDefault02" value="NY" required="">
+                </div>
+                <div class="col-md-4">
+                  <h2 class="font-14 font-weight-700">Upload Document</h2>
+                  <input type="file" class="form-control" id="validationDefault02" value="MC" required="">
+                </div>
+                <div class="col-md-4">
+                  <h2 class="font-14 font-weight-700">NY Expiration</h2>
+                  <input type="text" class="form-control" id="validationDefault02" value="dd/mm/yyyy" required="">
+                </div>
+
+                <div class="col-md-4">
+                  <h2 class="font-14 font-weight-700">NM WDT</h2>
+                  <input type="text" class="form-control" id="validationDefault02" value="NM WDT" required="">
+                </div>
+                <div class="col-md-4">
+                  <h2 class="font-14 font-weight-700">Ein</h2>
+                  <input type="text" class="form-control" id="validationDefault02" value="Ein" required="">
+                </div>
+                <div class="col-md-2">
+                  <h2 class="font-14 font-weight-700">W9</h2>
+                  <input type="text" class="form-control" id="validationDefault02" value="W9" required="">
+                </div>
+                <div class="col-md-2">
+                  <h2 class="font-14 font-weight-700">Upload Document</h2>
+                  <input type="file" class="form-control" id="validationDefault02" value="MC" required="">
+                </div>
+
+                <hr class="hr">
+
+                <div class="col-md-4">
+                  <h2 class="font-14 font-weight-700">IFTA ACC</h2>
+                  <input type="text" class="form-control" id="validationDefault02" value="IFTA ACC" required="">
+                </div>
+                <div class="col-md-4">
+                  <h2 class="font-14 font-weight-700">Prepass</h2>
+                  <input type="text" class="form-control" id="validationDefault02" value="Prepass" required="">
+                </div>
+                <div class="col-md-4">
+                  <h2 class="font-14 font-weight-700">IRP ACC</h2>
+                  <input type="text" class="form-control" id="validationDefault02" value="IRP ACC" required="">
+                </div>
+                <div class="col-md-4">
+                  <h2 class="font-14 font-weight-700">IRP Renewal Date</h2>
+                  <input type="text" class="form-control" id="validationDefault02" value="dd/mm/yyyy" required="">
+                </div>
+                <div class="col-md-4">
+                  <h2 class="font-14 font-weight-700">Insurance Document</h2>
+                  <input type="file" class="form-control" id="validationDefault02" value="MC" required="">
+                </div>
+
+                <hr class="hr">
+
+                <div class="col-md-4">
+                  <h2 class="font-14 font-weight-700">Address</h2>
+                  <input type="text" class="form-control" id="validationDefault02" value="Address" required="">
+                </div>
+                <div class="col-md-4">
+                  <h2 class="font-14 font-weight-700">Phone</h2>
+                  <input type="text" class="form-control" id="validationDefault02" value="Phone" required="">
+                </div>
+                <div class="col-md-4">
+                  <h2 class="font-14 font-weight-700">Email Pull Noitce ACC</h2>
+                  <input type="text" class="form-control" id="validationDefault02" value="Email Pull Noitce ACC" required="">
+                </div>
+                <div class="col-md-4">
+                  <h2 class="font-14 font-weight-700">Truck</h2>
+                  <input type="text" class="form-control" id="validationDefault02" value="Truck" required="">
+                </div>
+                <div class="col-md-4">
+                  <h2 class="font-14 font-weight-700">Registration</h2>
+                  <input type="text" class="form-control" id="validationDefault02" value="Registration" required="">
+                </div>
+                <div class="col-md-4">
+                  <h2 class="font-14 font-weight-700">Upload Document</h2>
+                  <input type="file" class="form-control" id="validationDefault02" value="MC" required="">
+                </div>
+                <div class="col-md-4">
+                  <h2 class="font-14 font-weight-700">Owner Address</h2>
+                  <input type="text" class="form-control" id="validationDefault02" value="Address" required="">
+                </div>
+                <div class="col-md-4">
+                  <h2 class="font-14 font-weight-700">Phone</h2>
+                  <input type="text" class="form-control" id="validationDefault02" value="Phone" required="">
+                </div>
+                <div class="col-md-4">
+                  <h2 class="font-14 font-weight-700">Email</h2>
+                  <input type="text" class="form-control" id="validationDefault02" value="Email" required="">
+                </div>
+                <div class="col-md-4">
+                  <h2 class="font-14 font-weight-700">Number of Trailer</h2>
+                  <input type="text" class="form-control" id="validationDefault02" value="Truck" required="">
+                </div>
+                <div class="col-md-4">
+                  <h2 class="font-14 font-weight-700">Trailer Registration</h2>
+                  <input type="text" class="form-control" id="validationDefault02" value="dd/mm/yyyy" required="">
+                </div>
+                <div class="col-md-4">
+                  <h2 class="font-14 font-weight-700">Upload Document</h2>
+                  <input type="file" class="form-control" id="validationDefault02" value="MC" required="">
+                </div>
+                <div class="col-md-4">
+                  <h2 class="font-14 font-weight-700">Randon DT Enrollment Cert</h2>
+                  <input type="text" class="form-control" id="validationDefault02" value="Randon DT Enrollment Cert" required="">
+                </div>
+                <div class="col-md-4">
+                  <h2 class="font-14 font-weight-700">Upload Document</h2>
+                  <input type="file" class="form-control" id="validationDefault02" value="MC" required="">
+                </div>
+
+              </form>
+                
+    
+               
+                
+                
+                <div class="modal-footer justify-content-center" style="border-top: 1px solid #ccc; padding-top: 15px; margin-top: 15px; ">
+                  <button type="button" class="btn btn-outline-secondary btn-sm text-uppercase rounded-pill" data-bs-dismiss="modal" style="margin: 10px;">Close</button> 
+                  <button type="button" class="btn btn-success btn-sm text-uppercase rounded-pill">Save changes</button>
+                </div>
+            </div>
+          </div>
+
+

@@ -1,4 +1,11 @@
 <app-navbar></app-navbar>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+
+<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
 
 <main id="main" class="main mt-0 p-0">
   <div id="kt_app_content" class="app-content  flex-column-fluid">
@@ -10,41 +17,27 @@
 
           <!-- Default Tabs -->
           <ul class="nav nav-pills gap-2 border-bottom pb-4" id="myTab" role="tablist">
-
             <li class="nav-item" role="presentation">
               <button class="nav-link rounded-pill active bg-nav-info" id="home-tab" data-bs-toggle="tab"
-                data-bs-target="#customer" type="button" role="tab" aria-controls="home" aria-selected="true">Driver
-                List</button>
+                data-bs-target="#customer" type="button" role="tab" aria-controls="home" aria-selected="true"
+                (click)="filterDrivers('all')">Driver List</button>
             </li>
-
-
-
             <li class="nav-item" role="presentation">
-              <button class="nav-link rounded-pill bg-nav-success" id="profile-tab" data-bs-toggle="tab"
-                data-bs-target="#file" type="button" role="tab" aria-controls="profile" aria-selected="false"
-                tabindex="-1">Non-Compliant</button>
+              <button class="nav-link rounded-pill bg-nav-success" id="home-tab" data-bs-toggle="tab"
+                data-bs-target="#customer" type="button" role="tab" aria-controls="home" aria-selected="true"
+                (click)="filterDrivers('nonCompliant')">Compliant Driver</button>
             </li>
-
-
             <li class="nav-item" role="presentation">
-              <button class="nav-link rounded-pill bg-nav-warning" id="contact-tab" data-bs-toggle="tab"
-                data-bs-target="#forms" type="button" role="tab" aria-controls="contact" aria-selected="false"
-                tabindex="-1">Compliant</button>
+              <button class="nav-link rounded-pill bg-nav-warning" (click)="filterDrivers('compliant')" id="home-tab"
+                data-bs-toggle="tab" data-bs-target="#customer" type="button" role="tab" aria-controls="home"
+                aria-selected="true">Non-Compliant Driver</button>
             </li>
-
-
             <li class="nav-item" role="presentation">
-              <button class="nav-link rounded-pill bg-nav-danger" id="contact-tab" data-bs-toggle="tab"
-                data-bs-target="#email" type="button" role="tab" aria-controls="contact" aria-selected="false"
-                tabindex="-1">Expiring</button>
+              <button class="nav-link rounded-pill bg-nav-danger" id="home-tab" data-bs-toggle="tab"
+                data-bs-target="#customer" type="button" role="tab" aria-controls="home" aria-selected="true"
+                (click)="filterDrivers('expiring')">Expiring Driver</button>
             </li>
-
-
           </ul>
-
-
-
-
           <div class="tab-content" id="myTabContent">
             <div class="tab-pane fade active show" id="customer" role="tabpanel" aria-labelledby="home-tab">
               <div id="kt_app_content" class="app-content  flex-column-fluid">
@@ -58,9 +51,9 @@
                             placeholder="Search...">
                         </div>
                         <div>
-                          <button type="button" class="btn btn-success rounded-pill font-14" data-bs-toggle="modal"
-                            data-bs-target="#ExtralargeModal">
-                            <i class="fa fa-plus me-2" aria-hidden="true"></i>Add Profile
+                          <button type="button" class="btn btn-success rounded-pill font-14" data-bs-toggle="offcanvas"
+                            data-bs-target="#addLocation">
+                            <i class="fa fa-plus me-2" aria-hidden="true"></i>Add Driver
                           </button>
                         </div>
                       </div>
@@ -72,23 +65,6 @@
                     <div class="table-responsive">
                       <table class="table table-bordered">
                         <thead>
-                          <!-- <tr>
-                            <th scope="col">Driver Name</th>
-                            <th scope="col">Email</th>
-                            <th scope="col">Phone</th>
-                            <th scope="col">MC Number</th>
-                            <th scope="col">Status</th>
-                            <th scope="col" width="30px">Actions</th>
-                          </tr>
-                        </thead>
-                        <tbody>
-
-                          <tr *ngFor="let driver of drivers">
-                            <td><a class="text-primary" href="driver-profile-view.html">{{ driver.unitNumber }}</a></td>
-                            <td>{{ driver.email }}</td>
-                            <td>{{ driver.phone }}</td>
-                            <td>{{ driver.mcNumber }}</td>
-                            <td> -->
 
                           <tr>
                             <th scope="col">Driver Name</th>
@@ -100,30 +76,29 @@
                         </thead>
                         <tbody>
 
-                          <tr *ngFor="let driver of drivers">
-                            <td><a class="text-primary" href="driver-profile-view.html">{{ driver.driverName }}</a></td>
-                            <td>{{ driver.email }}</td>
-                            <td>{{ driver.number }}</td>
+                          <tr *ngFor="let driver of filteredDrivers">
+                            <td><a class="text-primary" [routerLink]="['/driver-profile-view',driver._id]">{{
+                                driver.driverName }}</a></td>
+                            <td>{{ driver.companyEmail }}</td>
+                            <td>{{ driver.companyPhone }}</td>
                             <td>
-                              <span [ngClass]="{
-                                                'badge bg-label-success font-13 font-weight-700 text-uppercase': driver.status === 'APPROVED',
-                                                'badge bg-label-warning font-13 font-weight-700 text-uppercase': driver.status === 'PENDING',
-                                                'badge bg-label-danger font-13 font-weight-700 text-uppercase': driver.status === 'CANCELLED'
-                                              }">{{ driver.status }}</span>
-                            </td>
-                            
+                              <span class="badge font-13 font-weight-700 text-uppercase" [ngClass]="{
+                                'bg-label-success': driver.status === 'APPROVED',
+                                'bg-label-warning': driver.status === 'PENDING',
+                                'bg-label-danger': driver.status === 'EXPIRING'}">{{ driver.status }}</span>
+
                             <td class="text-capitalize text-center">
                               <div class="dropdown filter-dropdown">
                                 <span class="dropdown-toggle font-16 px-3" type="button" id="dropdownMenuButton23"
                                   data-bs-toggle="dropdown" aria-expanded="false"><i
                                     class="fa fa-ellipsis-v"></i></span>
-                                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton2" style="">
-                                  <a class="dropdown-item dispatch font-13" href="javascript:;" data-bs-toggle="modal"
-                                    data-bs-target="#ExtralargeModalEdit"
-                                    onclick="dropdownevent('dropdownMenuButton2', 'dispatch')">Edit</a>
-                                  <a class="dropdown-item assiened font-13" href="javascript:;" data-bs-toggle="modal"
-                                    data-bs-target="#ExtralargeModalDelete"
-                                    onclick="dropdownevent('dropdownMenuButton2', 'assigned')">Delete</a>
+                                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton2">
+                                  <a href="javascript:;" class="dropdown-item assigned font-13"
+                                    (click)="editdriver(driver)" type="button" data-bs-toggle="offcanvas"
+                                    data-bs-target="#ExtralargeModalEdit" aria-controls="offcanvasRight">Edit</a>
+                                    <a class="dropdown-item assigned font-13" href="javascript:;" data-bs-toggle="modal"
+                                      data-bs-target="#ExtralargeModalDelete"
+                                      (click)="setDriverToDelete(driver._id)">Delete</a>
                                 </div>
                               </div>
                             </td>
@@ -132,7 +107,7 @@
                       </table>
                     </div>
                   </div>
-                </div>
+                </div>               
                 <div class="row bg-white px-3 py-4 mt-3 rounded">
                   <div class="col-md-12">
                     <nav aria-label="Page navigation example ms-auto me-auto">
@@ -154,7 +129,7 @@
                 </div>
               </div>
             </div>
-          </div><!-- End Default Tabs -->
+          </div>
         </div>
       </div>
     </div>
@@ -162,1237 +137,872 @@
 </main>
 
 
+<!-- End Default Tabs -->
 
 
 
 
-<!-- //form models -->
+
+<!-- ======= Footer ======= -->
+<footer id="footer" class="footer">
+  <div class="text-dark text-center">
+    <span class="text-muted fw-semibold me-1">2023© all rights reserved</span>
+    <a class="text-muted fw-semibold text-hover-primary">Driver</a> <!-- href="#" -->
+  </div>
+
+</footer>
+<!-- End Footer -->
 
 
 
-
-<a href="#" class="back-to-top d-flex align-items-center justify-content-center btn-success"><i
-    class="bi bi-arrow-up-short"></i></a>
-
-
-
-<div class="modal fade" id="ExtralargeModal" tabindex="-1" style="display: none;" aria-hidden="true">
-  <div class="modal-dialog modal-xl">
+<div class="modal fade" id="ExtralargeModalDelete" style="display: none;" aria-hidden="true">
+  <div class="modal-dialog modal-md modal-dialog-centered">
     <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title">Add Driver</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
       <div class="modal-body">
-        <form class="row g-3" (ngSubmit)="submitForm()">
-
-
-
-
-
-
-          <!-- Your form inputs -->
-
-
-
-
-
-          <div class="col-md-4">
-            <h2 class="font-14 font-weight-700"> Driver Name</h2>
-            <input type="text" class="form-control" id="driverName" placeholder="Enter Driver Name"
-              [(ngModel)]="newDriver.driverName" name="driverName" required>
-          </div>
-
-          <div class="col-md-4">
-            <h2 class="font-14 font-weight-700">Address</h2>
-            <input type="text" class="form-control" id="validationDefault02" placeholder="Address"
-              [(ngModel)]="newDriver.address" name="validationDefault02" required="">
-          </div>
-
-          <div class="col-md-4">
-            <h2 class="font-14 font-weight-700">Serial Number</h2>
-            <input type="text" class="form-control" id="validationDefault02" placeholder="Serial Number"
-              [(ngModel)]="newDriver.serialNumber" name="validationDefault02" required="">
-          </div>
-
-          <div class="col-md-4">
-            <h2 class="font-14 font-weight-700">Upload Document</h2>
-            <input type="file" class="form-control" id="validationDefault02" placeholder="MC"
-              [(ngModel)]="newDriver.uploadDocument1" name="validationDefault02" required="">
-          </div>
-
-          <div class="col-md-4">
-            <h2 class="font-14 font-weight-700">License</h2>
-            <input type="text" class="form-control" id="validationDefault02" placeholder="License"
-              [(ngModel)]="newDriver.license" name="validationDefault02" required="">
-          </div>
-
-          <div class="col-md-4">
-            <h2 class="font-14 font-weight-700">Expiration Date</h2>
-            <input type="date" class="form-control" id="validationDefault02" placeholder="Expiration Date"
-              [(ngModel)]="newDriver.licenseExpirationDate" name="validationDefault02" required="">
-          </div>
-
-          <div class="col-md-4">
-            <h2 class="font-14 font-weight-700">Upload Document</h2>
-            <input type="file" class="form-control" id="validationDefault02" placeholder="MC"
-              [(ngModel)]="newDriver.uploadDocument2" name="validationDefault02" required="">
-          </div>
-
-          <hr class="hr" />
-
-          <div class="col-md-4">
-            <h2 class="font-14 font-weight-700">Driver DOT Medical</h2>
-            <input type="text" class="form-control" id="validationDefault02" placeholder="Driver DOT Medical"
-              [(ngModel)]="newDriver.driverDOTMedical" name="validationDefault02" required="">
-          </div>
-
-          <div class="col-md-4">
-            <h2 class="font-14 font-weight-700">Expiration Date</h2>
-            <input type="date" class="form-control" id="validationDefault02" placeholder="Expiration Date"
-              [(ngModel)]="newDriver.medicalExpirationDate" name="validationDefault02" required="">
-          </div>
-
-          <div class="col-md-4">
-            <h2 class="font-14 font-weight-700">Upload Document</h2>
-            <input type="file" class="form-control" id="validationDefault02" placeholder="MC"
-              [(ngModel)]="newDriver.uploadDocument3" name="validationDefault02" required="">
-          </div>
-
-          <div class="col-md-4">
-            <h2 class="font-14 font-weight-700">DMV Driving Record</h2>
-            <input type="text" class="form-control" id="validationDefault02" placeholder="DMV Driving Record"
-              [(ngModel)]="newDriver.dmvDrivingRecord" name="validationDefault02" required="">
-          </div>
-
-          <div class="col-md-4">
-            <h2 class="font-14 font-weight-700">Upload Document</h2>
-            <input type="file" class="form-control" id="validationDefault02" placeholder="MC"
-              [(ngModel)]="newDriver.uploadDocument4" name="validationDefault02" required="">
-          </div>
-
-          <div class="col-md-4">
-            <h2 class="font-14 font-weight-700">Pull Record Latest</h2>
-            <input type="text" class="form-control" id="validationDefault02" placeholder="Pull Record Latest"
-              [(ngModel)]="newDriver.pullRecordLatest" name="validationDefault02" required="">
-          </div>
-
-          <div class="col-md-4">
-            <h2 class="font-14 font-weight-700">Upload Document</h2>
-            <input type="file" class="form-control" id="validationDefault02" placeholder="MC"
-              [(ngModel)]="newDriver.uploadDocument5" name="validationDefault02" required="">
-          </div>
-
-          <div class="col-md-4">
-            <h2 class="font-14 font-weight-700">Work Authorization</h2>
-            <input type="text" class="form-control" id="validationDefault02" placeholder="Work Authorization"
-              [(ngModel)]="newDriver.workAuthorization" name="validationDefault02" required="">
-          </div>
-
-          <div class="col-md-4">
-            <h2 class="font-14 font-weight-700">Work Authorization Expiration Date</h2>
-            <input type="date" class="form-control" id="validationDefault02"
-              placeholder="Work Authorization Expiration Date" [(ngModel)]="newDriver.workAuthorizationExpirationDate"
-              name="validationDefault02" required="">
-          </div>
-
-          <div class="col-md-4">
-            <h2 class="font-14 font-weight-700">Upload Document</h2>
-            <input type="file" class="form-control" id="validationDefault02" placeholder="Upload Document MC"
-              [(ngModel)]="newDriver.uploadDocument6" name="validationDefault02" required="">
-          </div>
-
-          <div class="col-md-4">
-            <h2 class="font-14 font-weight-700">Previous License Number</h2>
-            <input type="text" class="form-control" id="validationDefault02" placeholder="Previous License Number"
-              [(ngModel)]="newDriver.previousLicenseNumber" name="validationDefault02" required="">
-          </div>
-
-          <div class="col-md-4">
-            <h2 class="font-14 font-weight-700">Previous License Number</h2>
-            <input type="text" class="form-control" id="validationDefault02" placeholder="Yes/No"
-              [(ngModel)]="newDriver.previouslicensenumber" name="validationDefault02" required="">
-          </div>
-
-          <div class="col-md-4">
-            <h2 class="font-14 font-weight-700">Previous Address Last 10 years</h2>
-            <input type="text" class="form-control" id="validationDefault02"
-              placeholder="Previous Address Last 10 years" [(ngModel)]="newDriver.previousAddressLast10Years"
-              name="validationDefault02" required="">
-          </div>
-
-          <div class="col-md-4">
-            <h2 class="font-14 font-weight-700">Driving Experience</h2>
-            <input type="number" class="form-control" id="validationDefault02" placeholder="Driving Experience"
-              [(ngModel)]="newDriver.drivingExperience" name="validationDefault02" required="">
-          </div>
-
-          <div class="col-md-4">
-            <h2 class="font-14 font-weight-700">Driving Experience</h2>
-            <input type="text" class="form-control" id="validationDefault02" placeholder="Yes/No"
-              [(ngModel)]="newDriver.drivingexperience" name="validationDefault02" required="">
-          </div>
-
-          <div class="col-md-4">
-            <h2 class="font-14 font-weight-700">Equipment Type</h2>
-            <input type="text" class="form-control" id="validationDefault02" placeholder="Equipment Type"
-              [(ngModel)]="newDriver.equipmentType" name="validationDefault02" required="">
-          </div>
-
-          <div class="col-md-4">
-            <h2 class="font-14 font-weight-700">Equipment Dates</h2>
-            <input type="date" class="form-control" id="validationDefault02" placeholder="Equipment Dates"
-              [(ngModel)]="newDriver.equipmentDates" name="validationDefault02" required="">
-          </div>
-
-          <div class="col-md-4">
-            <h2 class="font-14 font-weight-700">Approx Miles</h2>
-            <input type="number" class="form-control" id="validationDefault02" placeholder="Approx Miles"
-              [(ngModel)]="newDriver.approxMiles" name="validationDefault02" required="">
-          </div>
-
-          <div class="col-md-4">
-            <h2 class="font-14 font-weight-700">Number of Previous Eployers</h2>
-            <input type="number" class="form-control" id="validationDefault02" placeholder="Number of Previous Eployers"
-              [(ngModel)]="newDriver.numberOfPreviousEmployers" name="validationDefault02" required="">
-          </div>
-
-          <div class="col-md-4">
-            <h2 class="font-14 font-weight-700">Company Name</h2>
-            <input type="text" class="form-control" id="validationDefault02" placeholder="Company Name"
-              [(ngModel)]="newDriver.companyName" name="validationDefault02" required="">
-          </div>
-
-          <div class="col-md-4">
-            <h2 class="font-14 font-weight-700">Company Address</h2>
-            <input type="text" class="form-control" id="validationDefault02" placeholder="Company Address"
-              [(ngModel)]="newDriver.companyAddress" name="validationDefault02" required="">
-          </div>
-
-          <div class="col-md-4">
-            <h2 class="font-14 font-weight-700">Company Dates</h2>
-            <input type="date" class="form-control" id="validationDefault02" placeholder="Company Dates"
-              [(ngModel)]="newDriver.companyDates" name="validationDefault02" required="">
-          </div>
-
-          <div class="col-md-4">
-            <h2 class="font-14 font-weight-700">Company Phone</h2>
-            <input type="number" class="form-control" id="validationDefault02" placeholder="Company Phone"
-              [(ngModel)]="newDriver.companyPhone" name="validationDefault02" required="">
-          </div>
-
-          <div class="col-md-4">
-            <h2 class="font-14 font-weight-700">Company Email</h2>
-            <input type="email" class="form-control" id="validationDefault02" placeholder="Company Email"
-              [(ngModel)]="newDriver.companyEmail" name="validationDefault02" required="">
-          </div>
-
-          <div class="col-md-4">
-            <h2 class="font-14 font-weight-700">Were You Subject to the Federal Motor
-              Carrier Safety
-              Regulations During this Period</h2>
-            <input type="text" class="form-control" id="validationDefault02" placeholder="Yes/No"
-              [(ngModel)]="newDriver.federalMotorCarrierSafetyRegulations1" name="validationDefault02" required="">
-          </div>
-
-          <div class="col-md-4">
-            <h2 class="font-14 font-weight-700">Were You Subject to the Federal Motor
-              Carrier Safety
-              Regulations During this Period</h2>
-            <input type="text" class="form-control" id="validationDefault02" placeholder="Yes/No"
-              [(ngModel)]="newDriver.federalMotorCarrierSafetyRegulations2" name="validationDefault02" required="">
-          </div>
-
-          <div class="col-md-4">
-            <h2 class="font-14 font-weight-700">Controlled Substance & Alcohol
-              <br>Questionnaire
-            </h2>
-            <input type="text" class="form-control" id="validationDefault02" placeholder="Enter Detail..."
-              [(ngModel)]="newDriver.controlledSubstanceAlcoholQuestionnaire" name="validationDefault02" required="">
-          </div>
-
-          <div class="col-md-4">
-            <h2 class="font-14 font-weight-700">Upload Document</h2>
-            <input type="file" class="form-control" id="validationDefault02" placeholder="Enter Detail..."
-              [(ngModel)]="newDriver.uploadDocument7" name="validationDefault02" required="">
-          </div>
-
-          <div class="col-md-4">
-            <h2 class="font-14 font-weight-700">Driver Road Test Examination Form</h2>
-            <input type="text" class="form-control" id="validationDefault02" placeholder="Yes/No"
-              [(ngModel)]="newDriver.driverRoadTestExaminationForm" name="validationDefault02" required="">
-          </div>
-
-          <div class="col-md-4">
-            <h2 class="font-14 font-weight-700">Upload Document</h2>
-            <input type="file" class="form-control" id="validationDefault02" placeholder="Enter Detail..."
-              [(ngModel)]="newDriver.uploadDocument8" name="validationDefault02" required="">
-          </div>
-
-          <div class="col-md-4">
-            <h2 class="font-14 font-weight-700">Company Policy</h2>
-            <input type="text" class="form-control" id="validationDefault02" placeholder="Enter Detail..."
-              [(ngModel)]="newDriver.companyPolicy" name="validationDefault02" required="">
-          </div>
-
-          <div class="col-md-4">
-            <h2 class="font-14 font-weight-700">Upload Document</h2>
-            <input type="file" class="form-control" id="validationDefault02" placeholder="Enter Detail..."
-              [(ngModel)]="newDriver.uploadDocument9" name="validationDefault02" required="">
-          </div>
-
-          <div class="col-md-4">
-            <h2 class="font-14 font-weight-700">Drug & Alcohol Clearing House Consent
-              Form</h2>
-            <input type="text" class="form-control" id="validationDefault02"
-              placeholder="Drug & Alcohol Clearing House Consent Form"
-              [(ngModel)]="newDriver.drugAlcoholClearingHouseConsentForm" name="validationDefault02" required="">
-          </div>
-
-          <div class="col-md-4">
-            <h2 class="font-14 font-weight-700">Upload Document</h2>
-            <input type="file" class="form-control" id="validationDefault02" placeholder="Enter Detail..."
-              [(ngModel)]="newDriver.uploadDocument10" name="validationDefault02" required="">
-          </div>
-
-          <div class="col-md-4">
-            <h2 class="font-14 font-weight-700">Random Drug & Alcohol Testing Consent
-              Form</h2>
-            <input type="text" class="form-control" id="validationDefault02"
-              placeholder="Random Drug & Alcohol Testing Consent Form"
-              [(ngModel)]="newDriver.randomDrugAlcoholTestingConsentForm" name="validationDefault02" required="">
-          </div>
-
-          <div class="col-md-4">
-            <h2 class="font-14 font-weight-700">Upload Document</h2>
-            <input type="file" class="form-control" id="validationDefault02" placeholder="Enter Detail..."
-              [(ngModel)]="newDriver.uploadDocument11" name="validationDefault02" required="">
-          </div>
-
-          <div class="col-md-4">
-            <h2 class="font-14 font-weight-700">New Hire Prior Seven Day Work
-              Statement</h2>
-            <input type="text" class="form-control" id="validationDefault02" placeholder="IFTA ACC"
-              [(ngModel)]="newDriver.newHirePriorSevenDayWorkStatement" name="validationDefault02" required="">
-          </div>
-
-          <div class="col-md-4">
-            <h2 class="font-14 font-weight-700">Upload Document</h2>
-            <input type="file" class="form-control" id="validationDefault02" placeholder="no"
-              [(ngModel)]="newDriver.uploadDocument12" name="validationDefault02" required="">
-          </div>
-
-          <div class="col-md-4">
-            <h2 class="font-14 font-weight-700">New Hire Control Custody Form</h2>
-            <input type="text" class="form-control" id="validationDefault02" placeholder="New Hire Control Custody Form"
-              [(ngModel)]="newDriver.newHireControlCustodyForm" name="validationDefault02" required="">
-          </div>
-
-          <div class="col-md-4">
-            <h2 class="font-14 font-weight-700">Insurance Document</h2>
-            <input type="file" class="form-control" id="validationDefault02" placeholder="Insurance Document MC"
-              [(ngModel)]="newDriver.insuranceDocument" name="validationDefault02" required="">
-          </div>
-
-          <div class="col-md-4">
-            <h2 class="font-14 font-weight-700">New Hire Drug Testing Result</h2>
-            <input type="text" class="form-control" id="validationDefault02" placeholder="New Hire Drug Testing Result"
-              [(ngModel)]="newDriver.newHireDrugTestingResult" name="validationDefault02" required="">
-          </div>
-
-          <div class="col-md-4">
-            <h2 class="font-14 font-weight-700">Upload Document</h2>
-            <input type="file" class="form-control" id="validationDefault02" placeholder="No"
-              [(ngModel)]="newDriver.uploadDocument13" name="validationDefault02" required="">
-          </div>
-
-          <div class="col-md-4">
-            <h2 class="font-14 font-weight-700">Clearing House Annual query</h2>
-            <input type="text" class="form-control" id="validationDefault02" placeholder="Clearing House Annual query"
-              [(ngModel)]="newDriver.clearingHouseAnnualQuery" name="validationDefault02" required="">
-          </div>
-
-          <div class="col-md-4">
-            <h2 class="font-14 font-weight-700">Upload Document</h2>
-            <input type="file" class="form-control" id="validationDefault02" placeholder="Upload Document"
-              [(ngModel)]="newDriver.uploadDocument14" name="validationDefault02" required="">
-          </div>
-
-          <div class="col-md-4">
-            <h2 class="font-14 font-weight-700">status</h2>
-            <input type="text" class="form-control" id="validationDefault02" placeholder="Status"
-              [(ngModel)]="newDriver.status" name="validationDefault02" required="">
-          </div>
-
-          <!-- </form> -->
-
-          <div class="modal-footer justify-content-center">
-            <button type="button" class="btn btn-outline-secondary btn-sm text-uppercase rounded-pill"
-              data-bs-dismiss="modal">Close</button>
-            <button type="submit" class="btn btn-success btn-sm text-uppercase rounded-pill">Save changes</button>
-          </div>
-        </form>
+        <h2 class="my-5 text-center"><i class="fa fa-exclamation-triangle text-danger" style="font-size: 60px;"></i>
+        </h2>
+        <h3 class="font-18 font-weight-700 text-center">Are you sure you want to delete this product</h3>
+      </div>
+      <div class="modal-footer justify-content-center">
+        <button type="button" class="btn btn-success btn-sm text-uppercase rounded-pill px-3" data-bs-dismiss="modal"
+          (click)="driverIdToDelete && deleteDriver(driverIdToDelete)">Yes</button>
+        <button type="button" class="btn btn-outline-secondary btn-sm text-uppercase rounded-pill px-3"
+          data-bs-dismiss="modal">No</button>
       </div>
     </div>
-      
   </div>
 </div>
 
+  
 
 
+<div class="offcanvas offcanvas-end" tabindex="-1" id="ExtralargeModalEdit" aria-labelledby="offcanvasRightLabel"
+  style="width: 80%;"data-bs-backdrop="static" data-bs-keyboard="false">
+  <div class="modal-header" style="padding: 15px; border-bottom: 1px solid #ccc;">
+    <h5 class="modal-title">Edit Driver</h5>
+    <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-h2="Close"></button>
+  </div>
+  <div class="offcanvas-body view-load position-relative">
+    <form class="row g-3" (ngSubmit)="updateDriver()">
+      <div class="col-md-4">
+        <h2 class="font-14 font-weight-700"> Driver Name</h2>
+        <input type="text" class="form-control" id="driverName" placeholder="Enter Driver Name"
+          [(ngModel)]="driverToEdit.driverName" name="driverName" required>
+      </div>
 
+      <div class="col-md-4">
+        <h2 class="font-14 font-weight-700">Address</h2>
+        <input type="text" class="form-control" id="address" placeholder="Address"
+          [(ngModel)]="driverToEdit.address" name="address" required="">
+      </div>
 
+      <div class="col-md-4">
+        <h2 class="font-14 font-weight-700">Serial Number</h2>
+        <input type="text" class="form-control" id="serialNumber" placeholder="Serial Number"
+          [(ngModel)]="driverToEdit.serialNumber" name="serialNumber" required="">
+      </div>
 
+      <div class="col-md-4">
+        <h2 class="font-14 font-weight-700">Upload Document</h2>
+        <input type="file" class="form-control" id="uploadDocument1" placeholder="MC"
+          (change)=" driverEditFile($event, 'uploadDocument1')" name="uploadDocument1" required="">
+      </div>
 
+      <div class="col-md-4">
+        <h2 class="font-14 font-weight-700">License</h2>
+        <input type="text" class="form-control" id="license" placeholder="License"
+          [(ngModel)]="driverToEdit.license" name="license" required="">
+      </div>
 
+      <div class="col-md-4">
+        <h2 class="font-14 font-weight-700">Expiration Date</h2>
+        <input type="date" class="form-control" id="licenseExpirationDate" placeholder="Expiration Date"
+          [(ngModel)]="driverToEdit.licenseExpirationDate" name="licenseExpirationDate" required="">
+      </div>
 
+      <div class="col-md-4">
+        <h2 class="font-14 font-weight-700">Upload Document</h2>
+        <input type="file" class="form-control" id="uploadDocument2" placeholder="MC"
+          (change)=" driverEditFile($event, 'uploadDocument2')" name="uploadDocument2" required="">
+      </div>
 
+      <hr class="hr" />
 
+      <div class="col-md-4">
+        <h2 class="font-14 font-weight-700">Driver DOT Medical</h2>
+        <input type="text" class="form-control" id="driverDOTMedical" placeholder="Driver DOT Medical"
+          [(ngModel)]="driverToEdit.driverDOTMedical" name="driverDOTMedical" required="">
+      </div>
 
+      <div class="col-md-4">
+        <h2 class="font-14 font-weight-700">Expiration Date</h2>
+        <input type="date" class="form-control" id="medicalExpirationDate" placeholder="Expiration Date"
+          [(ngModel)]="driverToEdit.medicalExpirationDate" name="medicalExpirationDate" required="">
+      </div>
 
+      <div class="col-md-4">
+        <h2 class="font-14 font-weight-700">Upload Document</h2>
+        <input type="file" class="form-control" id="uploadDocument3" placeholder="MC"
+          (change)=" driverEditFile($event, 'uploadDocument3')" name="uploadDocument3" required="">
+      </div>
 
+      <div class="col-md-4">
+        <h2 class="font-14 font-weight-700">DMV Driving Record</h2>
+        <input type="text" class="form-control" id=".dmvDrivingRecord" placeholder="DMV Driving Record"
+          [(ngModel)]="driverToEdit.dmvDrivingRecord" name=".dmvDrivingRecord" required="">
+      </div>
 
+      <div class="col-md-4">
+        <h2 class="font-14 font-weight-700">Upload Document</h2>
+        <input type="file" class="form-control" id="uploadDocument4" placeholder="MC"
+          (change)=" driverEditFile($event, 'uploadDocument4')" name="uploadDocument4" required="">
+      </div>
 
+      <div class="col-md-4">
+        <h2 class="font-14 font-weight-700">Pull Record Latest</h2>
+        <input type="text" class="form-control" id="pullRecordLatest" placeholder="Pull Record Latest"
+          [(ngModel)]="driverToEdit.pullRecordLatest" name="pullRecordLatest" required="">
+      </div>
 
+      <div class="col-md-4">
+        <h2 class="font-14 font-weight-700">Upload Document</h2>
+        <input type="file" class="form-control" id="uploadDocument5" placeholder="MC"
+          (change)=" driverEditFile($event, 'uploadDocument5')" name="uploadDocument5" required="">
+      </div>
 
+      <div class="col-md-4">
+        <h2 class="font-14 font-weight-700">Work Authorization</h2>
+        <input type="text" class="form-control" id="workAuthorization" placeholder="Work Authorization"
+          [(ngModel)]="driverToEdit.workAuthorization" name="workAuthorization" required="">
+      </div>
 
+      <div class="col-md-4">
+        <h2 class="font-14 font-weight-700">Work Authorization Expiration Date</h2>
+        <input type="date" class="form-control" id="workAuthorizationExpirationDate"
+          placeholder="Work Authorization Expiration Date" [(ngModel)]="driverToEdit.workAuthorizationExpirationDate"
+          name="workAuthorizationExpirationDate" required="">
+      </div>
 
+      <div class="col-md-4">
+        <h2 class="font-14 font-weight-700">Upload Document</h2>
+        <input type="file" class="form-control" id="uploadDocument6" placeholder="Upload Document MC"
+          (change)=" driverEditFile($event, 'uploadDocument6')" name="uploadDocument6" required="">
+      </div>
 
+      <div class="col-md-4">
+        <h2 class="font-14 font-weight-700">Previous License Number</h2>
+        <input type="text" class="form-control" id="previousLicenseNumber" placeholder="Previous License Number"
+          [(ngModel)]="driverToEdit.previousLicenseNumber" name="previousLicenseNumber" required="">
+      </div>
 
+      <div class="col-md-4">
+        <h2 class="font-14 font-weight-700">Previous License Number</h2>
+        <input type="text" class="form-control" id="previouslicensenumber" placeholder="Yes/No"
+          [(ngModel)]="driverToEdit.previouslicensenumber" name="previouslicensenumber" required="">
+      </div>
 
+      <div class="col-md-4">
+        <h2 class="font-14 font-weight-700">Previous Address Last 10 years</h2>
+        <input type="text" class="form-control" id="previousAddressLast10Years" placeholder="Previous Address Last 10 years"
+          [(ngModel)]="driverToEdit.previousAddressLast10Years" name="previousAddressLast10Years" required="">
+      </div>
 
+      <div class="col-md-4">
+        <h2 class="font-14 font-weight-700">Driving Experience</h2>
+        <input type="number" class="form-control" id="drivingExperience" placeholder="Driving Experience"
+          [(ngModel)]="driverToEdit.drivingExperience" name="drivingExperience" required="">
+      </div>
 
+      <div class="col-md-4">
+        <h2 class="font-14 font-weight-700">Driving Experience</h2>
+        <input type="text" class="form-control" id="drivingexperience" placeholder="Yes/No"
+          [(ngModel)]="driverToEdit.drivingexperience" name="drivingexperience" required="">
+      </div>
 
+      <div class="col-md-4">
+        <h2 class="font-14 font-weight-700">Equipment Type</h2>
+        <input type="text" class="form-control" id="equipmentType" placeholder="Equipment Type"
+          [(ngModel)]="driverToEdit.equipmentType" name="equipmentType" required="">
+      </div>
 
+      <div class="col-md-4">
+        <h2 class="font-14 font-weight-700">Equipment Dates</h2>
+        <input type="date" class="form-control" id="equipmentDates" placeholder="Equipment Dates"
+          [(ngModel)]="driverToEdit.equipmentDates" name="equipmentDates" required="">
+      </div>
 
+      <div class="col-md-4">
+        <h2 class="font-14 font-weight-700">Approx Miles</h2>
+        <input type="number" class="form-control" id="approxMiles" placeholder="Approx Miles"
+          [(ngModel)]="driverToEdit.approxMiles" name="approxMiles" required="">
+      </div>
 
+      <div class="col-md-4">
+        <h2 class="font-14 font-weight-700">Number of Previous Eployers</h2>
+        <input type="number" class="form-control" id="numberOfPreviousEmployers" placeholder="Number of Previous Eployers"
+          [(ngModel)]="driverToEdit.numberOfPreviousEmployers" name="numberOfPreviousEmployers" required="">
+      </div>
 
+      <div class="col-md-4">
+        <h2 class="font-14 font-weight-700">Company Name</h2>
+        <input type="text" class="form-control" id="companyName" placeholder="Company Name"
+          [(ngModel)]="driverToEdit.companyName" name="companyName" required="">
+      </div>
 
+      <div class="col-md-4">
+        <h2 class="font-14 font-weight-700">Company Address</h2>
+        <input type="text" class="form-control" id="companyAddress" placeholder="Company Address"
+          [(ngModel)]="driverToEdit.companyAddress" name="companyAddress" required="">
+      </div>
 
+      <div class="col-md-4">
+        <h2 class="font-14 font-weight-700">Company Dates</h2>
+        <input type="date" class="form-control" id="companyDates" placeholder="Company Dates"
+          [(ngModel)]="driverToEdit.companyDates" name="companyDates" required="">
+      </div>
 
+      <div class="col-md-4">
+        <h2 class="font-14 font-weight-700">Company Phone</h2>
+        <input type="number" class="form-control" id="companyPhone" placeholder="Company Phone"
+          [(ngModel)]="driverToEdit.companyPhone" name="companyPhone" required="">
+      </div>
 
+      <div class="col-md-4">
+        <h2 class="font-14 font-weight-700">Company Email</h2>
+        <input type="email" class="form-control" id="companyEmail" placeholder="Company Email"
+          [(ngModel)]="driverToEdit.companyEmail" name="companyEmail" required="">
+      </div>
 
+      <div class="col-md-4">
+        <h2 class="font-14 font-weight-700">Were You Subject to the Federal Motor
+          Carrier Safety
+          Regulations During this Period</h2>
+        <input type="text" class="form-control" id="federalMotorCarrierSafetyRegulations1" placeholder="Yes/No"
+          [(ngModel)]="driverToEdit.federalMotorCarrierSafetyRegulations1" name="federalMotorCarrierSafetyRegulations1" required="">
+      </div>
 
+      <div class="col-md-4">
+        <h2 class="font-14 font-weight-700">Were You Subject to the Federal Motor
+          Carrier Safety
+          Regulations During this Period</h2>
+        <input type="text" class="form-control" id="federalMotorCarrierSafetyRegulations2 " placeholder="Yes/No"
+          [(ngModel)]="driverToEdit.federalMotorCarrierSafetyRegulations2" name="federalMotorCarrierSafetyRegulations2" required="">
+      </div>
 
+      <div class="col-md-4">
+        <h2 class="font-14 font-weight-700">Controlled Substance & Alcohol
+          <br>Questionnaire
+        </h2>
+        <input type="text" class="form-control" id="controlledSubstanceAlcoholQuestionnaire" placeholder="Enter Detail..."
+          [(ngModel)]="driverToEdit.controlledSubstanceAlcoholQuestionnaire" name="controlledSubstanceAlcoholQuestionnaire" required="">
+      </div>
 
-<!-- <app-navbar></app-navbar>
+      <div class="col-md-4">
+        <h2 class="font-14 font-weight-700">Upload Document</h2>
+        <input type="file" class="form-control" id="uploadDocument7" placeholder="Enter Detail..."
+          (change)=" driverEditFile($event, 'uploadDocument7')" name="uploadDocument7" required="">
+      </div>
 
-<main id="main" class="main mt-0 p-0">
-  <div id="kt_app_content" class="app-content  flex-column-fluid">
-      <div class="container-fluid px-5">
-          
-        <div class="row bg-white px-3 py-4 mt-3 rounded">
-            <div class="col-md-12"> -->
+      <div class="col-md-4">
+        <h2 class="font-14 font-weight-700">Driver Road Test Examination Form</h2>
+        <input type="text" class="form-control" id="driverRoadTestExaminationForm" placeholder="Yes/No"
+          [(ngModel)]="driverToEdit.driverRoadTestExaminationForm" name="driverRoadTestExaminationForm" required="">
+      </div>
 
+      <div class="col-md-4">
+        <h2 class="font-14 font-weight-700">Upload Document</h2>
+        <input type="file" class="form-control" id="uploadDocument8" placeholder="Enter Detail..."
+          (change)=" driverEditFile($event, 'uploadDocument8')" name="uploadDocument8" required="">
+      </div>
 
+      <div class="col-md-4">
+        <h2 class="font-14 font-weight-700">Company Policy</h2>
+        <input type="text" class="form-control" id="companyPolicy" placeholder="Enter Detail..."
+          [(ngModel)]="driverToEdit.companyPolicy" name="companyPolicy" required="">
+      </div>
 
+      <div class="col-md-4">
+        <h2 class="font-14 font-weight-700">Upload Document</h2>
+        <input type="file" class="form-control" id="uploadDocument9" placeholder="Enter Detail..."
+          (change)=" driverEditFile($event, 'uploadDocument9')" name="uploadDocument9" required="">
+      </div>
 
+      <div class="col-md-4"> 
+        <h2 class="font-14 font-weight-700">Drug & Alcohol Clearing House Consent
+          Form</h2>
+        <input type="text" class="form-control" id="drugAlcoholClearingHouseConsentForm"
+          placeholder="Drug & Alcohol Clearing House Consent Form"
+          [(ngModel)]="driverToEdit.drugAlcoholClearingHouseConsentForm" name="drugAlcoholClearingHouseConsentForm" required="">
+      </div>
 
+      <div class="col-md-4">
+        <h2 class="font-14 font-weight-700">Upload Document</h2>
+        <input type="file" class="form-control" id="uploadDocument10" placeholder="Enter Detail..."
+          (change)=" driverEditFile($event, 'uploadDocument10')" name="uploadDocument10" required="">
+      </div>
 
+      <div class="col-md-4">
+        <h2 class="font-14 font-weight-700">Random Drug & Alcohol Testing Consent
+          Form</h2>
+        <input type="text" class="form-control" id="randomDrugAlcoholTestingConsentForm"
+          placeholder="Random Drug & Alcohol Testing Consent Form"
+          [(ngModel)]="driverToEdit.randomDrugAlcoholTestingConsentForm" name="randomDrugAlcoholTestingConsentForm" required="">
+      </div>
 
-<!-- Default Tabs -->
+      <div class="col-md-4">
+        <h2 class="font-14 font-weight-700">Upload Document</h2>
+        <input type="file" class="form-control" id="uploadDocument11" placeholder="Enter Detail..."
+          (change)=" driverEditFile($event, 'uploadDocument11')" name="uploadDocument11" required="">
+      </div>
 
+      <div class="col-md-4">
+        <h2 class="font-14 font-weight-700">New Hire Prior Seven Day Work
+          Statement</h2>
+        <input type="text" class="form-control" id="newHirePriorSevenDayWorkStatement" placeholder="IFTA ACC"
+          [(ngModel)]="driverToEdit.newHirePriorSevenDayWorkStatement" name="newHirePriorSevenDayWorkStatement" required="">
+      </div>
 
+      <div class="col-md-4">
+        <h2 class="font-14 font-weight-700">Upload Document</h2>
+        <input type="file" class="form-control" id="uploadDocument12" placeholder="no"
+          (change)=" driverEditFile($event, 'uploadDocument12')" name="uploadDocument12" required="">
+      </div>
 
+      <div class="col-md-4">
+        <h2 class="font-14 font-weight-700">New Hire Control Custody Form</h2>
+        <input type="text" class="form-control" id="newHireControlCustodyForm" placeholder="New Hire Control Custody Form"
+          [(ngModel)]="driverToEdit.newHireControlCustodyForm" name="newHireControlCustodyForm" required="">
+      </div>
 
+      <div class="col-md-4">
+        <h2 class="font-14 font-weight-700">Insurance Document</h2>
+        <input type="file" class="form-control" id="insuranceDocument" placeholder="Insurance Document MC"
+          (change)=" driverEditFile($event, 'insuranceDocument')" name="insuranceDocument" required="">
+      </div>
 
+      <div class="col-md-4">
+        <h2 class="font-14 font-weight-700">New Hire Drug Testing Result</h2>
+        <input type="text" class="form-control" id="newHireDrugTestingResult" placeholder="New Hire Drug Testing Result"
+          [(ngModel)]="driverToEdit.newHireDrugTestingResult" name="newHireDrugTestingResult" required="">
+      </div>
 
-<!-- <ul class="nav nav-pills gap-2 border-bottom pb-4" id="myTab" role="tablist">
+      <div class="col-md-4">
+        <h2 class="font-14 font-weight-700">Upload Document</h2>
+        <input type="file" class="form-control" id="uploadDocument13" placeholder="No"
+          (change)=" driverEditFile($event, 'uploadDocument13')" name="uploadDocument13" required="">
+      </div>
 
-                <li class="nav-item" role="presentation">
-                  <button class="nav-link rounded-pill active bg-nav-info" id="home-tab" data-bs-toggle="tab"
-                    data-bs-target="#customer" type="button" role="tab" aria-controls="home" aria-selected="true">Driver
-                    List</button>
-                </li>
-    
-    
-    
-                <li class="nav-item" role="presentation">
-                  <button class="nav-link rounded-pill bg-nav-success" id="profile-tab" data-bs-toggle="tab"
-                    data-bs-target="#file" type="button" role="tab" aria-controls="profile" aria-selected="false"
-                    tabindex="-1">Non-Compliant</button>
-                </li>
-    
-    
-                <li class="nav-item" role="presentation">
-                  <button class="nav-link rounded-pill bg-nav-warning" id="contact-tab" data-bs-toggle="tab"
-                    data-bs-target="#forms" type="button" role="tab" aria-controls="contact" aria-selected="false"
-                    tabindex="-1">Compliant</button>
-                </li>
-    
-    
-                <li class="nav-item" role="presentation">
-                  <button class="nav-link rounded-pill bg-nav-danger" id="contact-tab" data-bs-toggle="tab"
-                    data-bs-target="#email" type="button" role="tab" aria-controls="contact" aria-selected="false"
-                    tabindex="-1">Expiring</button>
-                </li>
-    
-    
-              </ul>
+      <div class="col-md-4">
+        <h2 class="font-14 font-weight-700">Clearing House Annual query</h2>
+        <input type="text" class="form-control" id="clearingHouseAnnualQuery" placeholder="Clearing House Annual query"
+          [(ngModel)]="driverToEdit.clearingHouseAnnualQuery" name="clearingHouseAnnualQuery" required="">
+      </div>
 
+      <div class="col-md-4">
+        <h2 class="font-14 font-weight-700">Upload Document</h2>
+        <input type="file" class="form-control" id="uploadDocument14" placeholder="Upload Document"
+          (change)=" driverEditFile($event, 'uploadDocument14')" name="uploadDocument14" required="">
+      </div>
 
+      <div class="col-md-4">
+        <h2 class="font-14 font-weight-700">Status</h2>
+        <select class="form-control" [(ngModel)]="driverToEdit.status" name="status" required>
+          <option value="APPROVED">APPROVED</option>
+          <option value="PENDING">PENDING</option>
+          <option value="EXPIRING">EXPIRING</option>
+        </select>
+      </div>
+      
+      <div class="modal-footer justify-content-center"
+      style="border-top: 1px solid #ccc; padding-top: 15px; margin-top: 15px; ">
+      <button type="button" class="btn btn-outline-secondary btn-sm text-uppercase rounded-pill"
+        data-bs-dismiss="offcanvas" style="margin: 10px;">Close</button>
+      <button type="submit" class="btn btn-success btn-sm text-uppercase rounded-pill" data-bs-dismiss="offcanvas">Save changes</button>
+    </div>
+    </form>
 
-
-              <div class="tab-content" id="myTabContent">
-                <div class="tab-pane fade active show" id="customer" role="tabpanel" aria-labelledby="home-tab">
-                    <div id="kt_app_content" class="app-content  flex-column-fluid">
-                      <div class="my-4">
-                        <div class="row">
-                          <div class="col-md-12">
-                            <div class="d-flex justify-content-between">
-                              <div class="form-group has-search mb-0">
-                                <span class="fa fa-search form-control-feedback"></span>
-                                <input style="height: 36px !important;" type="text" name="Search" class="form-control" placeholder="Search...">
-                              </div>
-                              <div>
-                                <button type="button" class="btn btn-success rounded-pill font-14" data-bs-toggle="modal" data-bs-target="#ExtralargeModal">
-                                <i class="fa fa-plus me-2" aria-hidden="true"></i>Add Profile
-                                </button>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="row">
-                        <div class="col-lg-12">
-                          <div class="table-responsive">
-                            <table class="table table-bordered">
-                              <thead>
-                                  <tr>
-                                    <th scope="col">Driver Name</th>
-                                    <th scope="col">Email</th>
-                                    <th scope="col">Phone</th>
-                                    <th scope="col">MC Number</th>
-                                    <th scope="col">Status</th>
-                                    <th scope="col" width="30px">Actions</th>
-                                  </tr>
-                              </thead>
-                              <tbody>
-
-                                <tr *ngFor="let driver of drivers">
-                                  <td><a class="text-primary" href="driver-profile-view.html">{{ driver.unitNumber }}</a></td>
-                                  <td>{{ driver.email }}</td>
-                                  <td>{{ driver.phone }}</td>
-                                  <td>{{ driver.mcNumber }}</td>
-                                  <td>
-                                    <span [ngClass]="{
-                                                'badge bg-label-success font-13 font-weight-700 text-uppercase': driver.status === 'APPROVED',
-                                                'badge bg-label-warning font-13 font-weight-700 text-uppercase': driver.status === 'PENDING',
-                                                'badge bg-label-danger font-13 font-weight-700 text-uppercase': driver.status === 'CANCELLED'
-                                              }">{{ driver.status }}</span>
-                                  </td>
-                                  <td class="text-capitalize text-center">
-                                    <div class="dropdown filter-dropdown">
-                                      <span class="dropdown-toggle font-16 px-3" type="button" id="dropdownMenuButton23"
-                                        data-bs-toggle="dropdown" aria-expanded="false"><i
-                                          class="fa fa-ellipsis-v"></i></span>
-                                      <div class="dropdown-menu" aria-labelledby="dropdownMenuButton2" style="">
-                                        <a class="dropdown-item dispatch font-13" href="javascript:;" data-bs-toggle="modal"
-                                          data-bs-target="#ExtralargeModalEdit"
-                                          onclick="dropdownevent('dropdownMenuButton2', 'dispatch')">Edit</a>
-                                        <a class="dropdown-item assiened font-13" href="javascript:;" data-bs-toggle="modal"
-                                          data-bs-target="#ExtralargeModalDelete"
-                                          onclick="dropdownevent('dropdownMenuButton2', 'assigned')">Delete</a>
-                                      </div>
-                                    </div>
-                                  </td>
-                                </tr>
-                              </tbody>
-                            </table>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="row bg-white px-3 py-4 mt-3 rounded">
-                        <div class="col-md-12">
-                          <nav aria-label="Page navigation example ms-auto me-auto">
-                            <ul class="pagination justify-content-center gap-2 mb-0">
-                              <li class="page-item">
-                                <a class="page-link font-22" href="javascript:;" aria-label="Previous"><i
-                                    class="fa fa-angle-left font-weight-300"></i></a>
-                              </li>
-                              <li class="page-item active"><a class="page-link font-14" href="javascript:;">1</a></li>
-                              <li class="page-item"><a class="page-link font-14" href="javascript:;">2</a></li>
-                              <li class="page-item"><a class="page-link font-14" href="javascript:;">3</a></li>
-                              <li class="page-item"><a class="page-link font-14" href="javascript:;">4</a></li>
-                              <li class="page-item"><a class="page-link font-14" href="javascript:;">5</a></li>
-                              <li class="page-item"><a class="page-link font-22" href="javascript:;" aria-label="Next"><i
-                                    class="fa fa-angle-right font-weight-300"></i></a></li>
-                            </ul>
-                          </nav>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div> -->
-<!-- End Default Tabs -->
-<!-- </div>
-            </div>
-          </div>
-        </div>
-      </main> -->
-
-
-
+  </div>
+</div>
 
 
 
 <!-- //form models -->
 
-
-
-<!-- 
-<a href="#" class="back-to-top d-flex align-items-center justify-content-center btn-success"><i
-  class="bi bi-arrow-up-short"></i></a>
-
-
-
-<div class="modal fade" id="ExtralargeModal" tabindex="-1" style="display: none;" aria-hidden="true">
-        <div class="modal-dialog modal-xl">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title">Add Driver</h5>
-              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-              <form class="row g-3" (ngSubmit)="submitForm()">
- -->
-
-
-
-
-
-<!-- Your form inputs -->
-
-
-
-<!-- 
-
-          <div class="col-md-4">
-            <h2 class="font-14 font-weight-700"> Driver Name</h2>
-            <input type="text" class="form-control" id="driverName" placeholder="Enter Driver Name"
-              [(ngModel)]="newDriver.driverName" name="driverName" required>
-          </div>
-
-          <div class="col-md-4">
-            <h2 class="font-14 font-weight-700">Address</h2>
-            <input type="text" class="form-control" id="validationDefault02" placeholder="Address" 
-            [(ngModel)]="newDriver.address" name="validationDefault02" required="">
-          </div>
-
-          <div class="col-md-4">
-            <h2 class="font-14 font-weight-700">Serial Number</h2>
-            <input type="text" class="form-control" id="validationDefault02" placeholder="Serial Number"
-            [(ngModel)]="newDriver.serialNumber" name="validationDefault02" required="">
-          </div>
-
-          <div class="col-md-4">
-            <h2 class="font-14 font-weight-700">Upload Document</h2>
-            <input type="file" class="form-control" id="validationDefault02" placeholder="MC" 
-            [(ngModel)]="newDriver.uploadDocument" name="validationDefault02" required="">
-          </div>
-
-          <div class="col-md-4">
-            <h2 class="font-14 font-weight-700">License</h2>
-             <input type="text" class="form-control" id="validationDefault02" placeholder="License"     
-            [(ngModel)]="newDriver.license" name="validationDefault02" required="">
-          </div>
-
-          <div class="col-md-4">
-            <h2 class="font-14 font-weight-700">Expiration Date</h2>
-            <input type="date" class="form-control" id="validationDefault02" placeholder="Expiration Date"
-              [(ngModel)]="newDriver.expirationDate" name="validationDefault02" required="">
-          </div>
-
-          <div class="col-md-4">
-            <h2 class="font-14 font-weight-700">Upload Document</h2>
-            <input type="file" class="form-control" id="validationDefault02" placeholder="MC" 
-            [(ngModel)]="newDriver.uploadDocument" name="validationDefault02" required="">
-          </div>
-          
-          <hr class="hr" />
-
-          <div class="col-md-4">
-            <h2 class="font-14 font-weight-700">Driver DOT Medical</h2>
-            <input type="text" class="form-control" id="validationDefault02" placeholder="Driver DOT Medical"
-            [(ngModel)]="newDriver.driverDotMedical" name="validationDefault02" required="">
-          </div>
-
-          <div class="col-md-4">
-            <h2 class="font-14 font-weight-700">Expiration Date</h2>
-            <input type="date" class="form-control" id="validationDefault02" placeholder="Expiration Date"
-              [(ngModel)]="newDriver.expirationDate" name="validationDefault02" required="">
-          </div>
-
-          <div class="col-md-4">
-            <h2 class="font-14 font-weight-700">Upload Document</h2>
-            <input type="file" class="form-control" id="validationDefault02" placeholder="MC" 
-            [(ngModel)]="newDriver.uploadDocument" name="validationDefault02" required="">
-          </div>
-
-          <div class="col-md-4">
-            <h2 class="font-14 font-weight-700">DMV Driving Record</h2>
-            <input type="text" class="form-control" id="validationDefault02" placeholder="DMV Driving Record"
-            [(ngModel)]="newDriver.dmvDrivingRecord" name="validationDefault02" required=""> 
-          </div>
-
-          <div class="col-md-4">
-            <h2 class="font-14 font-weight-700">Upload Document</h2>
-            <input type="file" class="form-control" id="validationDefault02" placeholder="MC" 
-            [(ngModel)]="newDriver.uploadDocument" name="validationDefault02" required="">
-          </div>
-
-          <div class="col-md-4">
-            <h2 class="font-14 font-weight-700">Pull Record Latest</h2>
-            <input type="text" class="form-control" id="validationDefault02" placeholder="Pull Record Latest"
-            [(ngModel)]="newDriver.pullRecordLatest" name="validationDefault02" required="">
-          </div>
-
-          <div class="col-md-4">
-            <h2 class="font-14 font-weight-700">Upload Document</h2>
-            <input type="file" class="form-control" id="validationDefault02" placeholder="MC" 
-            [(ngModel)]="newDriver.uploadDocument" name="validationDefault02" required="">
-          </div>
-
-          <div class="col-md-4">
-            <h2 class="font-14 font-weight-700">Work Authorization</h2>
-            <input type="text" class="form-control" id="validationDefault02" placeholder="Work Authorization"
-            [(ngModel)]="newDriver.workAuthorization" name="validationDefault02" required="">
-          </div>
-
-          <div class="col-md-4">
-            <h2 class="font-14 font-weight-700">Work Authorization Expiration Date</h2>
-            <input type="date" class="form-control" id="validationDefault02" placeholder="Work Authorization Expiration Date"
-              [(ngModel)]="newDriver.workAuthorizationExpirationDate" name="validationDefault02" required="">
-          </div>
-
-          <div class="col-md-4">
-            <h2 class="font-14 font-weight-700">Upload Document</h2>
-            <input type="file" class="form-control" id="validationDefault02" placeholder="Upload Document MC" 
-            [(ngModel)]="newDriver.uploadDocument" name="validationDefault02" required="">
-          </div>
-
-          <div class="col-md-4">
-            <h2 class="font-14 font-weight-700">Previous License Number</h2>
-            <input type="text" class="form-control" id="validationDefault02"
-              placeholder="Previous License Number" 
-              [(ngModel)]="newDriver.previousLicenseNumber" name="validationDefault02" required="">
-          </div>
-
-          <div class="col-md-4">
-            <h2 class="font-14 font-weight-700">Previous License Number</h2>
-            <input type="text" class="form-control" id="validationDefault02" placeholder="Yes/No" 
-            [(ngModel)]="newDriver.previousLicenseNumber" name="validationDefault02" required="">
-          </div>
-
-          <div class="col-md-4">
-            <h2 class="font-14 font-weight-700">Previous Address Last years</h2>
-            <input type="text" class="form-control" id="validationDefault02"
-              placeholder="Previous Address Last 10 years" 
-              [(ngModel)]="newDriver.previousAddressLastYears" name="validationDefault02" required="">
-          </div>
-
-          <div class="col-md-4">
-            <h2 class="font-14 font-weight-700">Driving Experience</h2>
-            <input type="number" class="form-control" id="validationDefault02" placeholder="Driving Experience"
-            [(ngModel)]="newDriver.drivingExperience" name="validationDefault02" required="">
-          </div>
-
-          <div class="col-md-4">
-            <h2 class="font-14 font-weight-700">Driving Experience</h2>
-            <input type="text" class="form-control" id="validationDefault02" placeholder="Yes/No" 
-            [(ngModel)]="newDriver.drivingExperience" name="validationDefault02" required="">
-          </div>
-
-          <div class="col-md-4">
-            <h2 class="font-14 font-weight-700">Equipment Type</h2>
-            <input type="text" class="form-control" id="validationDefault02" placeholder="Equipment Type"
-            [(ngModel)]="newDriver.equipmentType" name="validationDefault02" required=""> 
-          </div>
-          
-          <div class="col-md-4">
-            <h2 class="font-14 font-weight-700">Equipment Dates</h2>
-            <input type="date" class="form-control" id="validationDefault02" placeholder="Equipment Dates"
-            [(ngModel)]="newDriver.equipmentDates" name="validationDefault02" required="">
-          </div>
-
-          <div class="col-md-4">
-            <h2 class="font-14 font-weight-700">Approx Miles</h2>
-            <input type="number" class="form-control" id="validationDefault02" placeholder="Approx Miles"
-            [(ngModel)]="newDriver.approxMiles" name="validationDefault02" required="">
-          </div>
-
-          <div class="col-md-4">
-            <h2 class="font-14 font-weight-700">Number Of Previous Employers</h2>
-            <input type="number" class="form-control" id="validationDefault02"
-              placeholder="Number of Previous Eployers" 
-              [(ngModel)]="newDriver.numberOfPreviousEmployers" name="validationDefault02" required="">
-          </div>
-          
-          <div class="col-md-4">
-            <h2 class="font-14 font-weight-700">Company Name</h2>
-            <input type="text" class="form-control" id="validationDefault02" placeholder="Company Name"
-            [(ngModel)]="newDriver.companyName" name="validationDefault02" required=""> 
-          </div>
-
-          <div class="col-md-4">
-            <h2 class="font-14 font-weight-700">Company Address</h2>
-            <input type="text" class="form-control" id="validationDefault02" placeholder="Company Address"
-            [(ngModel)]="newDriver.companyAddress" name="validationDefault02" required="">  
-          </div>
-
-          <div class="col-md-4">
-            <h2 class="font-14 font-weight-700">Company Dates</h2>
-            <input type="date" class="form-control" id="validationDefault02" placeholder="Company Dates"
-            [(ngModel)]="newDriver.companyDates" name="validationDefault02" required="">  
-          </div>
-
-          <div class="col-md-4">
-            <h2 class="font-14 font-weight-700">Company Phone</h2>
-            <input type="number" class="form-control" id="validationDefault02" placeholder="Company Phone" 
-            [(ngModel)]="newDriver.companyPhone" name="validationDefault02" required=""> 
-          </div>
-
-          <div class="col-md-4">
-            <h2 class="font-14 font-weight-700">Company Email</h2>
-            <input type="email" class="form-control" id="validationDefault02" placeholder="Company Email"
-            [(ngModel)]="newDriver.companyEmail" name="validationDefault02" required=""> 
-          </div>
-
-          <div class="col-md-4">
-            <h2 class="font-14 font-weight-700">Were You Subject To The Federal Motor
-              Carrier Safety
-              Regulations During This Period</h2>
-            <input type="text" class="form-control" id="validationDefault02" placeholder="Yes/No"
-            [(ngModel)]="newDriver.wereYouSubjectToTheFederalMotorCarrierSafetyRegulationsDuringThisPeriod" name="validationDefault02" required="">  
-          </div>
-
-          <div class="col-md-4">
-            <h2 class="font-14 font-weight-700">Were You Subject To The Federal Motor
-              Carrier Safety
-              Regulations During This Period</h2>
-            <input type="text" class="form-control" id="validationDefault02" placeholder="Yes/No"
-            [(ngModel)]="newDriver.wereYouSubjectToTheFederalMotorCarrierSafetyRegulationsDuringThisPeriod" name="validationDefault02" required="">  
-          </div>
-
-          <div class="col-md-4">
-            <h2 class="font-14 font-weight-700">Controlled Substance  Alcohol
-            Questionnaire</h2>
-            <input type="text" class="form-control" id="validationDefault02" placeholder="Enter Detail..."
-            [(ngModel)]="newDriver.controlledSubstanceAlcoholQuestionnaire" name="validationDefault02" required="">   
-          </div>
-
-          <div class="col-md-4">
-            <h2 class="font-14 font-weight-700">Upload Document</h2>
-            <input type="file" class="form-control" id="validationDefault02" placeholder="Enter Detail..."
-            [(ngModel)]="newDriver.uploadDocument" name="validationDefault02" required="">   
-          </div>
-
-          <div class="col-md-4">
-            <h2 class="font-14 font-weight-700">Driver Road Test Examination Form</h2>
-            <input type="text" class="form-control" id="validationDefault02" placeholder="Yes/No" 
-            [(ngModel)]="newDriver.driverRoadTestExaminationForm" name="validationDefault02" required="">   
-          </div>
-
-          <div class="col-md-4">
-            <h2 class="font-14 font-weight-700">Upload Document</h2>
-            <input type="file" class="form-control" id="validationDefault02" placeholder="Enter Detail..."
-            [(ngModel)]="newDriver.uploadDocument" name="validationDefault02" required=""> 
-          </div>
-
-          <div class="col-md-4">
-            <h2 class="font-14 font-weight-700">Company Policy</h2>
-            <input type="text" class="form-control" id="validationDefault02" placeholder="Enter Detail..."
-            [(ngModel)]="newDriver.companyPolicy" name="validationDefault02" required="">  
-          </div>
-
-          <div class="col-md-4">
-            <h2 class="font-14 font-weight-700">Upload Document</h2>
-            <input type="file" class="form-control" id="validationDefault02" placeholder="Enter Detail..."
-            [(ngModel)]="newDriver.uploadDocument" name="validationDefault02" required="">   
-          </div>
-
-          <div class="col-md-4">
-            <h2 class="font-14 font-weight-700">Drug Alcohol Clearing House Consent
-              Form</h2>
-            <input type="text" class="form-control" id="validationDefault02"
-              placeholder="Drug & Alcohol Clearing House Consent Form" 
-              [(ngModel)]="newDriver.drugAlcoholClearingHouseConsentForm" name="validationDefault02" required="">  
-          </div>
-
-          <div class="col-md-4">
-            <h2 class="font-14 font-weight-700">Upload Document</h2>
-            <input type="file" class="form-control" id="validationDefault02" placeholder="Enter Detail..."
-            [(ngModel)]="newDriver.uploadDocument" name="validationDefault02" required=""> 
-          </div>
-
-          <div class="col-md-4">
-            <h2 class="font-14 font-weight-700">Random Drug Alcohol Testing Consent
-              Form</h2>
-            <input type="text" class="form-control" id="validationDefault02"
-              placeholder="Random Drug & Alcohol Testing Consent Form" 
-              [(ngModel)]="newDriver.randomDrugAlcoholTestingConsentForm" name="validationDefault02" required="">  
-          </div>
-
-          <div class="col-md-4">
-            <h2 class="font-14 font-weight-700">Upload Document</h2>
-            <input type="file" class="form-control" id="validationDefault02" placeholder="Enter Detail..."
-            [(ngModel)]="newDriver.uploadDocument" name="validationDefault02" required="">  
-          </div>
-
-          <div class="col-md-4">
-            <h2 class="font-14 font-weight-700">New Hire Prior Seven Day Work
-              Statement</h2>
-            <input type="text" class="form-control" id="validationDefault02" placeholder="IFTA ACC" 
-            [(ngModel)]="newDriver.newHirePriorSevenDayWorkStatement" name="validationDefault02" required=""> 
-          </div>
-
-          <div class="col-md-4">
-            <h2 class="font-14 font-weight-700">Upload Document</h2>
-            <input type="file" class="form-control" id="validationDefault02" placeholder="no" 
-            [(ngModel)]="newDriver.uploadDocument" name="validationDefault02" required="">
-          </div>
-
-          <div class="col-md-4">
-            <h2 class="font-14 font-weight-700">New Hire Control Custody Form</h2>
-            <input type="text" class="form-control" id="validationDefault02"
-             placeholder="New Hire Control Custody Form"
-             [(ngModel)]="newDriver.newHireControlCustodyForm" name="validationDefault02" required=""> 
-          </div>
-
-          <div class="col-md-4">
-            <h2 class="font-14 font-weight-700">Insurance Document</h2>
-            <input type="file" class="form-control" id="validationDefault02" placeholder="Insurance Document MC" 
-            [(ngModel)]="newDriver.insuranceDocument" name="validationDefault02" required="">
-          </div>
-
-          <div class="col-md-4">
-            <h2 class="font-14 font-weight-700">New Hire Drug Testing Result</h2>
-            <input type="text" class="form-control" id="validationDefault02"
-              placeholder="New Hire Drug Testing Result"
-              [(ngModel)]="newDriver.newHireDrugTestingResult" name="validationDefault02" required=""> 
-          </div>
-
-          <div class="col-md-4">
-            <h2 class="font-14 font-weight-700">Upload Document</h2>
-            <input type="file" class="form-control" id="validationDefault02" placeholder="No"
-            [(ngModel)]="newDriver.uploadDocument" name="validationDefault02" required=""> 
-          </div>
-
-          <div class="col-md-4">
-            <h2 class="font-14 font-weight-700">Clearing House Annual Query</h2>
-            <input type="text" class="form-control" id="validationDefault02"
-              placeholder="Clearing House Annual query" 
-              [(ngModel)]="newDriver.clearingHouseAnnualQuery" name="validationDefault02" required=""> 
-          </div>
-
-          <div class="col-md-4">
-            <h2 class="font-14 font-weight-700">Upload Document</h2>
-            <input type="file" class="form-control" id="validationDefault02" placeholder="Upload Document" 
-            [(ngModel)]="newDriver.uploadDocument" name="validationDefault02" required=""> 
-          </div>
-
-          <div class="col-md-4">
-            <h2 class="font-14 font-weight-700">status</h2>
-            <input type="text" class="form-control" id="validationDefault02" placeholder="TruckStatus" 
-            [(ngModel)]="newDriver.status" name="validationDefault02" required=""> 
-          </div> -->
-
-
-
-
-
-<!-- 
-        </form>
-  </div> -->
-
-
-
-
-
-
-<!--   
-  <div class="modal-footer justify-content-center">
-    <button type="button" class="btn btn-outline-secondary btn-sm text-uppercase rounded-pill" data-bs-dismiss="modal">Close</button>
-    <button type="submit" class="btn btn-success btn-sm text-uppercase rounded-pill">Save changes</button>
+<div class="offcanvas offcanvas-end" id="addLocation" aria-labelledby="offcanvasRightLabel" style="width: 80%;" data-bs-backdrop="static" data-bs-keyboard="false">
+  <div class="modal-header" style="padding: 15px; border-bottom: 1px solid #ccc;">
+    <h5 class="modal-title">Add Driver </h5>
+    <!-- <div>
+      <a href="javascript:;" class="font-14 text-success text-uppercase font-weight-500 me-4"><i
+          class="ri-save-3-line"></i> Save</a>
+      <a href="javascript:;" class="font-14 text-danger text-uppercase font-weight-500 me-4"><i
+          class="ri-delete-bin-6-line"></i> Delete</a>
+      <a routerLink="/driver-list-view" class="font-14 text-uppercase font-weight-500 me-5"
+        routerlinkactive="active">View Profile</a>-->
+        <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-h2="Close"></button>
+            
   </div>
-</form>
-</div>
-</div>
-</div> -->
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<!-- 
-                  <div class="col-md-4">
-                      <h2 class="font-14 font-weight-700"> Driver Name</h2>
-                      <input type="text" class="form-control" id="validationDefault01" value=" Driver Name "
-                        required="">
-                    </div>
-                    <div class="col-md-4">
-                      <h2 class="font-14 font-weight-700">Address</h2>
-                      <input type="text" class="form-control" id="validationDefault02" value="Address" required="">
-                    </div>
-                    <div class="col-md-4">
-                      <h2 class="font-14 font-weight-700">Serial Number</h2>
-                      <input type="text" class="form-control" id="validationDefault02" value="Serial Number"
-                        required="">
-                    </div>
-                    <div class="col-md-4">
-                      <h2 class="font-14 font-weight-700">Upload Document</h2>
-                      <input type="file" class="form-control" id="validationDefault02" value="MC" required="">
-                    </div>
-                    <div class="col-md-4">
-                      <h2 class="font-14 font-weight-700">License</h2>
-                      <input type="text" class="form-control" id="validationDefault02" value="License" required="">
-                    </div>
-                    <div class="col-md-4">
-                      <h2 class="font-14 font-weight-700">Expiration Date</h2>
-                      <input type="text" class="form-control" id="validationDefault02" value="dd/mm/yyyy"
-                        required="">
-                    </div>
-                    <div class="col-md-4">
-                      <h2 class="font-14 font-weight-700">Upload Document</h2>
-                      <input type="file" class="form-control" id="validationDefault02" value="MC" required="">
-                    </div>
-                    <hr class="hr" />
-
-                    <div class="col-md-4">
-                      <h2 class="font-14 font-weight-700">Driver DOT Medical</h2>
-                      <input type="text" class="form-control" id="validationDefault02" value="Driver DOT Medical"
-                        required="">
-                    </div>
-                    <div class="col-md-4">
-                      <h2 class="font-14 font-weight-700">Expiration Date</h2>
-                      <input type="text" class="form-control" id="validationDefault02" value="dd/mm/yyyy"
-                        required="">
-                    </div>
-                    <div class="col-md-4">
-                      <h2 class="font-14 font-weight-700">Upload Document</h2>
-                      <input type="file" class="form-control" id="validationDefault02" value="MC" required="">
-                    </div>
-                    <div class="col-md-4">
-                      <h2 class="font-14 font-weight-700">DMV Driving Record</h2>
-                      <input type="text" class="form-control" id="validationDefault02" value="DMV Driving Record"
-                        required="">
-                    </div>
-                    <div class="col-md-4">
-                      <h2 class="font-14 font-weight-700">Upload Document</h2>
-                      <input type="file" class="form-control" id="validationDefault02" value="MC" required="">
-                    </div>
-                    <div class="col-md-4">
-                      <h2 class="font-14 font-weight-700">Pull Record Latest</h2>
-                      <input type="text" class="form-control" id="validationDefault02" value="Pull Record Latest"
-                        required="">
-                    </div>
-                    <div class="col-md-4">
-                      <h2 class="font-14 font-weight-700">Upload Document</h2>
-                      <input type="file" class="form-control" id="validationDefault02" value="MC" required="">
-                    </div>
-
-                    <div class="col-md-4">
-                      <h2 class="font-14 font-weight-700">Work Authorization</h2>
-                      <input type="text" class="form-control" id="validationDefault02" value="Work Authorization"
-                        required="">
-                    </div>
-                    <div class="col-md-4">
-                      <h2 class="font-14 font-weight-700">Expiration Date</h2>
-                      <input type="text" class="form-control" id="validationDefault02" value="dd/mm/yyyy"
-                        required="">
-                    </div>
-                    <div class="col-md-4">
-                      <h2 class="font-14 font-weight-700">Upload Document</h2>
-                      <input type="file" class="form-control" id="validationDefault02" value="MC" required="">
-                    </div>
-                    <div class="col-md-4">
-                      <h2 class="font-14 font-weight-700">Previous License Number</h2>
-                      <input type="text" class="form-control" id="validationDefault02"
-                        value="Previous License Number" required="">
-                    </div>
-                    <div class="col-md-4">
-                      <h2 class="font-14 font-weight-700">Yes /No</h2>
-                      <input type="text" class="form-control" id="validationDefault02" value="Yes /No" required="">
-                    </div>
-                    <div class="col-md-4">
-                      <h2 class="font-14 font-weight-700">Previous Address Last 10 years</h2>
-                      <input type="text" class="form-control" id="validationDefault02"
-                        value="Previous Address Last 10 years" required="">
-                    </div>
-                    <div class="col-md-4">
-                      <h2 class="font-14 font-weight-700">Driving Experience</h2>
-                      <input type="text" class="form-control" id="validationDefault02" value="Driving Experience"
-                        required="">
-                    </div>
-                    <div class="col-md-4">
-                      <h2 class="font-14 font-weight-700">Yes /No</h2>
-                      <input type="text" class="form-control" id="validationDefault02" value="Yes /No" required="">
-                    </div>
-                    <div class="col-md-4">
-                      <h2 class="font-14 font-weight-700">Equpment Type</h2>
-                      <input type="text" class="form-control" id="validationDefault02" value="Equpment Type"
-                        required="">
-                    </div>
-                    <div class="col-md-4">
-                      <h2 class="font-14 font-weight-700">Dates</h2>
-                      <input type="text" class="form-control" id="validationDefault02" value="dd/mm/yyyy"
-                        required="">
-                    </div>
-                    <div class="col-md-4">
-                      <h2 class="font-14 font-weight-700">Approx Miles</h2>
-                      <input type="text" class="form-control" id="validationDefault02" value="dd/mm/yyyy"
-                        required="">
-                    </div>
-                    <div class="col-md-4">
-                      <h2 class="font-14 font-weight-700">Number of Previous Eployers</h2>
-                      <input type="text" class="form-control" id="validationDefault02"
-                        value="Number of Previous Eployers" required="">
-                    </div>
-                    <div class="col-md-4">
-                      <h2 class="font-14 font-weight-700">Company Name</h2>
-                      <input type="text" class="form-control" id="validationDefault02" value="Company Name"
-                        required="">
-                    </div>
-                    <div class="col-md-4">
-                      <h2 class="font-14 font-weight-700">Company Address</h2>
-                      <input type="text" class="form-control" id="validationDefault02" value="Company Address"
-                        required="">
-                    </div>
-                    <div class="col-md-4">
-                      <h2 class="font-14 font-weight-700">Dates</h2>
-                      <input type="text" class="form-control" id="validationDefault02" value="dd/mm/yyyy"
-                        required="">
-                    </div>
-                    <div class="col-md-4">
-                      <h2 class="font-14 font-weight-700">Phone</h2>
-                      <input type="text" class="form-control" id="validationDefault02" value="Phone" required="">
-                    </div>
-                    <div class="col-md-4">
-                      <h2 class="font-14 font-weight-700">Email</h2>
-                      <input type="text" class="form-control" id="validationDefault02" value="Email" required="">
-                    </div>
-                    <div class="col-md-4">
-                      <h2 class="font-14 font-weight-700">Were You Subject to the Federal Motor
-                        Carrier Safety
-                        Regulations During this Period</h2>
-                      <input type="text" class="form-control" id="validationDefault02" value="Yes/No" required="">
-                    </div>
-                    <div class="col-md-4">
-                      <h2 class="font-14 font-weight-700">Were You Subject to the Federal Motor
-                        Carrier Safety
-                        Regulations During this Period</h2>
-                      <input type="text" class="form-control" id="validationDefault02" value="Yes/No" required="">
-                    </div>
-                    <div class="col-md-4">
-                      <h2 class="font-14 font-weight-700">Controlled Substance & Alcohol
-                        <br>Questionnaire</h2>
-                      <input type="text" class="form-control" id="validationDefault02" value="Enter Detail..."
-                        required="">
-                    </div>
-                    <div class="col-md-4">
-                      <h2 class="font-14 font-weight-700">Upload Document</h2>
-                      <input type="file" class="form-control" id="validationDefault02" value="Enter Detail..."
-                        required="">
-                    </div>
-                    <div class="col-md-4">
-                      <h2 class="font-14 font-weight-700">Driver Road Test Examination Form</h2>
-                      <input type="text" class="form-control" id="validationDefault02" value="Yes/No" required="">
-                    </div>
-                    <div class="col-md-4">
-                      <h2 class="font-14 font-weight-700">Upload Document</h2>
-                      <input type="file" class="form-control" id="validationDefault02" value="Enter Detail..."
-                        required="">
-                    </div>
-                    <div class="col-md-4">
-                      <h2 class="font-14 font-weight-700">Company Policy</h2>
-                      <input type="text" class="form-control" id="validationDefault02" value="Enter Detail..."
-                        required="">
-                    </div>
-                    <div class="col-md-4">
-                      <h2 class="font-14 font-weight-700">Upload Document</h2>
-                      <input type="file" class="form-control" id="validationDefault02" value="Enter Detail..."
-                        required="">
-                    </div>
-                    <div class="col-md-4">
-                      <h2 class="font-14 font-weight-700">Drug & Alcohol Clearing House Consent
-                        Form</h2>
-                      <input type="text" class="form-control" id="validationDefault02"
-                        value="Drug & Alcohol Clearing House Consent Form" required="">
-                    </div>
-                    <div class="col-md-4">
-                      <h2 class="font-14 font-weight-700">Upload Document</h2>
-                      <input type="file" class="form-control" id="validationDefault02" value="Enter Detail..."
-                        required="">
-                    </div>
-                    <div class="col-md-4">
-                      <h2 class="font-14 font-weight-700">Random Drug & Alcohol Testing Consent
-                        Form</h2>
-                      <input type="text" class="form-control" id="validationDefault02"
-                        value="Random Drug & Alcohol Testing Consent Form" required="">
-                    </div>
-                    <div class="col-md-4">
-                      <h2 class="font-14 font-weight-700">Upload Document</h2>
-                      <input type="file" class="form-control" id="validationDefault02" value="Enter Detail..."
-                        required="">
-                    </div>
-                    <div class="col-md-4">
-                      <h2 class="font-14 font-weight-700">New Hire Prior Seven Day Work
-                        Statement</h2>
-                      <input type="text" class="form-control" id="validationDefault02" value="IFTA ACC" required="">
-                    </div>
-                    <div class="col-md-4">
-                      <h2 class="font-14 font-weight-700">Upload Document</h2>
-                      <input type="file" class="form-control" id="validationDefault02" value="no" required="">
-                    </div>
-                    <div class="col-md-4">
-                      <h2 class="font-14 font-weight-700">New Hire Control Custody Form</h2>
-                      <input type="text" class="form-control" id="validationDefault02"
-                        value="New Hire Control Custody Form" required="">
-                    </div>
-
-                    <div class="col-md-4">
-                      <h2 class="font-14 font-weight-700">Insurance Document</h2>
-                      <input type="file" class="form-control" id="validationDefault02" value="MC" required="">
-                    </div>
-                    <div class="col-md-4">
-                      <h2 class="font-14 font-weight-700">New Hire Drug Testing Result</h2>
-                      <input type="text" class="form-control" id="validationDefault02"
-                        value="New Hire Drug Testing Result" required="">
-                    </div>
-                    <div class="col-md-4">
-                      <h2 class="font-14 font-weight-700">Upload Document</h2>
-                      <input type="file" class="form-control" id="validationDefault02" value="No" required="">
-                    </div>
-                    <div class="col-md-4">
-                      <h2 class="font-14 font-weight-700">Clearing House Annual query</h2>
-                      <input type="text" class="form-control" id="validationDefault02"
-                        value="Clearing House Annual query" required="">
-                    </div>
-                    <div class="col-md-4">
-                      <h2 class="font-14 font-weight-700">Upload Document</h2>
-                      <input type="file" class="form-control" id="validationDefault02" value="No" required="">
-                    </div>
-
-                  </form>
-            </div>
-            <div class="modal-footer justify-content-center">
-              <button type="button" class="btn btn-outline-secondary btn-sm text-uppercase rounded-pill" data-bs-dismiss="modal">Close</button>
-              <button type="button" class="btn btn-success btn-sm text-uppercase rounded-pill">Save changes</button>
-            </div>
-          </form>
+  
+  <!-- Your form inputs -->
+  
+  
+  
+  <div class="offcanvas-body view-load position-relative">
+  
+    <form class="row g-3" (ngSubmit)="submitForm(f)" #f="ngForm">
+      <div class="col-xl-12 text-primary">
+        <h4 class="mb-3 font-18 font-weight-600"><i class="fa fa-user me-2" aria-hidden="true"></i> Personal</h4>
+      </div>
+      <div class="col-md-4">
+        <h2 class="font-14 font-weight-700"> Driver Name</h2>
+        <input type="text" class="form-control" id="driverName" placeholder="Enter Driver Name"
+          [(ngModel)]="newDriver.driverName" name="driverName" #driverName="ngModel" required
+          [ngClass]="{'is-invalid': driverName.invalid && (driverName.dirty || driverName.touched)}">
+          <div *ngIf="driverName.invalid && (driverName.dirty || driverName.touched)" class="invalid-feedback">
+            Driver name is required.
           </div>
         </div>
+  
+      <div class="col-md-4">
+        <h2 class="font-14 font-weight-700">Address</h2>
+        <input type="text" class="form-control" id="address" placeholder="Address"
+          [(ngModel)]="newDriver.address" name="address"  #address = "ngModel"required
+          [ngClass]="{'is-invalid': address.invalid && (address.dirty ||address.touched)}">
+          <div *ngIf="address.invalid && (address.dirty || address.touched)" class="invalid-feedback">
+            Address is required.
+          </div>
+        </div>
+  
+      <div class="col-md-4">
+        <h2 class="font-14 font-weight-700">Serial Number</h2>
+        <input type="text" class="form-control" id="serialNumber" placeholder="Serial Number"
+          [(ngModel)]="newDriver.serialNumber" name="serialNumber" #serialNumber = "ngModel" required=""
+          [ngClass]="{'is-invalid': serialNumber.invalid && (serialNumber.dirty ||serialNumber.touched)}">
+          <div *ngIf="serialNumber.invalid && (serialNumber.dirty || serialNumber.touched)" class="invalid-feedback">
+            serialNumber is required.
+          </div>
       </div>
-
-
- -->
+  
+      <div class="col-md-4">
+        <h2 class="font-14 font-weight-700">Upload Document</h2>
+        <input type="file" class="form-control" id="uploadDocument1" placeholder="MC"
+          (change)="onFileChange($event, 'uploadDocument1')" name="uploadDocument1" required="">
+      </div>
+  
+      <div class="col-md-4">
+        <h2 class="font-14 font-weight-700">License</h2>
+        <input type="text" class="form-control" id="license" placeholder="License"
+          [(ngModel)]="newDriver.license" name="license" #license = "ngModel" required=""
+          [ngClass]="{'is-invalid': license.invalid && (license.dirty ||license.touched)}">
+          <div *ngIf="license.invalid && (license.dirty || license.touched)" class="invalid-feedback">
+            license is required.
+          </div>
+      </div>
+  
+      <div class="col-md-4">
+        <h2 class="font-14 font-weight-700">Expiration Date</h2>
+        <input type="date" class="form-control" id="licenseExpirationDate" placeholder="Expiration Date"
+          [(ngModel)]="newDriver.licenseExpirationDate" name="licenseExpirationDate"  #licenseExpirationDate = "ngModel" required=""
+          [ngClass]="{'is-invalid': licenseExpirationDate.invalid && (licenseExpirationDate.dirty ||licenseExpirationDate.touched)}">
+          <div *ngIf="licenseExpirationDate.invalid && (licenseExpirationDate.dirty || licenseExpirationDate.touched)" class="invalid-feedback">
+            Expiration Date is required.
+          </div>
+      </div>
+  
+      <div class="col-md-4">
+        <h2 class="font-14 font-weight-700">Upload Document</h2>
+        <input type="file" class="form-control" id="uploadDocument2" placeholder="MC"
+          (change)="onFileChange($event, 'uploadDocument2')" name="uploadDocument2" required="">
+      </div>
+  
+      <hr class="hr" />
+  
+      <div class="col-md-4">
+        <h2 class="font-14 font-weight-700">Driver DOT Medical</h2>
+        <input type="text" class="form-control" id="driverDOTMedical" placeholder="Driver DOT Medical"
+          [(ngModel)]="newDriver.driverDOTMedical" name="driverDOTMedical" #driverDOTMedical = "ngModel" required=""
+          [ngClass]="{'is-invalid': driverDOTMedical.invalid && (driverDOTMedical.dirty ||driverDOTMedical.touched)}">
+          <div *ngIf="driverDOTMedical.invalid && (driverDOTMedical.dirty || driverDOTMedical.touched)" class="invalid-feedback">
+            Driver DOT Medical  is required.
+          </div>
+      </div>
+  
+      <div class="col-md-4">
+        <h2 class="font-14 font-weight-700">Expiration Date</h2>
+        <input type="date" class="form-control" id="medicalExpirationDate" placeholder="Expiration Date"
+          [(ngModel)]="newDriver.medicalExpirationDate" name="medicalExpirationDate" #medicalExpirationDate ="ngModel" required=""
+          [ngClass]="{'is-invalid': medicalExpirationDate.invalid && (medicalExpirationDate.dirty ||medicalExpirationDate.touched)}">
+          <div *ngIf="medicalExpirationDate.invalid && (medicalExpirationDate.dirty || medicalExpirationDate.touched)" class="invalid-feedback">
+            Expiration Date  is required.
+          </div>
+      </div>
+  
+      <div class="col-md-4">
+        <h2 class="font-14 font-weight-700">Upload Document</h2>
+        <input type="file" class="form-control" id="uploadDocument3" placeholder="MC"
+          (change)="onFileChange($event, 'uploadDocument3')" name="uploadDocument3" required="">
+      </div>
+  
+      <div class="col-md-4">
+        <h2 class="font-14 font-weight-700">DMV Driving Record</h2>
+        <input type="text" class="form-control" id="dmvDrivingRecord" placeholder="DMV Driving Record"
+          [(ngModel)]="newDriver.dmvDrivingRecord" name="dmvDrivingRecord"  #dmvDrivingRecord="ngModel" required=""
+           [ngClass]="{'is-invalid': dmvDrivingRecord.invalid && (dmvDrivingRecord.dirty ||dmvDrivingRecord.touched)}">
+          <div *ngIf="dmvDrivingRecord.invalid && (dmvDrivingRecord.dirty || dmvDrivingRecord.touched)" class="invalid-feedback">
+            DMV Driving Record is required.
+          </div>
+      </div>
+  
+      <div class="col-md-4">
+        <h2 class="font-14 font-weight-700">Upload Document</h2>
+        <input type="file" class="form-control" id="uploadDocument4" placeholder="MC"
+          (change)="onFileChange($event, 'uploadDocument4')" name="uploadDocument4" required="">
+      </div>
+  
+      <div class="col-md-4">
+        <h2 class="font-14 font-weight-700">Pull Record Latest</h2>
+        <input type="text" class="form-control" id="pullRecordLatest" placeholder="Pull Record Latest"
+          [(ngModel)]="newDriver.pullRecordLatest" name="pullRecordLatest" #pullRecordLatest ="ngModel" required 
+          [ngClass]="{'is-invalid': pullRecordLatest.invalid && (pullRecordLatest.dirty ||pullRecordLatest.touched)}">
+          <div *ngIf="pullRecordLatest.invalid && (pullRecordLatest.dirty || pullRecordLatest.touched)" class="invalid-feedback">
+            Pull Record Latest is required.
+          </div>
+      </div>
+  
+      <div class="col-md-4">
+        <h2 class="font-14 font-weight-700">Upload Document</h2>
+        <input type="file" class="form-control" id="uploadDocument5" placeholder="MC"
+          (change)="onFileChange($event, 'uploadDocument5')" name="uploadDocument5" required="">
+      </div>
+  
+      <div class="col-md-4">
+        <h2 class="font-14 font-weight-700">Work Authorization</h2>
+        <input type="text" class="form-control" id="workAuthorization" placeholder="Work Authorization"
+          [(ngModel)]="newDriver.workAuthorization" name="workAuthorization" #workAuthorization="ngModel" required=""
+          [ngClass]="{'is-invalid': workAuthorization.invalid && (workAuthorization.dirty ||workAuthorization.touched)}">
+          <div *ngIf="workAuthorization.invalid && (workAuthorization.dirty || workAuthorization.touched)" class="invalid-feedback">
+           workAuthorization is required.
+          </div>
+      </div>
+  
+      <div class="col-md-4">
+        <h2 class="font-14 font-weight-700">Work Authorization Expiration Date</h2>
+        <input type="date" class="form-control" id="workAuthorizationExpirationDate"
+          placeholder="Work Authorization Expiration Date"
+           [(ngModel)]="newDriver.workAuthorizationExpirationDate"name="workAuthorizationExpirationDate" #workAuthorizationExpirationDate ="ngModel" required=""[ngClass]="{'is-invalid': workAuthorization.invalid && (workAuthorization.dirty ||workAuthorization.touched)}">
+           <div *ngIf="workAuthorization.invalid && (workAuthorizationExpirationDate.dirty || workAuthorizationExpirationDate.touched)" class="invalid-feedback">
+            workAuthorizationExpirationDate is required.
+           </div>
+       </div>
+  
+      <div class="col-md-4">
+        <h2 class="font-14 font-weight-700">Upload Document</h2>
+        <input type="file" class="form-control" id="uploadDocument6" placeholder="Upload Document MC"
+          (change)="onFileChange($event, 'uploadDocument6')" name="uploadDocument6" required="">
+      </div>
+  
+      <div class="col-md-4">
+        <h2 class="font-14 font-weight-700">Previous License Number</h2>
+        <input type="text" class="form-control" id="previousLicenseNumber" placeholder="Previous License Number"
+          [(ngModel)]="newDriver.previousLicenseNumber" name="previousLicenseNumber" #previousLicenseNumber = "ngModel" required=""
+          [ngClass]="{'is-invalid': previousLicenseNumber.invalid && (previousLicenseNumber.dirty ||previousLicenseNumber.touched)}">
+          <div *ngIf="previousLicenseNumber.invalid && (previousLicenseNumber.dirty || previousLicenseNumber.touched)" class="invalid-feedback">
+            previousLicenseNumber is required.
+          </div>
+      </div>
+  
+      <div class="col-md-4">
+        <h2 class="font-14 font-weight-700">Previous Address Last 10 years</h2>
+        <input type="text" class="form-control" id="previousAddressLast10Years" placeholder="Previous Address Last 10 years"
+          [(ngModel)]="newDriver.previousAddressLast10Years" name="previousAddressLast10Years" #previousAddressLast10Years = "ngModel" required=""
+          [ngClass]="{'is-invalid': previousAddressLast10Years.invalid && (previousAddressLast10Years.dirty ||previousAddressLast10Years.touched)}">
+          <div *ngIf="previousAddressLast10Years.invalid && (previousAddressLast10Years.dirty || previousAddressLast10Years.touched)" class="invalid-feedback">
+            previousAddressLast10Years is required.
+          </div>
+      </div>
+  
+      <div class="col-md-4">
+        <h2 class="font-14 font-weight-700">Driving Experience</h2>
+        <input type="number" class="form-control" id="drivingExperience" placeholder="Driving Experience"
+          [(ngModel)]="newDriver.drivingExperience" name="drivingExperience" #drivingExperience ="ngModel" required=""
+          [ngClass]="{'is-invalid': drivingExperience.invalid && (drivingExperience.dirty ||drivingExperience.touched)}">
+          <div *ngIf="drivingExperience.invalid && (drivingExperience.dirty || drivingExperience.touched)" class="invalid-feedback">
+            drivingExperience is required.
+          </div>
+      </div>
+  
+      <div class="col-md-4">
+        <h2 class="font-14 font-weight-700">Equipment Type</h2>
+        <input type="text" class="form-control" id="equipmentType" placeholder="Equipment Type"
+          [(ngModel)]="newDriver.equipmentType" name="equipmentType" #equipmentType ="ngModel" required=""
+          [ngClass]="{'is-invalid': equipmentType.invalid && (equipmentType.dirty ||equipmentType.touched)}">
+          <div *ngIf="equipmentType.invalid && (equipmentType.dirty || equipmentType.touched)" class="invalid-feedback">
+            equipmentType is required.
+          </div>
+      </div>
+  
+      <div class="col-md-4">
+        <h2 class="font-14 font-weight-700">Equipment Dates</h2>
+        <input type="date" class="form-control" id="equipmentDates" placeholder="Equipment Dates"
+          [(ngModel)]="newDriver.equipmentDates" name="equipmentDates" #equipmentDates ="ngModel" required=""
+          [ngClass]="{'is-invalid': equipmentDates.invalid && (equipmentDates.dirty ||equipmentDates.touched)}">
+          <div *ngIf="equipmentDates.invalid && (equipmentDates.dirty || equipmentDates.touched)" class="invalid-feedback">
+            equipmentDates is required.
+          </div>
+      </div>
+  
+      <div class="col-md-4">
+        <h2 class="font-14 font-weight-700">Approx Miles</h2>
+        <input type="number" class="form-control" id="approxMiles" placeholder="Approx Miles"
+          [(ngModel)]="newDriver.approxMiles" name="approxMiles" #approxMiles ="ngModel" required=""
+          [ngClass]="{'is-invalid': approxMiles.invalid && (approxMiles.dirty ||approxMiles.touched)}">
+          <div *ngIf="approxMiles.invalid && (approxMiles.dirty || approxMiles.touched)" class="invalid-feedback">
+            approxMiles is required.
+          </div>
+      </div>
+    
+  
+      <div class="col-md-4">
+        <h2 class="font-14 font-weight-700">Number of Previous Eployers</h2>
+        <input type="number" class="form-control" id="numberOfPreviousEmployers" placeholder="Number of Previous Eployers"
+          [(ngModel)]="newDriver.numberOfPreviousEmployers" name="numberOfPreviousEmployers" #numberOfPreviousEmployers ="ngModel" required=""
+          [ngClass]="{'is-invalid': numberOfPreviousEmployers.invalid && (numberOfPreviousEmployers.dirty ||numberOfPreviousEmployers.touched)}">
+          <div *ngIf="numberOfPreviousEmployers.invalid && (numberOfPreviousEmployers.dirty || numberOfPreviousEmployers.touched)" class="invalid-feedback">
+            numberOfPreviousEmployers is required.
+          </div>
+      </div>
+  
+      <div class="col-md-4">
+        <h2 class="font-14 font-weight-700">Company Name</h2>
+        <input type="text" class="form-control" id="companyName" placeholder="Company Name"
+          [(ngModel)]="newDriver.companyName" name="companyName"  #companyName = "ngModel" required="" 
+          [ngClass]="{'is-invalid': companyName.invalid && (companyName.dirty ||companyName.touched)}">
+          <div *ngIf="companyName.invalid && (companyName.dirty || companyName.touched)" class="invalid-feedback">
+            numberOfPreviousEmployers is required.
+          </div>
+      </div>
+  
+      <div class="col-md-4">
+        <h2 class="font-14 font-weight-700">Company Address</h2>
+        <input type="text" class="form-control" id="companyAddress" placeholder="Company Address"
+          [(ngModel)]="newDriver.companyAddress" name="companyAddress" #companyAddress ="ngModel" required=""
+          [ngClass]="{'is-invalid': companyAddress.invalid && (companyAddress.dirty ||companyAddress.touched)}">
+          <div *ngIf="companyAddress.invalid && (companyAddress.dirty || companyAddress.touched)" class="invalid-feedback">
+            companyAddress is required.
+          </div>
+      </div>
+  
+      <div class="col-md-4">
+        <h2 class="font-14 font-weight-700">Company Dates</h2>
+        <input type="date" class="form-control" id="companyDates" placeholder="Company Dates"
+          [(ngModel)]="newDriver.companyDates" name="companyDates" #companyDates = "ngModel" required=""
+          [ngClass]="{'is-invalid': companyDates.invalid && (companyDates.dirty ||companyDates.touched)}">
+          <div *ngIf="companyDates.invalid && (companyDates.dirty || companyDates.touched)" class="invalid-feedback">
+            companyDates is required.
+          </div>
+      </div>>
+    
+  
+      <div class="col-md-4">
+        <h2 class="font-14 font-weight-700">Company Phone</h2>
+        <input type="number" class="form-control" id="companyPhone" placeholder="Company Phone"
+          [(ngModel)]="newDriver.companyPhone" name="companyPhone" #companyPhone = "ngModel"required=""
+          [ngClass]="{'is-invalid': companyPhone.invalid && (companyPhone.dirty ||companyPhone.touched)}">
+          <div *ngIf="companyDates.invalid && (companyPhone.dirty || companyPhone.touched)" class="invalid-feedback">
+            companyPhone is required.
+          </div>
+      </div>
+  
+      <div class="col-md-4">
+        <h2 class="font-14 font-weight-700">Company Email</h2>
+        <input type="email" class="form-control" id="companyEmail" placeholder="Company Email"
+          [(ngModel)]="newDriver.companyEmail" name="companyEmail" #companyEmail = "ngModel" required=""
+          [ngClass]="{'is-invalid': companyEmail.invalid && (companyEmail.dirty ||companyEmail.touched)}">
+          <div *ngIf="companyEmail.invalid && (companyEmail.dirty || companyEmail.touched)" class="invalid-feedback">
+            companyEmail is required.
+      </div>
+      </div>
+  
+      <div class="col-md-4">
+        <h2 class="font-14 font-weight-700">Were You Subject to the Federal Motor
+          Carrier Safety
+          Regulations During this Period</h2>
+        <input type="text" class="form-control" id="federalMotorCarrierSafetyRegulations1" placeholder="Yes/No"
+          [(ngModel)]="newDriver.federalMotorCarrierSafetyRegulations1" name="federalMotorCarrierSafetyRegulations1" #federalMotorCarrierSafetyRegulations1 = "ngModel" required=""
+          [ngClass]="{'is-invalid': federalMotorCarrierSafetyRegulations1.invalid && (federalMotorCarrierSafetyRegulations1.dirty ||federalMotorCarrierSafetyRegulations1.touched)}">
+          <div *ngIf="federalMotorCarrierSafetyRegulations1.invalid && (federalMotorCarrierSafetyRegulations1.dirty || federalMotorCarrierSafetyRegulations1.touched)" class="invalid-feedback">
+            federalMotorCarrierSafetyRegulations1 is required.
+      </div>
+      </div>
+    
+  
+      <div class="col-md-4">
+        <h2 class="font-14 font-weight-700">Controlled Substance & Alcohol
+          <br>Questionnaire
+        </h2>
+        <input type="text" class="form-control" id="controlledSubstanceAlcoholQuestionnaire" placeholder="Enter Detail..."
+          [(ngModel)]="newDriver.controlledSubstanceAlcoholQuestionnaire" name="controlledSubstanceAlcoholQuestionnaire" #controlledSubstanceAlcoholQuestionnaire = "ngModel" required=""
+          [ngClass]="{'is-invalid': controlledSubstanceAlcoholQuestionnaire.invalid && (controlledSubstanceAlcoholQuestionnaire.dirty ||controlledSubstanceAlcoholQuestionnaire.touched)}">
+          <div *ngIf="controlledSubstanceAlcoholQuestionnaire.invalid && (controlledSubstanceAlcoholQuestionnaire.dirty || controlledSubstanceAlcoholQuestionnaire.touched)" class="invalid-feedback">
+            controlledSubstanceAlcoholQuestionnaire is required.
+      </div>
+      </div>
+  
+      <div class="col-md-4">
+        <h2 class="font-14 font-weight-700">Upload Document</h2>
+        <input type="file" class="form-control" id="uploadDocument7" placeholder="Enter Detail..."
+          (change)="onFileChange($event, 'uploadDocument7')" name="uploadDocument7" required="">
+      </div>
+  
+      <div class="col-md-4">
+        <h2 class="font-14 font-weight-700">Driver Road Test Examination Form</h2>
+        <input type="text" class="form-control" id="driverRoadTestExaminationForm" placeholder="Yes/No"
+          [(ngModel)]="newDriver.driverRoadTestExaminationForm" name="driverRoadTestExaminationForm" #driverRoadTestExaminationForm = "ngModel" required=""
+          [ngClass]="{'is-invalid': driverRoadTestExaminationForm.invalid && (driverRoadTestExaminationForm.dirty ||driverRoadTestExaminationForm.touched)}">
+          <div *ngIf="driverRoadTestExaminationForm.invalid && (driverRoadTestExaminationForm.dirty || driverRoadTestExaminationForm.touched)" class="invalid-feedback">
+            driverRoadTestExaminationForm is required.
+      </div>
+      </div>
+    
+      <div class="col-md-4">
+        <h2 class="font-14 font-weight-700">Upload Document</h2>
+        <input type="file" class="form-control" id="validationDefault02" placeholder="Enter Detail..."
+          (change)="onFileChange($event, 'uploadDocument8')" name="validationDefault02" required="">
+      </div>
+  
+      <div class="col-md-4">
+        <h2 class="font-14 font-weight-700">Company Policy</h2>
+        <input type="text" class="form-control" id="companyPolicy" placeholder="Enter Detail..."
+          [(ngModel)]="newDriver.companyPolicy" name="companyPolicy" #companyPolicy ="ngModel" required
+          [ngClass]="{'is-invalid': companyPolicy.invalid && (companyPolicy.dirty ||companyPolicy.touched)}">
+          <div *ngIf="companyPolicy.invalid && (companyPolicy.dirty || companyPolicy.touched)" class="invalid-feedback">
+            companyPolicy is required.
+      </div>
+      </div>
+  
+      <div class="col-md-4">
+        <h2 class="font-14 font-weight-700">Upload Document</h2>
+        <input type="file" class="form-control" id="validationDefault02" placeholder="Enter Detail..."
+          (change)="onFileChange($event, 'uploadDocument9')" name="validationDefault02" required="">
+      </div>
+  
+      <div class="col-md-4">
+        <h2 class="font-14 font-weight-700">Drug & Alcohol Clearing House Consent
+          Form</h2>
+        <input type="text" class="form-control" id="drugAlcoholClearingHouseConsentForm"
+          placeholder="Drug & Alcohol Clearing House Consent Form"
+          [(ngModel)]="newDriver.drugAlcoholClearingHouseConsentForm" name="drugAlcoholClearingHouseConsentForm" #drugAlcoholClearingHouseConsentForm = "ngModel" required=""
+          [ngClass]="{'is-invalid': drugAlcoholClearingHouseConsentForm.invalid && (drugAlcoholClearingHouseConsentForm.dirty ||drugAlcoholClearingHouseConsentForm.touched)}">
+          <div *ngIf="drugAlcoholClearingHouseConsentForm.invalid && (drugAlcoholClearingHouseConsentForm.dirty || drugAlcoholClearingHouseConsentForm.touched)" class="invalid-feedback">
+            drugAlcoholClearingHouseConsentForm is required.
+      </div>
+      </div>
+      
+  
+      <div class="col-md-4">
+        <h2 class="font-14 font-weight-700">Upload Document</h2>
+        <input type="file" class="form-control" id="validationDefault02" placeholder="Enter Detail..."
+          (change)="onFileChange($event, 'uploadDocument10')" name="validationDefault02" required="">
+      </div>
+  
+      <div class="col-md-4">
+        <h2 class="font-14 font-weight-700">Random Drug & Alcohol Testing Consent
+          Form</h2>
+        <input type="text" class="form-control" id="randomDrugAlcoholTestingConsentForm"
+          placeholder="Random Drug & Alcohol Testing Consent Form"
+          [(ngModel)]="newDriver.randomDrugAlcoholTestingConsentForm" name="randomDrugAlcoholTestingConsentForm" #randomDrugAlcoholTestingConsentForm = "ngModel" required=""
+          [ngClass]="{'is-invalid': randomDrugAlcoholTestingConsentForm.invalid && (randomDrugAlcoholTestingConsentForm.dirty ||randomDrugAlcoholTestingConsentForm.touched)}">
+          <div *ngIf="randomDrugAlcoholTestingConsentForm.invalid && (randomDrugAlcoholTestingConsentForm.dirty || randomDrugAlcoholTestingConsentForm.touched)" class="invalid-feedback">
+            randomDrugAlcoholTestingConsentForm is required.
+      </div>
+      </div>
+  
+      <div class="col-md-4">
+        <h2 class="font-14 font-weight-700">Upload Document</h2>
+        <input type="file" class="form-control" id="validationDefault02" placeholder="Enter Detail..."
+          (change)="onFileChange($event, 'uploadDocument11')" name="validationDefault02" required="">
+      </div>
+  
+      <div class="col-md-4">
+        <h2 class="font-14 font-weight-700">New Hire Prior Seven Day Work
+          Statement</h2>
+        <input type="text" class="form-control" id="newHirePriorSevenDayWorkStatement" placeholder="IFTA ACC"
+          [(ngModel)]="newDriver.newHirePriorSevenDayWorkStatement" name="newHirePriorSevenDayWorkStatement" #newHirePriorSevenDayWorkStatement = "ngModel" required=""
+          [ngClass]="{'is-invalid': newHirePriorSevenDayWorkStatement.invalid && (newHirePriorSevenDayWorkStatement.dirty ||newHirePriorSevenDayWorkStatement.touched)}">
+          <div *ngIf="newHirePriorSevenDayWorkStatement.invalid && (newHirePriorSevenDayWorkStatement.dirty || newHirePriorSevenDayWorkStatement.touched)" class="invalid-feedback">
+            newHirePriorSevenDayWorkStatement is required.
+      </div>
+      </div>
+  
+      <div class="col-md-4">
+        <h2 class="font-14 font-weight-700">Upload Document</h2>
+        <input type="file" class="form-control" id="validationDefault02" placeholder="no"
+          (change)="onFileChange($event, 'uploadDocument12')" name="validationDefault02" required="">
+      </div>
+  
+      <div class="col-md-4">
+        <h2 class="font-14 font-weight-700">New Hire Control Custody Form</h2>
+        <input type="text" class="form-control" id="newHireControlCustodyForm" placeholder="New Hire Control Custody Form"
+          [(ngModel)]="newDriver.newHireControlCustodyForm" name="newHireControlCustodyForm" #newHireControlCustodyForm = "ngModel" required=""
+          [ngClass]="{'is-invalid': newHireControlCustodyForm.invalid && (newHireControlCustodyForm.dirty ||newHireControlCustodyForm.touched)}">
+          <div *ngIf="newHireControlCustodyForm.invalid && (newHireControlCustodyForm.dirty || newHireControlCustodyForm.touched)" class="invalid-feedback">
+            newHireControlCustodyForm is required.
+      </div>
+      </div>
+  
+      <div class="col-md-4">
+        <h2 class="font-14 font-weight-700">Insurance Document</h2>
+        <input type="file" class="form-control" id="validationDefault02" placeholder="Insurance Document MC"
+          (change)="onFileChange($event, 'insuranceDocument')" name="validationDefault02" required="">
+      </div>
+  
+      <div class="col-md-4">
+        <h2 class="font-14 font-weight-700">New Hire Drug Testing Result</h2>
+        <input type="text" class="form-control" id="newHireDrugTestingResult" placeholder="New Hire Drug Testing Result"
+          [(ngModel)]="newDriver.newHireDrugTestingResult" name="newHireDrugTestingResult" #newHireDrugTestingResult = "ngModel" required=""
+          [ngClass]="{'is-invalid': newHireDrugTestingResult.invalid && (newHireDrugTestingResult.dirty ||newHireDrugTestingResult.touched)}">
+          <div *ngIf="newHireDrugTestingResult.invalid && (newHireDrugTestingResult.dirty || newHireDrugTestingResult.touched)" class="invalid-feedback">
+            newHireDrugTestingResult is required.
+      </div>
+      </div>
+  
+      <div class="col-md-4">
+        <h2 class="font-14 font-weight-700">Upload Document</h2>
+        <input type="file" class="form-control" id="validationDefault02" placeholder="No"
+          (change)="onFileChange($event, 'uploadDocument13')" name="validationDefault02" required="">
+      </div>
+  
+      <div class="col-md-4">
+        <h2 class="font-14 font-weight-700">Clearing House Annual query</h2>
+        <input type="text" class="form-control" id="clearingHouseAnnualQuery" placeholder="Clearing House Annual query"
+          [(ngModel)]="newDriver.clearingHouseAnnualQuery" name="clearingHouseAnnualQuery" #clearingHouseAnnualQuery = "ngModel" required=""
+          [ngClass]="{'is-invalid': clearingHouseAnnualQuery.invalid && (clearingHouseAnnualQuery.dirty ||clearingHouseAnnualQuery.touched)}">
+          <div *ngIf="clearingHouseAnnualQuery.invalid && (clearingHouseAnnualQuery.dirty || clearingHouseAnnualQuery.touched)" class="invalid-feedback">
+            clearingHouseAnnualQuery is required.
+      </div>
+      </div>
+  
+      <div class="col-md-4">
+        <h2 class="font-14 font-weight-700">Upload Document</h2>
+        <input type="file" class="form-control" id="validationDefault02" placeholder="Upload Document"
+          (change)="onFileChange($event, 'uploadDocument14')" name="validationDefault02" required="">
+      </div>
+  
+         <div class="col-md-4">
+          <h2 class="font-14 font-weight-700">Status</h2>
+          <select class="form-control" [(ngModel)]="newDriver.status" name="status" required>
+            <option value="APPROVED">APPROVED</option>
+            <option value="PENDING">PENDING</option>
+            <option value="EXPIRING">EXPIRING</option>
+          </select>
+        </div>
+  
+      <!-- </form> -->
+  
+      <div class="modal-footer justify-content-center">
+        <button type="button" class="btn btn-outline-secondary btn-sm text-uppercase rounded-pill"
+          data-bs-dismiss="offcanvas" style="margin: 10px;">Close</button>
+        <button type="submit" class="btn btn-success btn-sm text-uppercase rounded-pill" data-bs-dismiss="offcanvas">Save changes</button>
+      </div>
+    </form>
+    </div>
+  </div>

@@ -23,7 +23,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:application",
           "options": {
-            "outputPath": "dist/my-task-manday-complete-this-project",
+            "outputPath": "dist",
             "index": "src/index.html",
             "browser": "src/main.ts",
             "polyfills": [
@@ -94,9 +94,18 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.css"
+              
+              "node_modules/jquery-ui-dist/jquery-ui.min.css",
+               "node_modules/bootstrap/dist/css/bootstrap.min.css",
+               "src/styles.css"
+
             ],
-            "scripts": []
+            "scripts": [
+              "node_modules/jquery/dist/jquery.min.js",
+              "node_modules/jquery-ui-dist/jquery-ui.min.js",
+              "node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"
+
+            ]
           }
         }
       }

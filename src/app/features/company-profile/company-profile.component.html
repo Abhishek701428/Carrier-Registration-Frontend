@@ -1,16 +1,21 @@
 <!-- <router-outlet></router-outlet> -->
 
-<app-navbar></app-navbar>
+<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
 
+
+<app-navbar></app-navbar>
 <section class="bg-color pb-5">
   <div class="container-fluid px-5">
     <div class="row">
       <div class="col-xl-12">
-          <div class="my-4">
-            <a href="company-profile.component.html" class="btn btn-outline-secondary rounded-pill font-14">
-                Back to Dashboard
-              </a>
-          </div>
+        <div class="my-4">
+          <a routerLink="/dashboard" class="btn btn-outline-secondary rounded-pill font-14">
+            Back to Dashboard
+          </a>
+        </div>
       </div>
     </div>
     <div class="row border rounded px-3 py-5">
@@ -26,9 +31,10 @@
             <p class="text-capitalize">MC - <span class="fw-bold text-main font-16">084832</span></p>
           </div>
           <div class="detail-2">
-            <p class="text-capitalize"><i class="fa fa-circle text-success" aria-hidden="true"></i> <span class="fw-bold text-main font-16">Active</span></p>
+            <p class="text-capitalize"><i class="fa fa-circle text-success" aria-hidden="true"></i> <span
+                class="fw-bold text-main font-16">Active</span></p>
           </div>
-          
+
         </div>
         <div class="row">
           <div class="detail-12">
@@ -40,10 +46,10 @@
               </span>
               John Vector
             </a>
-            
+
           </div>
           <div class="col-md-4">
-            
+
             <a href="#" class="d-flex align-items-center text-dark font-weight-500 mb-2">
               <span class="svg-icon svg-icon-4 me-1"><i class="bx bx-mobile"></i></span>
               +1-905-456-8865
@@ -53,30 +59,30 @@
             <a href="#" class="d-flex align-items-center text-dark font-weight-500 me-5 mb-2">
               <span class="svg-icon svg-icon-4 me-1"><i class="bx bxs-envelope"></i></span>
               emailgmail.com
-            </a>                
+            </a>
           </div>
           <div class="col-md-12">
             <a href="#" class="d-flex align-items-center text-dark font-weight-500 me-5 mb-2">
               <span class="svg-icon svg-icon-4 me-1"><i class="bx bxl-periscope"></i></span>
               Wallmart Supercenter, Colton, California - USA 96162
-            </a>                
+            </a>
           </div>
         </div>
 
-        <div class="row mt-2">              
+        <div class="row mt-2">
           <div class="col-md-4">
-                <p class="font-weight-600 mb-2">Company DBA</p>
-                <h2 class="font-14 mb-1">Company DBA</h2>
+            <p class="font-weight-600 mb-2">Company DBA</p>
+            <h2 class="font-14 mb-1">Company DBA</h2>
           </div>
           <div class="col-md-4">
-                <p class="font-weight-600 mb-2">SCAC</p>
-                <h2 class="font-14 mb-1">SCAC</h2>
+            <p class="font-weight-600 mb-2">SCAC</p>
+            <h2 class="font-14 mb-1">SCAC</h2>
           </div>
           <div class="col-md-4">
             <p class="font-weight-600 mb-2">TAX ID / EIN</p>
             <h2 class="font-14 mb-1">TX24350</h2>
           </div>
-                     
+
         </div>
 
         <div class="row mt-4">
@@ -84,158 +90,166 @@
             <h6 class="font-14 font-weight-700"> <b>Authority</b></h6>
           </div>
           <div class="col-md-3">
-              <div class="activeDiv ">
-                  <p class="font-weight-600 mb-1 ">Common</p>
-                  <p class="border rounded align-items-center px-3 py-1 text-black text-center mb-0 font-12 d-flex justify-content-between" style="border: 1px solid #28c76f !important;">
-                    <span class="font-weight-600">Active</span>
-                    <i class="fa fa-check text-success" aria-hidden="true"></i>
-                  </p>
-              </div>
-          </div>
-          <div class="col-md-3">
-            <div class="activeDiv">
-                <p class="font-weight-600 mb-1">Contract</p>
-                <p class="bg-light rounded align-items-center px-3 py-1 text-black text-center mb-0 font-12 d-flex justify-content-between">
-                  <span class="font-weight-600">None</span>
-                </p>
+            <div class="activeDiv ">
+              <p class="font-weight-600 mb-1 ">Common</p>
+              <p class="border rounded align-items-center px-3 py-1 text-black text-center mb-0 font-12 d-flex justify-content-between"
+                style="border: 1px solid #28c76f !important;">
+                <span class="font-weight-600">Active</span>
+                <i class="fa fa-check text-success" aria-hidden="true"></i>
+              </p>
             </div>
           </div>
           <div class="col-md-3">
             <div class="activeDiv">
-                <p class="font-weight-600 mb-1">Broker</p>
-                <p class="bg-light rounded align-items-center px-3 py-1 text-black text-center mb-0 font-12 d-flex justify-content-between">
-                  <span class="font-weight-600">In-Active</span>
-                </p>
+              <p class="font-weight-600 mb-1">Contract</p>
+              <p
+                class="bg-light rounded align-items-center px-3 py-1 text-black text-center mb-0 font-12 d-flex justify-content-between">
+                <span class="font-weight-600">None</span>
+              </p>
             </div>
           </div>
           <div class="col-md-3">
             <div class="activeDiv">
-                <p class="font-weight-600 mb-1">Granted On</p>
-                <p class="border rounded align-items-center px-3 py-1 text-black text-center mb-0 font-12 d-flex justify-content-between"style="border: 1px solid #28c76f !important;">
-                  <span class="font-weight-600">07-26-2024</span>
-                </p>
+              <p class="font-weight-600 mb-1">Broker</p>
+              <p
+                class="bg-light rounded align-items-center px-3 py-1 text-black text-center mb-0 font-12 d-flex justify-content-between">
+                <span class="font-weight-600">In-Active</span>
+              </p>
             </div>
-          </div>              
+          </div>
+          <div class="col-md-3">
+            <div class="activeDiv">
+              <p class="font-weight-600 mb-1">Granted On</p>
+              <p class="border rounded align-items-center px-3 py-1 text-black text-center mb-0 font-12 d-flex justify-content-between"
+                style="border: 1px solid #28c76f !important;">
+                <span class="font-weight-600">07-26-2024</span>
+              </p>
+            </div>
+          </div>
         </div>
 
         <div class="row mt-3">
           <div class="col-md-3">
-              <div class="activeDiv">
-                  <p class="font-weight-600 mb-1">DOT Status</p>
-                  <p class="border rounded align-items-center px-3 py-1 text-black text-center mb-0 font-12 d-flex justify-content-between" style="border: 1px solid #28c76f !important;">
-                    <span class="font-weight-600">Active</span>
-                    <i class="fa fa-check text-success" aria-hidden="true"></i>
-                  </p>
-              </div>
-          </div>
-          <div class="col-md-3">
             <div class="activeDiv">
-                <p class="font-weight-600 mb-1">DOT Date</p>
-                <p class="border rounded align-items-center px-3 py-1 text-black text-center mb-0 font-12 d-flex justify-content-between" style="border: 1px solid #28c76f !important;">
-                  <span class="font-weight-600">07-26-2023</span>
-                </p>
+              <p class="font-weight-600 mb-1">DOT Status</p>
+              <p class="border rounded align-items-center px-3 py-1 text-black text-center mb-0 font-12 d-flex justify-content-between"
+                style="border: 1px solid #28c76f !important;">
+                <span class="font-weight-600">Active</span>
+                <i class="fa fa-check text-success" aria-hidden="true"></i>
+              </p>
             </div>
           </div>
           <div class="col-md-3">
             <div class="activeDiv">
-                <p class="font-weight-600 mb-1">Insaurance</p>
-                <p class="border rounded align-items-center px-3 py-1 text-black text-center mb-0 font-12 d-flex justify-content-between" style="border: 1px solid #28c76f !important;">
-                  <span class="font-weight-600">Active</span>
-                  <i class="fa fa-check text-success" aria-hidden="true"></i>
-                </p>
+              <p class="font-weight-600 mb-1">DOT Date</p>
+              <p class="border rounded align-items-center px-3 py-1 text-black text-center mb-0 font-12 d-flex justify-content-between"
+                style="border: 1px solid #28c76f !important;">
+                <span class="font-weight-600">07-26-2023</span>
+              </p>
             </div>
           </div>
           <div class="col-md-3">
             <div class="activeDiv">
-                <p class="font-weight-600 mb-1">Certificate</p>
-                <p class="bg-light rounded align-items-center px-3 py-1 text-black text-center mb-0 font-12 d-flex justify-content-between">
-                  <span class="font-weight-600">In-Active</span>
-                </p>
+              <p class="font-weight-600 mb-1">Insaurance</p>
+              <p class="border rounded align-items-center px-3 py-1 text-black text-center mb-0 font-12 d-flex justify-content-between"
+                style="border: 1px solid #28c76f !important;">
+                <span class="font-weight-600">Active</span>
+                <i class="fa fa-check text-success" aria-hidden="true"></i>
+              </p>
             </div>
-          </div>              
+          </div>
+          <div class="col-md-3">
+            <div class="activeDiv">
+              <p class="font-weight-600 mb-1">Certificate</p>
+              <p
+                class="bg-light rounded align-items-center px-3 py-1 text-black text-center mb-0 font-12 d-flex justify-content-between">
+                <span class="font-weight-600">In-Active</span>
+              </p>
+            </div>
+          </div>
         </div>
 
-        
+
 
       </div>
-      <div class="col-xl-7">
+      <div class="col-xl-7">    
         <div class="row text-light">
           <div class="col-lg-3">
-            <a href="truck-list.html">
+            <a routerLink="/truck-list">
               <div class="counter mb-2 bg-label-info">
-                <h2 class="timer count-title count-number" data-to="350" data-speed="1500"></h2>
-                <p class="count-text ">Total Trucks</p>
+                <h2 class="timer count-title count-number" data-to="350" data-speed="1500">{{ totalTrucks }}</h2>
+                <p class="count-text">Total Trucks</p>
               </div>
             </a>
-            <a href="trailer-list.html">
+            <a routerLink="/trailer-list">
               <div class="counter mb-2 bg-label-info">
-                <h2 class="timer count-title count-number" data-to="250" data-speed="1500"></h2>
+                <h2 class="timer count-title count-number" data-to="250" data-speed="1500">{{ totalTrailers }}</h2>
                 <p class="count-text ">Total Trailers</p>
               </div>
             </a>
-            <a href="driver-list.html">
+            <a routerLink="/driver-list">
               <div class="counter bg-label-info">
-                <h2 class="timer count-title count-number" data-to="100" data-speed="1500"></h2>
+                <h2 class="timer count-title count-number" data-to="100" data-speed="1500">{{ totalDrivers }}</h2>
                 <p class="count-text ">Total Drivers</p>
               </div>
             </a>
           </div>
           <div class="col-lg-3">
-            <a href="#">
+            <a>
               <div class="counter mb-2 bg-label-danger">
-                <h2 class="timer count-title count-number" data-to="270" data-speed="1500"></h2>
+                <h2 class="timer count-title count-number" data-to="270" data-speed="1500">{{ nonCompliantTrucks }}</h2>
                 <p class="count-text ">Non-Compliant Trucks</p>
               </div>
             </a>
-            <a href="#">
+            <a>
               <div class="counter mb-2 bg-label-danger">
-                <h2 class="timer count-title count-number" data-to="180" data-speed="1500"></h2>
+                <h2 class="timer count-title count-number" data-to="180" data-speed="1500">{{nonCompliantTrailers}}</h2>
                 <p class="count-text ">Non-Compliant Trailers</p>
               </div>
             </a>
-            <a href="#">
+            <a>
               <div class="counter bg-label-danger">
-                <h2 class="timer count-title count-number" data-to="120" data-speed="1500"></h2>
+                <h2 class="timer count-title count-number" data-to="120" data-speed="1500">{{nonCompliantDrivers}}</h2>
                 <p class="count-text ">Non-Compliant Drivers</p>
               </div>
             </a>
           </div>
           <div class="col-lg-3">
-            <a href="#">
-               <div class="counter mb-2 bg-label-success">
-              <h2 class="timer count-title count-number" data-to="320" data-speed="1500"></h2>
-              <p class="count-text ">Compliant Trucks</p>
-            </div>
+            <a>
+              <div class="counter mb-2 bg-label-success">
+                <h2 class="timer count-title count-number" data-to="320" data-speed="1500">{{compliantTrucks}}</h2>
+                <p class="count-text ">Compliant Trucks</p>
+              </div>
             </a>
-            <a href="#">
-               <div class="counter mb-2 bg-label-success">
-              <h2 class="timer count-title count-number" data-to="200" data-speed="1500"></h2>
-              <p class="count-text ">Compliant Trailers</p>
-            </div>
+            <a>
+              <div class="counter mb-2 bg-label-success">
+                <h2 class="timer count-title count-number" data-to="200" data-speed="1500">{{compliantTrailers}}</h2>
+                <p class="count-text ">Compliant Trailers</p>
+              </div>
             </a>
-            <a href="#">
+            <a>
               <div class="counter bg-label-success">
-              <h2 class="timer count-title count-number" data-to="90" data-speed="1500"></h2>
-              <p class="count-text ">Compliant Drivers</p>
-            </div>
+                <h2 class="timer count-title count-number" data-to="90" data-speed="1500">{{compliantDrivers}}</h2>
+                <p class="count-text ">Compliant Drivers</p>
+              </div>
             </a>
           </div>
           <div class="col-lg-3">
-            <a href="#">
+            <a>
               <div class="counter mb-2 bg-label-warning">
-                <h2 class="timer count-title count-number" data-to="210" data-speed="1500"></h2>
+                <h2 class="timer count-title count-number" data-to="210" data-speed="1500">{{expiringTrucks}}</h2>
                 <p class="count-text ">Expiring Trucks</p>
               </div>
             </a>
-            <a href="#">
+            <a>
               <div class="counter mb-2 bg-label-warning">
-                <h2 class="timer count-title count-number" data-to="160" data-speed="1500"></h2>
+                <h2 class="timer count-title count-number" data-to="160" data-speed="1500">{{expiringTrailers}}</h2>
                 <p class="count-text ">Expiring Trailers</p>
               </div>
             </a>
-            <a href="#">
+            <a>
               <div class="counter bg-label-warning">
-                <h2 class="timer count-title count-number" data-to="80" data-speed="1500"></h2>
+                <h2 class="timer count-title count-number" data-to="80" data-speed="1500">{{expiringDrivers}}</h2>
                 <p class="count-text ">Expiring Drivers</p>
               </div>
             </a>
@@ -250,231 +264,223 @@
 
 <main id="main" class="main mt-0 p-0">
   <div id="kt_app_content" class="app-content  flex-column-fluid">
-      <div class="container-fluid px-5">
-          
-        <div class="row bg-white p-3 mt-3 rounded">
-          <div class="col-md-12">
-            <div class="d-flex justify-content-between">
-              <div>
-              <a href="#" class="btn btn-success rounded-pill font-14 active me-2">
-              Company Profile
-            </a>
-            <a href="../document/document.component.html" class="btn btn-outline-secondary rounded-pill font-14">
-              Document
-            </a>
+    <div class="container-fluid px-5">
+
+      <div class="row bg-white p-3 mt-3 rounded">
+        <div class="col-md-12">
+          <div class="d-flex justify-content-between">
+            <div>
+              <a routerLink="/company-profile" class="btn btn-success rounded-pill font-14 active me-2">
+                Company Profile
+              </a>
+              <a routerLink="/document" class="btn btn-outline-secondary rounded-pill font-14">
+                Document
+              </a>
             </div>
-            <div>                
-              <div class="btn-group" role="group" aria-label="Basic example">
-                <a href="javascript:;" class="btn btn-success rounded-pill font-14" type="button" data-bs-toggle="offcanvas" data-bs-target="#addLocation" aria-controls="offcanvasRight"><i class="fa fa-pencil me-1" aria-hidden="true"></i> Edit</a>
-              </div>
-            </div>
+            <div class="btn-group" role="group" aria-label="Basic example">
+              <a href="javascript:;" class="btn btn-success rounded-pill font-14" type="button" data-bs-toggle="offcanvas" data-bs-target="#addLocation" aria-controls="offcanvasRight"><i class="fa fa-pencil me-1" aria-hidden="true"></i> Edit</a>
             </div>
           </div>
         </div>
+      </div>
 
-        <div class="row bg-white px-3 py-4 mt-3 rounded">
-          <div class="col-md-12">
-            <div class="flex-lg-row-fluid me-0">
-                <div class="row">
-                  <div class="col-md-3">
-                    <div class=" fv-row mb-6 bg-white p-3 rounded border">
-                      <div class="row">
-                        <div class="col-lg-12">
-                          <div class="card mb-4">
-                            <!-- <div class="card-body text-center">
-                              <img src="https://cdn.pixabay.com/photo/2014/03/25/16/58/truck-297749_1280.png" alt="avatar" class="rounded-circle img-fluid" style="width: 120px;">
-                              <h5 class="my-3">12520 (Truck)</h5>
-                              <div class="d-flex justify-content-center mb-2">
-                                <a href=""><i class="fa fa-pencil me-1 border p-2 rounded" aria-hidden="true"></i></a>
-                                <a href=""><i class="fa fa-bell border p-2 rounded text-danger" aria-hidden="true"></i></a> &nbsp;
-                                <div class="dropdown add-dropdown">
-                                  <button type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false" class=" dropdown-toggle active-btn d-flex align-items-center  text-success p-1" style="background: #fff; border: none;">
-                                    <i class="fa fa-check-circle-o" aria-hidden="true"></i> &nbsp; Active
-                                  </button>
-                                  <ul aria-labelledby="dropdownMenuButton1" class="dropdown-menu" style="">
-                                      <li><a href="javascript:;" class="dropdown-item font-13">Active</a></li>
-                                      <li><a href="javascript:;" class="dropdown-item font-13">Offline</a></li>
-                                  </ul>
-                                </div>
-                              </div>
-                            </div> -->
-                            <div class="bg-light p-2 rounded-lg mb-4">                          
-                              <ul class="mb-0" style="padding-left: 0px !important;">                            
-                                <li class="d-flex flex-wrap align-items-center justify-content-between mb-2">
-                                  <span class="text-capitalize font-12 font-weight-600 mb-2"> Company Name DBA </span>
-                                  <span class="edit-text font-14 font-weight-500 mb-2">Company Name DBA</span>
-                                </li>
-                                <li class="d-flex flex-wrap align-items-center justify-content-between mb-2">
-                                  <span class="text-capitalize font-12 font-weight-600 mb-2">Corporation</span>
-                                  <span class="edit-text font-14 font-weight-500 mb-2">Shelton Corporation </span>
-                                </li>
-                                <li class="d-flex flex-wrap align-items-center justify-content-between mb-2">
-                                  <span class="text-capitalize font-12 font-weight-600 mb-2"> DOT </span>
-                                  <span class="edit-text font-14 font-weight-500 mb-2">588778 </span>
-                                </li>
-                                <li class="d-flex flex-wrap align-items-center justify-content-between mb-2">
-                                  <span class="text-capitalize font-12 font-weight-600 mb-2"> MC </span>
-                                  <span class="edit-text font-14 font-weight-500 mb-2">165788 </span>
-                                </li>
-                                <li class="d-flex flex-wrap align-items-center justify-content-between mb-2">
-                                  <span class="text-capitalize font-12 font-weight-600 mb-2"> Upload Document </span>
-                                  <span class="edit-text font-14 font-weight-500 mb-2">Document.pdf </span>
-                                </li>
-                                <li class="d-flex flex-wrap align-items-center justify-content-between mb-2">
-                                  <span class="text-capitalize font-12 font-weight-600 mb-2"> KYU </span>
-                                  <span class="edit-text font-14 font-weight-500 mb-2">KYU </span>
-                                </li>
-                                <li class="d-flex flex-wrap align-items-center justify-content-between mb-2">
-                                  <span class="text-capitalize font-12 font-weight-600 mb-2"> Upload Document </span>
-                                  <span class="edit-text font-14 font-weight-500 mb-2">Document.pdf </span>
-                                </li>
-                                <li class="d-flex flex-wrap align-items-center justify-content-between mb-2">
-                                  <span class="text-capitalize font-12 font-weight-600 mb-2"> KYU Expiration </span>
-                                  <span class="edit-text font-14 font-weight-500 mb-2">12/03/2023 </span>
-                                </li>
-                                <li class="d-flex flex-wrap align-items-center justify-content-between mb-2">
-                                  <span class="text-capitalize font-12 font-weight-600 mb-2"> NY </span>
-                                  <span class="edit-text font-14 font-weight-500 mb-2">NY </span>
-                                </li>
-                                <li class="d-flex flex-wrap align-items-center justify-content-between mb-2">
-                                  <span class="text-capitalize font-12 font-weight-600 mb-2"> Upload Document </span>
-                                  <span class="edit-text font-14 font-weight-500 mb-2">Document.pdf </span>
-                                </li>
-                                <li class="d-flex flex-wrap align-items-center justify-content-between mb-2">
-                                  <span class="text-capitalize font-12 font-weight-600 mb-2"> NY Expiration </span>
-                                  <span class="edit-text font-14 font-weight-500 mb-2">25/02/2023 </span>
-                                </li>
-                                <li class="d-flex flex-wrap align-items-center justify-content-between mb-2">
-                                  <span class="text-capitalize font-12 font-weight-600 mb-2"> NM WDT </span>
-                                  <span class="edit-text font-14 font-weight-500 mb-2">NM WDT </span>
-                                </li>
-                                <li class="d-flex flex-wrap align-items-center justify-content-between mb-2">
-                                  <span class="text-capitalize font-12 font-weight-600 mb-2"> Ein </span>
-                                  <span class="edit-text font-14 font-weight-500 mb-2">Ein </span>
-                                </li>
-                                <li class="d-flex flex-wrap align-items-center justify-content-between mb-2">
-                                  <span class="text-capitalize font-12 font-weight-600 mb-2"> W9 </span>
-                                  <span class="edit-text font-14 font-weight-500 mb-2">W9 </span>
-                                </li>
-                                <li class="d-flex flex-wrap align-items-center justify-content-between mb-2">
-                                  <span class="text-capitalize font-12 font-weight-600 mb-2"> Upload Document </span>
-                                  <span class="edit-text font-14 font-weight-500 mb-2">Document.pdf </span>
-                                </li>
-                               
-                              </ul>
-                            </div>
-                          </div>                                
-                        </div>                              
-                      </div>
-                      
-                    </div>
-                  </div> 
+      <div class="row bg-white px-3 py-4 mt-3 rounded">
+        <div class="col-md-12">
+          <div class="flex-lg-row-fluid me-0">
+            <div class="row">
+              <div class="col-md-3">
+                <div class=" fv-row mb-6 bg-white p-3 rounded border">
+                  <div class="row">
+                    <div class="col-lg-12">
+                      <div class="card mb-4">
+                        <div class="bg-light p-2 rounded-lg mb-4">
+                          <ul class="mb-0" style="padding-left: 0px !important;">
+                            <li class="d-flex flex-wrap align-items-center justify-content-between mb-2">
+                              <span class="text-capitalize font-12 font-weight-600 mb-2"> Company Name DBA </span>
+                              <span class="edit-text font-14 font-weight-500 mb-2">Company Name DBA</span>
+                            </li>
+                            <li class="d-flex flex-wrap align-items-center justify-content-between mb-2">
+                              <span class="text-capitalize font-12 font-weight-600 mb-2">Corporation</span>
+                              <span class="edit-text font-14 font-weight-500 mb-2">Shelton Corporation </span>
+                            </li>
+                            <li class="d-flex flex-wrap align-items-center justify-content-between mb-2">
+                              <span class="text-capitalize font-12 font-weight-600 mb-2"> DOT </span>
+                              <span class="edit-text font-14 font-weight-500 mb-2">588778 </span>
+                            </li>
+                            <li class="d-flex flex-wrap align-items-center justify-content-between mb-2">
+                              <span class="text-capitalize font-12 font-weight-600 mb-2"> MC </span>
+                              <span class="edit-text font-14 font-weight-500 mb-2">165788 </span>
+                            </li>
+                            <li class="d-flex flex-wrap align-items-center justify-content-between mb-2">
+                              <span class="text-capitalize font-12 font-weight-600 mb-2"> Upload Document </span>
+                              <span class="edit-text font-14 font-weight-500 mb-2">Document.pdf </span>
+                            </li>
+                            <li class="d-flex flex-wrap align-items-center justify-content-between mb-2">
+                              <span class="text-capitalize font-12 font-weight-600 mb-2"> KYU </span>
+                              <span class="edit-text font-14 font-weight-500 mb-2">KYU </span>
+                            </li>
+                            <li class="d-flex flex-wrap align-items-center justify-content-between mb-2">
+                              <span class="text-capitalize font-12 font-weight-600 mb-2"> Upload Document </span>
+                              <span class="edit-text font-14 font-weight-500 mb-2">Document.pdf </span>
+                            </li>
+                            <li class="d-flex flex-wrap align-items-center justify-content-between mb-2">
+                              <span class="text-capitalize font-12 font-weight-600 mb-2"> KYU Expiration </span>
+                              <span class="edit-text font-14 font-weight-500 mb-2">12/03/2023 </span>
+                            </li>
+                            <li class="d-flex flex-wrap align-items-center justify-content-between mb-2">
+                              <span class="text-capitalize font-12 font-weight-600 mb-2"> NY </span>
+                              <span class="edit-text font-14 font-weight-500 mb-2">NY </span>
+                            </li>
+                            <li class="d-flex flex-wrap align-items-center justify-content-between mb-2">
+                              <span class="text-capitalize font-12 font-weight-600 mb-2"> Upload Document </span>
+                              <span class="edit-text font-14 font-weight-500 mb-2">Document.pdf </span>
+                            </li>
+                            <li class="d-flex flex-wrap align-items-center justify-content-between mb-2">
+                              <span class="text-capitalize font-12 font-weight-600 mb-2"> NY Expiration </span>
+                              <span class="edit-text font-14 font-weight-500 mb-2">25/02/2023 </span>
+                            </li>
+                            <li class="d-flex flex-wrap align-items-center justify-content-between mb-2">
+                              <span class="text-capitalize font-12 font-weight-600 mb-2"> NM WDT </span>
+                              <span class="edit-text font-14 font-weight-500 mb-2">NM WDT </span>
+                            </li>
+                            <li class="d-flex flex-wrap align-items-center justify-content-between mb-2">
+                              <span class="text-capitalize font-12 font-weight-600 mb-2"> Ein </span>
+                              <span class="edit-text font-14 font-weight-500 mb-2">Ein </span>
+                            </li>
+                            <li class="d-flex flex-wrap align-items-center justify-content-between mb-2">
+                              <span class="text-capitalize font-12 font-weight-600 mb-2"> W9 </span>
+                              <span class="edit-text font-14 font-weight-500 mb-2">W9 </span>
+                            </li>
+                            <li class="d-flex flex-wrap align-items-center justify-content-between mb-2">
+                              <span class="text-capitalize font-12 font-weight-600 mb-2"> Upload Document </span>
+                              <span class="edit-text font-14 font-weight-500 mb-2">Document.pdf </span>
+                            </li>
 
-                  <div class="col-md-6">
-                    <div class=" fv-row mb-6 bg-white p-3 rounded border">
-                      <div class="bg-light p-2 rounded-lg mb-2">                          
-                        <ul class="mb-0" style="padding-left: 0px !important;">                            
-                          <li class="d-flex flex-wrap align-items-center justify-content-between mb-2">
-                            <span class="text-capitalize font-12 font-weight-600 mb-2"> IFTA ACC  </span>
-                            <span class="edit-text font-14 font-weight-500 mb-2">IFTA ACC4646</span>
-                          </li>
-                          <li class="d-flex flex-wrap align-items-center justify-content-between mb-2">
-                            <span class="text-capitalize font-12 font-weight-600 mb-2"> Prepass  </span>
-                            <span class="edit-text font-14 font-weight-500 mb-2">Prepass</span>
-                          </li>
-                          <li class="d-flex flex-wrap align-items-center justify-content-between mb-2">
-                            <span class="text-capitalize font-12 font-weight-600 mb-2"> IRP ACC  </span>
-                            <span class="edit-text font-14 font-weight-500 mb-2">IRP ACC 566918</span>
-                          </li>
-                          <li class="d-flex flex-wrap align-items-center justify-content-between mb-2">
-                            <span class="text-capitalize font-12 font-weight-600 mb-2"> IRP Renewal Date  </span>
-                            <span class="edit-text font-14 font-weight-500 mb-2">12/03/2023</span>
-                          </li>
-                          <li class="d-flex flex-wrap align-items-center justify-content-between mb-2">
-                            <span class="text-capitalize font-12 font-weight-600 mb-2"> Insurance Document  </span>
-                            <span class="edit-text font-14 font-weight-500 mb-2">Document.pdf</span>
-                          </li>
-                         
-                          <li class="d-flex flex-wrap align-items-center justify-content-between mb-2">
-                            <span class="text-capitalize font-12 font-weight-600 mb-2"> Address  </span>
-                            <span class="edit-text font-14 font-weight-500 mb-2">1258, Bakersfield, CA</span>
-                          </li>
-                          <li class="d-flex flex-wrap align-items-center justify-content-between mb-2">
-                            <span class="text-capitalize font-12 font-weight-600 mb-2"> Phone </span>
-                            <span class="edit-text font-14 font-weight-500 mb-2">416-858-7788</span>
-                          </li>
-                          <li class="d-flex flex-wrap align-items-center justify-content-between mb-2">
-                            <span class="text-capitalize font-12 font-weight-600 mb-2"> Email Pull Noitce ACC </span>
-                            <span class="edit-text font-14 font-weight-500 mb-2">4646467</span>
-                          </li>
-                          <li class="d-flex flex-wrap align-items-center justify-content-between mb-2">
-                            <span class="text-capitalize font-12 font-weight-600 mb-2"> Truck</span>
-                            <span class="edit-text font-14 font-weight-500 mb-2">T458887</span>
-                          </li>
-                          <li class="d-flex flex-wrap align-items-center justify-content-between mb-2">
-                            <span class="text-capitalize font-12 font-weight-600 mb-2"> Registration  </span>
-                            <span class="edit-text font-14 font-weight-500 mb-2">588778</span>
-                          </li>
-                          <li class="d-flex flex-wrap align-items-center justify-content-between mb-2">
-                            <span class="text-capitalize font-12 font-weight-600 mb-2"> Upload Document  </span>
-                            <span class="edit-text font-14 font-weight-500 mb-2">Document.pdf</span>
-                          </li>
-
-                          
-                        </ul>
+                          </ul>
+                        </div>
                       </div>
                     </div>
-                  </div>  
+                  </div>
 
-                  <div class="col-md-3">
-                    <div class=" fv-row mb-6 bg-white p-3 rounded border">
-                      <div class="bg-light p-2 rounded-lg mb-2">                          
-                        <ul class="mb-0" style="padding-left: 0px !important;">                            
-                          <li class="d-flex flex-wrap align-items-center justify-content-between mb-2">
-                            <span class="text-capitalize font-12 font-weight-600 mb-2"> Owner Address  </span>
-                            <span class="edit-text font-14 font-weight-500 mb-2">1258, Bakersfield, CA</span>
-                          </li>
-                          <li class="d-flex flex-wrap align-items-center justify-content-between mb-2">
-                            <span class="text-capitalize font-12 font-weight-600 mb-2">Phone  </span>
-                            <span class="edit-text font-14 font-weight-500 mb-2">905-456-8877</span>
-                          </li>
-                          <li class="d-flex flex-wrap align-items-center justify-content-between mb-2">
-                            <span class="text-capitalize font-12 font-weight-600 mb-2"> Email </span>
-                            <span class="edit-text font-14 font-weight-500 mb-2">emailgmail.com</span>
-                          </li>
-                          <li class="d-flex flex-wrap align-items-center justify-content-between mb-2">
-                            <span class="text-capitalize font-12 font-weight-600 mb-2">Number of Trailer </span>
-                            <span class="edit-text font-14 font-weight-500 mb-2">T-55875</span>
-                          </li>
-                          <li class="d-flex flex-wrap align-items-center justify-content-between mb-2">
-                            <span class="text-capitalize font-12 font-weight-600 mb-2"> Trailer Registration </span>
-                            <span class="edit-text font-14 font-weight-500 mb-2">12/02/2023</span>
-                          </li>
-                          <li class="d-flex flex-wrap align-items-center justify-content-between mb-2">
-                            <span class="text-capitalize font-12 font-weight-600 mb-2">Upload Document </span>
-                            <span class="edit-text font-14 font-weight-500 mb-2">Document.pdf</span>
-                          </li>
-                          <li class="d-flex flex-wrap align-items-center justify-content-between mb-2">
-                            <span class="text-capitalize font-12 font-weight-600 mb-2"> Randon DT Enrollment Cert </span>
-                            <span class="edit-text font-14 font-weight-500 mb-2">Trailer Registration</span>
-                          </li>
-                          <li class="d-flex flex-wrap align-items-center justify-content-between mb-2">
-                            <span class="text-capitalize font-12 font-weight-600 mb-2"> Upload Document</span>
-                            <span class="edit-text font-14 font-weight-500 mb-2">Document.pdf</span>
-                          </li>
-                        </ul>
-                      </div>
-                    </div>
-                  </div>  
-                  
-                </div> 
+                </div>
+              </div>
+
+              <div class="col-md-6">
+                <div class=" fv-row mb-6 bg-white p-3 rounded border">
+                  <div class="bg-light p-2 rounded-lg mb-2">
+                    <ul class="mb-0" style="padding-left: 0px !important;">
+                      <li class="d-flex flex-wrap align-items-center justify-content-between mb-2">
+                        <span class="text-capitalize font-12 font-weight-600 mb-2"> IFTA ACC </span>
+                        <span class="edit-text font-14 font-weight-500 mb-2">IFTA ACC4646</span>
+                      </li>
+                      <li class="d-flex flex-wrap align-items-center justify-content-between mb-2">
+                        <span class="text-capitalize font-12 font-weight-600 mb-2"> Prepass </span>
+                        <span class="edit-text font-14 font-weight-500 mb-2">Prepass</span>
+                      </li>
+                      <li class="d-flex flex-wrap align-items-center justify-content-between mb-2">
+                        <span class="text-capitalize font-12 font-weight-600 mb-2"> IRP ACC </span>
+                        <span class="edit-text font-14 font-weight-500 mb-2">IRP ACC 566918</span>
+                      </li>
+                      <li class="d-flex flex-wrap align-items-center justify-content-between mb-2">
+                        <span class="text-capitalize font-12 font-weight-600 mb-2"> IRP Renewal Date </span>
+                        <span class="edit-text font-14 font-weight-500 mb-2">12/03/2023</span>
+                      </li>
+                      <li class="d-flex flex-wrap align-items-center justify-content-between mb-2">
+                        <span class="text-capitalize font-12 font-weight-600 mb-2"> Insurance Document </span>
+                        <span class="edit-text font-14 font-weight-500 mb-2">Document.pdf</span>
+                      </li>
+
+                      <li class="d-flex flex-wrap align-items-center justify-content-between mb-2">
+                        <span class="text-capitalize font-12 font-weight-600 mb-2"> Address </span>
+                        <span class="edit-text font-14 font-weight-500 mb-2">1258, Bakersfield, CA</span>
+                      </li>
+                      <li class="d-flex flex-wrap align-items-center justify-content-between mb-2">
+                        <span class="text-capitalize font-12 font-weight-600 mb-2"> Phone </span>
+                        <span class="edit-text font-14 font-weight-500 mb-2">416-858-7788</span>
+                      </li>
+                      <li class="d-flex flex-wrap align-items-center justify-content-between mb-2">
+                        <span class="text-capitalize font-12 font-weight-600 mb-2"> Email Pull Noitce ACC </span>
+                        <span class="edit-text font-14 font-weight-500 mb-2">4646467</span>
+                      </li>
+                      <li class="d-flex flex-wrap align-items-center justify-content-between mb-2">
+                        <span class="text-capitalize font-12 font-weight-600 mb-2"> Truck</span>
+                        <span class="edit-text font-14 font-weight-500 mb-2">T458887</span>
+                      </li>
+                      <li class="d-flex flex-wrap align-items-center justify-content-between mb-2">
+                        <span class="text-capitalize font-12 font-weight-600 mb-2"> Registration </span>
+                        <span class="edit-text font-14 font-weight-500 mb-2">588778</span>
+                      </li>
+                      <li class="d-flex flex-wrap align-items-center justify-content-between mb-2">
+                        <span class="text-capitalize font-12 font-weight-600 mb-2"> Upload Document </span>
+                        <span class="edit-text font-14 font-weight-500 mb-2">Document.pdf</span>
+                      </li>
+
+
+                    </ul>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-md-3">
+                <div class=" fv-row mb-6 bg-white p-3 rounded border">
+                  <div class="bg-light p-2 rounded-lg mb-2">
+                    <ul class="mb-0" style="padding-left: 0px !important;">
+                      <li class="d-flex flex-wrap align-items-center justify-content-between mb-2">
+                        <span class="text-capitalize font-12 font-weight-600 mb-2"> Owner Address </span>
+                        <span class="edit-text font-14 font-weight-500 mb-2">1258, Bakersfield, CA</span>
+                      </li>
+                      <li class="d-flex flex-wrap align-items-center justify-content-between mb-2">
+                        <span class="text-capitalize font-12 font-weight-600 mb-2">Phone </span>
+                        <span class="edit-text font-14 font-weight-500 mb-2">905-456-8877</span>
+                      </li>
+                      <li class="d-flex flex-wrap align-items-center justify-content-between mb-2">
+                        <span class="text-capitalize font-12 font-weight-600 mb-2"> Email </span>
+                        <span class="edit-text font-14 font-weight-500 mb-2">emailgmail.com</span>
+                      </li>
+                      <li class="d-flex flex-wrap align-items-center justify-content-between mb-2">
+                        <span class="text-capitalize font-12 font-weight-600 mb-2">Number of Trailer </span>
+                        <span class="edit-text font-14 font-weight-500 mb-2">T-55875</span>
+                      </li>
+                      <li class="d-flex flex-wrap align-items-center justify-content-between mb-2">
+                        <span class="text-capitalize font-12 font-weight-600 mb-2"> Trailer Registration </span>
+                        <span class="edit-text font-14 font-weight-500 mb-2">12/02/2023</span>
+                      </li>
+                      <li class="d-flex flex-wrap align-items-center justify-content-between mb-2">
+                        <span class="text-capitalize font-12 font-weight-600 mb-2">Upload Document </span>
+                        <span class="edit-text font-14 font-weight-500 mb-2">Document.pdf</span>
+                      </li>
+                      <li class="d-flex flex-wrap align-items-center justify-content-between mb-2">
+                        <span class="text-capitalize font-12 font-weight-600 mb-2"> Randon DT Enrollment Cert </span>
+                        <span class="edit-text font-14 font-weight-500 mb-2">Trailer Registration</span>
+                      </li>
+                      <li class="d-flex flex-wrap align-items-center justify-content-between mb-2">
+                        <span class="text-capitalize font-12 font-weight-600 mb-2"> Upload Document</span>
+                        <span class="edit-text font-14 font-weight-500 mb-2">Document.pdf</span>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+
             </div>
-        </div>
+          </div>
         </div>
       </div>
+    </div>
   </div>
 </main><!-- End #main -->
 
+
+
+<!-- ======= Footer ======= -->
+<footer id="footer" class="footer">
+  <div class="text-dark text-center">
+    <span class="text-muted fw-semibold me-1">2023© all rights reserved</span>
+    <a class="text-muted fw-semibold text-hover-primary">Trucking</a> <!-- href="#" -->
+  </div>
+
+</footer>
+<!-- End Footer -->
 
 <a href="#" class="back-to-top d-flex align-items-center justify-content-center btn-success"><i
   class="bi bi-arrow-up-short"></i></a>
@@ -483,188 +489,11 @@
 
 
 
-      <div class="modal fade" id="ExtralargeModal" tabindex="-1" style="display: none;" aria-hidden="true">
-        <div class="modal-dialog modal-xl">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title">Edit Company Profile</h5>
-              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-h2="Close"></button>
-            </div>
-            <div class="modal-body">
-
-                  <form class="row g-3">
-                    <div class="col-md-4">
-                      <h2 class="font-14 font-weight-700"> Company Name DBA</h2>
-                      <input type="text" class="form-control" id="validationDefault01" value=" Company Name DBA "
-                        required="">
-                    </div>
-                    <div class="col-md-4">
-                      <h2 class="font-14 font-weight-700">Corporation</h2>
-                      <input type="text" class="form-control" id="validationDefault02" value="Corporation"
-                        required="">
-                    </div>
-                    <div class="col-md-4">
-                      <h2 class="font-14 font-weight-700">DOT</h2>
-                      <input type="text" class="form-control" id="validationDefault02" value="DOT" required="">
-                    </div>
-                    <div class="col-md-4">
-                      <h2 class="font-14 font-weight-700">MC</h2>
-                      <input type="text" class="form-control" id="validationDefault02" value="MC" required="">
-                    </div>
-                    <div class="col-md-4">
-                      <h2 class="font-14 font-weight-700">Upload Document</h2>
-                      <input type="file" class="form-control" id="validationDefault02" value="MC" required="">
-                    </div>
-                    <hr class="hr" />
-
-                    <div class="col-md-4">
-                      <h2 class="font-14 font-weight-700">KYU</h2>
-                      <input type="text" class="form-control" id="validationDefault02" value="KYU" required="">
-                    </div>
-                    <div class="col-md-4">
-                      <h2 class="font-14 font-weight-700">Upload Document</h2>
-                      <input type="file" class="form-control" id="validationDefault02" value="MC" required="">
-                    </div>
-                    <div class="col-md-4">
-                      <h2 class="font-14 font-weight-700">KYU Expiration</h2>
-                      <input type="text" class="form-control" id="validationDefault02" value="dd/mm/yyyy"
-                        required="">
-                    </div>
-
-                    <div class="col-md-4">
-                      <h2 class="font-14 font-weight-700">NY</h2>
-                      <input type="text" class="form-control" id="validationDefault02" value="NY" required="">
-                    </div>
-                    <div class="col-md-4">
-                      <h2 class="font-14 font-weight-700">Upload Document</h2>
-                      <input type="file" class="form-control" id="validationDefault02" value="MC" required="">
-                    </div>
-                    <div class="col-md-4">
-                      <h2 class="font-14 font-weight-700">NY Expiration</h2>
-                      <input type="text" class="form-control" id="validationDefault02" value="dd/mm/yyyy"
-                        required="">
-                    </div>
-
-                    <div class="col-md-4">
-                      <h2 class="font-14 font-weight-700">NM WDT</h2>
-                      <input type="text" class="form-control" id="validationDefault02" value="NM WDT" required="">
-                    </div>
-                    <div class="col-md-4">
-                      <h2 class="font-14 font-weight-700">Ein</h2>
-                      <input type="text" class="form-control" id="validationDefault02" value="Ein" required="">
-                    </div>
-                    <div class="col-md-2">
-                      <h2 class="font-14 font-weight-700">W9</h2>
-                      <input type="text" class="form-control" id="validationDefault02" value="W9" required="">
-                    </div>
-                    <div class="col-md-2">
-                      <h2 class="font-14 font-weight-700">Upload Document</h2>
-                      <input type="file" class="form-control" id="validationDefault02" value="MC" required="">
-                    </div>
-
-                    <hr class="hr" />
-
-                    <div class="col-md-4">
-                      <h2 class="font-14 font-weight-700">IFTA ACC</h2>
-                      <input type="text" class="form-control" id="validationDefault02" value="IFTA ACC" required="">
-                    </div>
-                    <div class="col-md-4">
-                      <h2 class="font-14 font-weight-700">Prepass</h2>
-                      <input type="text" class="form-control" id="validationDefault02" value="Prepass" required="">
-                    </div>
-                    <div class="col-md-4">
-                      <h2 class="font-14 font-weight-700">IRP ACC</h2>
-                      <input type="text" class="form-control" id="validationDefault02" value="IRP ACC" required="">
-                    </div>
-                    <div class="col-md-4">
-                      <h2 class="font-14 font-weight-700">IRP Renewal Date</h2>
-                      <input type="text" class="form-control" id="validationDefault02" value="dd/mm/yyyy"
-                        required="">
-                    </div>
-                    <div class="col-md-4">
-                      <h2 class="font-14 font-weight-700">Insurance Document</h2>
-                      <input type="file" class="form-control" id="validationDefault02" value="MC" required="">
-                    </div>
-
-                    <hr class="hr" />
-
-                    <div class="col-md-4">
-                      <h2 class="font-14 font-weight-700">Address</h2>
-                      <input type="text" class="form-control" id="validationDefault02" value="Address" required="">
-                    </div>
-                    <div class="col-md-4">
-                      <h2 class="font-14 font-weight-700">Phone</h2>
-                      <input type="text" class="form-control" id="validationDefault02" value="Phone" required="">
-                    </div>
-                    <div class="col-md-4">
-                      <h2 class="font-14 font-weight-700">Email Pull Noitce ACC</h2>
-                      <input type="text" class="form-control" id="validationDefault02" value="Email Pull Noitce ACC"
-                        required="">
-                    </div>
-                    <div class="col-md-4">
-                      <h2 class="font-14 font-weight-700">Truck</h2>
-                      <input type="text" class="form-control" id="validationDefault02" value="Truck" required="">
-                    </div>
-                    <div class="col-md-4">
-                      <h2 class="font-14 font-weight-700">Registration</h2>
-                      <input type="text" class="form-control" id="validationDefault02" value="Registration"
-                        required="">
-                    </div>
-                    <div class="col-md-4">
-                      <h2 class="font-14 font-weight-700">Upload Document</h2>
-                      <input type="file" class="form-control" id="validationDefault02" value="MC" required="">
-                    </div>
-                    <div class="col-md-4">
-                      <h2 class="font-14 font-weight-700">Owner Address</h2>
-                      <input type="text" class="form-control" id="validationDefault02" value="Address" required="">
-                    </div>
-                    <div class="col-md-4">
-                      <h2 class="font-14 font-weight-700">Phone</h2>
-                      <input type="text" class="form-control" id="validationDefault02" value="Phone" required="">
-                    </div>
-                    <div class="col-md-4">
-                      <h2 class="font-14 font-weight-700">Email</h2>
-                      <input type="text" class="form-control" id="validationDefault02" value="Email" required="">
-                    </div>
-                    <div class="col-md-4">
-                      <h2 class="font-14 font-weight-700">Number of Trailer</h2>
-                      <input type="text" class="form-control" id="validationDefault02" value="Truck" required="">
-                    </div>
-                    <div class="col-md-4">
-                      <h2 class="font-14 font-weight-700">Trailer Registration</h2>
-                      <input type="text" class="form-control" id="validationDefault02" value="dd/mm/yyyy"
-                        required="">
-                    </div>
-                    <div class="col-md-4">
-                      <h2 class="font-14 font-weight-700">Upload Document</h2>
-                      <input type="file" class="form-control" id="validationDefault02" value="MC" required="">
-                    </div>
-                    <div class="col-md-4">
-                      <h2 class="font-14 font-weight-700">Randon DT Enrollment Cert</h2>
-                      <input type="text" class="form-control" id="validationDefault02"
-                        value="Randon DT Enrollment Cert" required="">
-                    </div>
-                    <div class="col-md-4">
-                      <h2 class="font-14 font-weight-700">Upload Document</h2>
-                      <input type="file" class="form-control" id="validationDefault02" value="MC" required="">
-                    </div>
-
-                  </form>
-            </div>
-            <div class="modal-footer justify-content-center">
-              <button type="button" class="btn btn-outline-secondary btn-sm text-uppercase rounded-pill" data-bs-dismiss="modal">Close</button>
-              <button type="button" class="btn btn-success btn-sm text-uppercase rounded-pill">Save changes</button>
-            </div>
-          </div>
-        </div>
-      </div>
-
-
       
-      <div class="offcanvas offcanvas-end" tabindex="-1" id="addLocation" aria-labelledby="offcanvasRightLabel" style="width: 80%;">
+      <div class="offcanvas offcanvas-end" tabindex="-1" id="addLocation" aria-labelledby="offcanvasRightLabel" style="width: 80%;" data-bs-backdrop="static" data-bs-keyboard="false">
         <div class="modal-header" style="padding: 15px; border-bottom: 1px solid #ccc;">
           <h5 class="modal-title">Edit Company Profile</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-h2="Close"></button>
+          <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-h2="Close"></button>
         </div>
         <div class="offcanvas-body view-load position-relative">
           <form class="row g-3">
@@ -822,10 +651,8 @@
             
             
             <div class="modal-footer justify-content-center" style="border-top: 1px solid #ccc; padding-top: 15px; margin-top: 15px; ">
-              <button type="button" class="btn btn-outline-secondary btn-sm text-uppercase rounded-pill" data-bs-dismiss="modal" style="margin: 10px;">Close</button> 
-              <button type="button" class="btn btn-success btn-sm text-uppercase rounded-pill">Save changes</button>
+              <button type="button" class="btn btn-outline-secondary btn-sm text-uppercase rounded-pill" data-bs-dismiss="offcanvas" style="margin: 10px;">Close</button> 
+              <button type="submit" class="btn btn-success btn-sm text-uppercase rounded-pill">Save changes</button>
             </div>
         </div>
       </div>
-
-

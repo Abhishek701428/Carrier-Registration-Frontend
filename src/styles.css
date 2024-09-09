@@ -1,1 +1,116 @@
-/* You can add global styles to this file, and also import other style files */
+/* Global styles for toast notifications */
+.toast-top-right {
+    top: 10px !important; /* Adjust the top position as needed */
+    right: 10px !important; /* Adjust the right position */
+    transform: none !important; /* Remove any horizontal centering transform */
+    position: fixed !important; /* Ensure it stays fixed */
+    z-index: 9999 !important; /* Make sure it appears above other content */
+  }
+  
+  /* Toast container styling */
+  .toast {
+    border-radius: 8px; /* Rounded corners */
+    padding: 50px; /* Padding inside the toast */
+    font-size: 20px; /* Font size */
+    font-weight: 800; /* Font weight */
+    color: #fff; /* Default text color */
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3); /* Enhanced shadow for more depth */
+    transition: transform 0.3s ease, opacity 0.3s ease; /* Smooth transitions */
+    opacity: 0; /* Start with opacity 0 for animation effect */
+  }
+  
+  /* Toast animations */
+  .toast.ng-trigger.ng-trigger-toastAnimation.ng-enter {
+    transform: translateY(0); /* Slide down on enter */
+    opacity: 1; /* Fade in */
+  }
+  
+  .toast.ng-trigger.ng-trigger-toastAnimation.ng-leave {
+    transform: translateY(-10px); /* Slide up on leave */
+    opacity: 0; /* Fade out */
+  }
+  
+  /* Toast success */
+  .toast-success {
+    background: linear-gradient(135deg, #4caf50, #2e7d32); /* Green gradient background */
+    border-left: 6px solid #2e7d32; /* Darker green border */
+    color: #fff; /* White text color */
+  }
+  
+  /* Toast error */
+  .toast-error {
+    background: linear-gradient(135deg, #f44336, #b71c1c); /* Red gradient background */
+    border-left: 6px solid #b71c1c; /* Darker red border */
+    color: #fff; /* White text color */
+  }
+  
+  /* Toast info */
+  .toast-info {
+    background: linear-gradient(135deg, #2196f3, #0d47a1); /* Blue gradient background */
+    border-left: 6px solid #0d47a1; /* Darker blue border */
+    color: #fff; /* White text color */
+  }
+  
+  /* Toast warning */
+  .toast-warning {
+    background: linear-gradient(135deg, #ff9800, #f57f17); /* Orange gradient background */
+    border-left: 6px solid #f57f17; /* Darker orange border */
+    color: #fff; /* White text color */
+  }
+  
+  /* Add icons to the toast (optional) */
+  .toast .toast-icon {
+    margin-right: 10px; /* Space between icon and text */
+    display: inline-block;
+    vertical-align: middle;
+    width: 24px; /* Adjust the icon size */
+    height: 24px; /* Adjust the icon size */
+    font-size: 18px; /* Icon font size */
+  }
+  
+  /* Success icon */
+  .toast-success .toast-icon::before {
+    content: '\f00c'; /* Font Awesome check icon */
+    font-family: FontAwesome; /* Ensure FontAwesome is included */
+  }
+  
+  /* Error icon */
+  .toast-error .toast-icon::before {
+    content: '\f00d'; /* Font Awesome times icon */
+    font-family: FontAwesome; /* Ensure FontAwesome is included */
+  }
+  
+  /* Info icon */
+  .toast-info .toast-icon::before {
+    content: '\f05a'; /* Font Awesome info circle icon */
+    font-family: FontAwesome; /* Ensure FontAwesome is included */
+  }
+  
+  /* Warning icon */
+  .toast-warning .toast-icon::before {
+    content: '\f071'; /* Font Awesome exclamation triangle icon */
+    font-family: FontAwesome; /* Ensure FontAwesome is included */
+  }
+/* Styles for invalid feedback */
+.invalid-feedback {
+  color: #dc3545; /* Red color for error messages */
+  font-size: 0.875em;
+}
+
+/* Styles for input fields with errors */
+.form-control.ng-invalid.ng-touched {
+  border-color: #dc3545; /* Red border for invalid fields */
+}
+
+/* Styles for select elements with errors */
+.form-control.ng-invalid.ng-touched {
+  border-color: #dc3545; /* Red border for invalid select fields */
+}
+.is-invalid {
+  border-color: red !important;
+}
+
+.input-group-text.text-danger {
+  color: red;
+  font-weight: bold;
+}

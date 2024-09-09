@@ -1,0 +1,547 @@
+<main id="main" class="main mt-0 p-0">
+  <div id="kt_app_content" class="app-content  flex-column-fluid">
+      <div class="container-fluid px-5">
+          
+        <div class="row bg-white p-3 mt-3 rounded">
+          <div class="col-md-12">
+            <div class="d-flex justify-content-between">
+              <div>
+                <button class="btn btn-success rounded-pill font-14 active me-2">
+                Driver Profile
+                </button>
+                <a href="documents.html" class="btn btn-success rounded-pill font-14 active me-2">
+                  Document
+                </a>
+                <a href="driver-list.html" class="btn btn-outline-secondary rounded-pill font-14">
+                  Back to Driver List
+                </a>
+              </div>
+              <div>                
+                <div class="btn-group" role="group" aria-label="Basic example">
+                  <a href="javascript:;" class="btn btn-success rounded-pill font-14" type="button" data-bs-toggle="offcanvas" data-bs-target="#editTruck" aria-controls="offcanvasRight"><i class="fa fa-pencil me-1" aria-hidden="true"></i>Edit</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+          <div class="row bg-light px-3 py-4 mt-3 rounded">
+            <div class="col-md-12">
+                <div class="flex-lg-row-fluid me-0">
+                    <div class="row"  *ngIf="driverData">
+                      <div class="col-md-3">
+                        <div class=" fv-row mb-6 bg-white p-3 rounded border">
+                          <div class="row">
+                            <div class="col-lg-12">
+                              <div class="card mb-4">
+                                <div class="card-body text-center">
+                                  <img src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png" alt="avatar" class="rounded-circle img-fluid" style="width: 120px;">
+                                  <h5 class="my-3">{{ driverData?.driverName}}(Driver)</h5>
+                                  <div class="d-flex justify-content-center mb-2">
+                                    <a href=""><i class="fa fa-pencil me-1 border p-2 rounded" aria-hidden="true"></i></a>
+                                    <a href=""><i class="fa fa-bell border p-2 rounded text-danger" aria-hidden="true"></i></a> &nbsp;
+                                    <div class="dropdown add-dropdown">
+                                      <button type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false" class=" dropdown-toggle active-btn d-flex align-items-center  text-success p-1" style="background: #fff; border: none;">
+                                        <i class="fa fa-check-circle-o" aria-hidden="true"></i> &nbsp; Active
+                                      </button>
+                                      <ul aria-labelledby="dropdownMenuButton1" class="dropdown-menu" style="">
+                                          <li><a href="javascript:;" class="dropdown-item font-13">Active</a></li>
+                                          <li><a href="javascript:;" class="dropdown-item font-13">Offline</a></li>
+                                      </ul>
+                                    </div>
+                                  </div>
+                                </div>
+                                <hr class="hr">
+                                <div class="bg-light p-2 rounded-lg mb-4">                          
+                                  <ul class="mb-0" style="padding-left: 0px !important;">                            
+                                    <li class="d-flex flex-wrap align-items-center justify-content-between mb-2">
+                                      <span class="text-capitalize font-12 font-weight-600 mb-2"> Driver Name </span>
+                                      <span class="edit-text font-14 font-weight-500 mb-2">{{ driverData?.driverName}}</span>
+                                    </li>
+                                    <li class="d-flex flex-wrap align-items-center justify-content-between mb-2">
+                                      <span class="text-capitalize font-12 font-weight-600 mb-2">Address</span>
+                                      <span class="edit-text font-14 font-weight-500 mb-2">{{ driverData?.address}}</span>
+                                    </li>
+                                    <li class="d-flex flex-wrap align-items-center justify-content-between mb-2">
+                                      <span class="text-capitalize font-12 font-weight-600 mb-2"> Social Number </span>
+                                      <span class="edit-text font-14 font-weight-500 mb-2">{{ driverData?.serialNumber}}</span>
+                                    </li>
+                                    <li class="d-flex flex-wrap align-items-center justify-content-between mb-2">
+                                      <span class="text-capitalize font-12 font-weight-600 mb-2"> Social Number </span>
+                                      <span class="edit-text font-14 font-weight-500 mb-2">{{ driverData?.serialNumber}}</span>
+                                    </li>
+                                    <li class="d-flex flex-wrap align-items-center justify-content-between mb-2">
+                                      <span class="text-capitalize font-12 font-weight-600 mb-2"> License </span>
+                                      <span class="edit-text font-14 font-weight-500 mb-2">{{ driverData?.license}}</span>
+                                    </li>
+                                    <li class="d-flex flex-wrap align-items-center justify-content-between mb-2">
+                                      <span class="text-capitalize font-12 font-weight-600 mb-2">  Expiration Date  </span>
+                                      <span class="edit-text font-14 font-weight-500 mb-2">{{ driverData?.licenseExpirationDate}}</span>
+                                    </li>
+                                    <li class="d-flex flex-wrap align-items-center justify-content-between mb-2">
+                                      <span class="text-capitalize font-12 font-weight-600 mb-2">   Upload Document   </span>
+                                      <span class="edit-text font-14 font-weight-500 mb-2">
+                                        <a [href]="driverData.uploadDocument1" target="_blank">
+                                          {{ driverData.uploadDocument1 | slice:(driverData.uploadDocument1.lastIndexOf('/')+1) }}
+                                        </a>
+                                      </span>
+                                    </li>
+                                    <li class="d-flex flex-wrap align-items-center justify-content-between mb-2">
+                                      <span class="text-capitalize font-12 font-weight-600 mb-2"> Driver DOT Medical </span>
+                                      <span class="edit-text font-14 font-weight-500 mb-2">{{ driverData?.driverDOTMedical}} </span>
+                                    </li>
+                                    <li class="d-flex flex-wrap align-items-center justify-content-between mb-2">
+                                      <span class="text-capitalize font-12 font-weight-600 mb-2">  Expiration Date  </span>
+                                      <span class="edit-text font-14 font-weight-500 mb-2">{{ driverData?.medicalExpirationDate}} </span>
+                                    </li>
+                                    <li class="d-flex flex-wrap align-items-center justify-content-between mb-2">
+                                      <span class="text-capitalize font-12 font-weight-600 mb-2">   Upload Document   </span>
+                                      <span class="edit-text font-14 font-weight-500 mb-2">
+                                        <a [href]="driverData.uploadDocument2" target="_blank">
+                                          {{ driverData.uploadDocument2 | slice:(driverData.uploadDocument2.lastIndexOf('/')+1) }}
+                                        </a>
+                                      </span>
+                                    </li>
+                                    <li class="d-flex flex-wrap align-items-center justify-content-between mb-2">
+                                      <span class="text-capitalize font-12 font-weight-600 mb-2">  DMV Driving Record   </span>
+                                      <span class="edit-text font-14 font-weight-500 mb-2">{{ driverData?.dmvDrivingRecord}}</span>
+                                    </li>
+                                    <li class="d-flex flex-wrap align-items-center justify-content-between mb-2">
+                                      <span class="text-capitalize font-12 font-weight-600 mb-2">   Upload Document   </span>
+                                      <span class="edit-text font-14 font-weight-500 mb-2">
+                                        <a [href]="driverData.uploadDocument3" target="_blank">
+                                          {{ driverData.uploadDocument3 | slice:(driverData.uploadDocument3.lastIndexOf('/')+1) }}
+                                        </a>
+                                      </span>
+                                    </li>
+                                    <li class="d-flex flex-wrap align-items-center justify-content-between mb-2">
+                                      <span class="text-capitalize font-12 font-weight-600 mb-2">   Upload Document   </span>
+                                      <span class="edit-text font-14 font-weight-500 mb-2">
+                                        <a [href]="driverData.uploadDocument4" target="_blank">
+                                          {{ driverData.uploadDocument4 | slice:(driverData.uploadDocument4.lastIndexOf('/')+1) }}
+                                        </a>
+                                      </span>
+                                    </li>
+                                    <li class="d-flex flex-wrap align-items-center justify-content-between mb-2">
+                                      <span class="text-capitalize font-12 font-weight-600 mb-2">    Previous Liscence Number    </span>
+                                      <span class="edit-text font-14 font-weight-500 mb-2">{{ driverData?.previousLicenseNumber}}</span>
+                                    </li>
+                                    <li class="d-flex flex-wrap align-items-center justify-content-between mb-2">
+                                      <span class="text-capitalize font-12 font-weight-600 mb-2"> Yes /No    </span>
+                                      <span class="edit-text font-14 font-weight-500 mb-2">{{ driverData?.drivingexperience}}</span>
+                                    </li>
+                                    <li class="d-flex flex-wrap align-items-center justify-content-between mb-2">
+                                      <span class="text-capitalize font-12 font-weight-600 mb-2"> Equpment Type     </span>
+                                      <span class="edit-text font-14 font-weight-500 mb-2">{{ driverData?.equipmentType}}</span>
+                                    </li>
+                                    <li class="d-flex flex-wrap align-items-center justify-content-between mb-2">
+                                      <span class="text-capitalize font-12 font-weight-600 mb-2"> Dates     </span>
+                                      <span class="edit-text font-14 font-weight-500 mb-2">{{ driverData?.equipmentDates}} </span>
+                                    </li>
+                                    <li class="d-flex flex-wrap align-items-center justify-content-between mb-2">
+                                      <span class="text-capitalize font-12 font-weight-600 mb-2">  Approx Miles </span>
+                                      <span class="edit-text font-14 font-weight-500 mb-2">{{ driverData?.approxMiles}}</span>
+                                    </li>
+                                  </ul>
+                                </div>
+                              </div>                                
+                            </div>                              
+                          </div>
+                          
+                        </div>
+                      </div> 
+
+                      <div class="col-md-6">
+                        <div class=" fv-row mb-6 bg-white p-3 rounded border">
+                          <h5 class="my-3">Employment History</h5>
+                          <div class="bg-light p-2 rounded-lg mb-4">                          
+                            <ul class="mb-0" style="padding-left: 0px !important;">                            
+                              <li class="d-flex flex-wrap align-items-center justify-content-between mb-2">
+                                <span class="text-capitalize font-12 font-weight-600 mb-2">  Number of Previous Employers  </span>
+                                <span class="edit-text font-14 font-weight-500 mb-2">{{ driverData?.numberOfPreviousEmployers}}</span>
+                              </li>
+                              <li class="d-flex flex-wrap align-items-center justify-content-between mb-2">
+                                <span class="text-capitalize font-12 font-weight-600 mb-2"> Company Name </span>
+                                <span class="edit-text font-14 font-weight-500 mb-2">{{ driverData?.companyName}} </span>
+                              </li>
+                              <li class="d-flex flex-wrap align-items-center justify-content-between mb-2">
+                                <span class="text-capitalize font-12 font-weight-600 mb-2">  Company Address  </span>
+                                <span class="edit-text font-14 font-weight-500 mb-2">{{ driverData?.companyAddress}} </span>
+                              </li>
+                              <li class="d-flex flex-wrap align-items-center justify-content-between mb-2">
+                                <span class="text-capitalize font-12 font-weight-600 mb-2"> Date </span>
+                                <span class="edit-text font-14 font-weight-500 mb-2">{{ driverData?.companyDates}}</span>
+                              </li>
+                              <li class="d-flex flex-wrap align-items-center justify-content-between mb-2">
+                                <span class="text-capitalize font-12 font-weight-600 mb-2"> Phone </span>
+                                <span class="edit-text font-14 font-weight-500 mb-2">{{ driverData?.companyPhone}} </span>
+                              </li>
+                              <li class="d-flex flex-wrap align-items-center justify-content-between mb-2">
+                                <span class="text-capitalize font-12 font-weight-600 mb-2">  Email  </span>
+                                <span class="edit-text font-14 font-weight-500 mb-2">{{ driverData?.companyEmail}}</span>
+                              </li>
+                              <li class="d-flex flex-wrap align-items-center justify-content-between mb-2">
+                                <span class="text-capitalize font-12 font-weight-600 mb-2">  Were You Subject to the Federal Motor Carrier Safety<br> Regulations During this Period   </span>
+                                <span class="edit-text font-14 font-weight-500 mb-2">{{ driverData?.federalMotorCarrierSafetyRegulations1}}  </span>
+                              </li>
+                              <li class="d-flex flex-wrap align-items-center justify-content-between mb-2">
+                                <span class="text-capitalize font-12 font-weight-600 mb-2"> Were You Subject to the Federal Motor Carrier Safety<br> Regulations During this Period </span>
+                                <span class="edit-text font-14 font-weight-500 mb-2">{{ driverData?.federalMotorCarrierSafetyRegulations2}} </span>
+                              </li>
+                              <li class="d-flex flex-wrap align-items-center justify-content-between mb-2">
+                                <span class="text-capitalize font-12 font-weight-600 mb-2">  Controlled Substance & Alcohol Questionnaire   </span>
+                                <span class="edit-text font-14 font-weight-500 mb-2">{{ driverData?.controlledSubstanceAlcoholQuestionnaire}}</span>
+                              </li>
+                              <li class="d-flex flex-wrap align-items-center justify-content-between mb-2">
+                                <span class="text-capitalize font-12 font-weight-600 mb-2">  Upload Document  </span>
+                                <span class="edit-text font-14 font-weight-500 mb-2">
+                                  <a [href]="driverData.uploadDocument7" target="_blank">
+                                    {{ driverData.uploadDocument7 | slice:(driverData.uploadDocument7.lastIndexOf('/')+1) }}
+                                  </a>
+                                </span>
+                              </li>
+                              <li class="d-flex flex-wrap align-items-center justify-content-between mb-2">
+                                <span class="text-capitalize font-12 font-weight-600 mb-2"> Driver Road Test Examination Form    </span>
+                                <span class="edit-text font-14 font-weight-500 mb-2">{{ driverData?.driverRoadTestExaminationForm}} </span>
+                              </li>
+                              <li class="d-flex flex-wrap align-items-center justify-content-between mb-2">
+                                <span class="text-capitalize font-12 font-weight-600 mb-2">   Upload Document   </span>
+                                <span class="edit-text font-14 font-weight-500 mb-2">
+                                  <a [href]="driverData.uploadDocument8" target="_blank">
+                                    {{ driverData.uploadDocument8 | slice:(driverData.uploadDocument8.lastIndexOf('/')+1) }}
+                                  </a>
+                                </span>
+                              </li>
+                              <li class="d-flex flex-wrap align-items-center justify-content-between mb-2">
+                                <span class="text-capitalize font-12 font-weight-600 mb-2">  Company Policy  </span>
+                                <span class="edit-text font-14 font-weight-500 mb-2">{{ driverData?.companyPolicy}} </span>
+                              </li>
+                              <li class="d-flex flex-wrap align-items-center justify-content-between mb-2">
+                                <span class="text-capitalize font-12 font-weight-600 mb-2">  Upload Document    </span>
+                                <span class="edit-text font-14 font-weight-500 mb-2">
+                                  <a [href]="driverData.uploadDocument9" target="_blank">
+                                    {{ driverData.uploadDocument9 | slice:(driverData.uploadDocument9.lastIndexOf('/')+1) }}
+                                  </a>
+                                </span>
+                              </li>
+                              <li class="d-flex flex-wrap align-items-center justify-content-between mb-2">
+                                <span class="text-capitalize font-12 font-weight-600 mb-2"> Drug & Alcohol Clearing House Consent Form  </span>
+                                <span class="edit-text font-14 font-weight-500 mb-2">{{ driverData?.drugAlcoholClearingHouseConsentForm}} </span>
+                              </li>
+                              <li class="d-flex flex-wrap align-items-center justify-content-between mb-2">
+                                <span class="text-capitalize font-12 font-weight-600 mb-2"> Upload Document    </span>
+                                <span class="edit-text font-14 font-weight-500 mb-2">
+                                  <a [href]="driverData.uploadDocument10" target="_blank">
+                                    {{ driverData.uploadDocument10 | slice:(driverData.uploadDocument10.lastIndexOf('/')+1) }}
+                                  </a>
+                                </span>
+                              </li>
+                              <li class="d-flex flex-wrap align-items-center justify-content-between mb-2">
+                                <span class="text-capitalize font-12 font-weight-600 mb-2">  New Hire Drug Testing Result    </span>
+                                <span class="edit-text font-14 font-weight-500 mb-2">{{ driverData?.randomDrugAlcoholTestingConsentForm}} </span>
+                              </li>
+                              <li class="d-flex flex-wrap align-items-center justify-content-between mb-2">
+                                <span class="text-capitalize font-12 font-weight-600 mb-2">  Upload Document  </span>
+                                <span class="edit-text font-14 font-weight-500 mb-2">
+                                  <a [href]="driverData.uploadDocument12" target="_blank">
+                                    {{ driverData.uploadDocument12 | slice:(driverData.uploadDocument12.lastIndexOf('/')+1) }}
+                                  </a>
+                                </span>
+                              </li>
+                              <li class="d-flex flex-wrap align-items-center justify-content-between mb-2">
+                                <span class="text-capitalize font-12 font-weight-600 mb-2">  Upload Document  </span>
+                                <span class="edit-text font-14 font-weight-500 mb-2">
+                                  <a [href]="driverData.uploadDocument13" target="_blank">
+                                    {{ driverData.uploadDocument13 | slice:(driverData.uploadDocument13.lastIndexOf('/')+1) }}
+                                  </a>
+                                </span>
+                              </li>
+                              <li class="d-flex flex-wrap align-items-center justify-content-between mb-2">
+                                <span class="text-capitalize font-12 font-weight-600 mb-2">   Clearing House Annual query   </span>
+                                <span class="edit-text font-14 font-weight-500 mb-2">{{ driverData?.clearingHouseAnnualQuery}} </span>
+                              </li>
+                              <li class="d-flex flex-wrap align-items-center justify-content-between mb-2">
+                                <span class="text-capitalize font-12 font-weight-600 mb-2">  Upload Document  </span>
+                                <span class="edit-text font-14 font-weight-500 mb-2">
+                                  <a [href]="driverData.uploadDocument14" target="_blank">
+                                    {{ driverData.uploadDocument14 | slice:(driverData.uploadDocument14.lastIndexOf('/')+1) }}
+                                  </a>
+                                </span>
+                              </li>
+                            </ul>
+                          </div>
+                        </div>
+                      </div>  
+
+                      <div class="col-md-3">
+                        <div class=" fv-row mb-6 bg-white p-3 rounded border">
+                          <div class="bg-light p-2 rounded-lg">                          
+                            <ul class="mb-0" style="padding-left: 0px !important;">                            
+                              <li class="d-flex flex-wrap align-items-center justify-content-between mb-2 border-bottom">
+                                <span class="text-capitalize font-14 font-weight-600 mb-2"> Truck </span>
+                                <span class="edit-text font-14 font-weight-600 mb-2"><a href=""><i class="fa fa-plus me-2" aria-hidden="true"></i> Assign</a></span>
+                              </li>
+                              <p class="text-center border-bottom pb-2"> No Truck assigned </p>
+                            </ul>
+                          </div>
+                          <div class="bg-light p-2 rounded-lg">                          
+                            <ul class="mb-0" style="padding-left: 0px !important;">                            
+                              <li class="d-flex flex-wrap align-items-center justify-content-between mb-2 border-bottom">
+                                <span class="text-capitalize font-14 font-weight-600 mb-2"> Driver Partners </span>
+                                <span class="edit-text font-14 font-weight-600 mb-2"><a href=""><i class="fa fa-plus me-2" aria-hidden="true"></i> Assign</a></span>
+                              </li>
+                              <p class="text-center border-bottom pb-2">  No Device Partner assigned  </p>
+                            </ul>
+                          </div>
+                          <div class="bg-light p-2 rounded-lg">                          
+                            <ul class="mb-0" style="padding-left: 0px !important;">                            
+                              <li class="d-flex flex-wrap align-items-center justify-content-between mb-2 border-bottom">
+                                <span class="text-capitalize font-14 font-weight-600 mb-2"> Vendor/Payee </span>
+                                <span class="edit-text font-14 font-weight-600 mb-2"><a href=""><i class="fa fa-plus me-2" aria-hidden="true"></i> Select</a></span>
+                              </li>
+                              <p class="text-center border-bottom pb-2">   No Vendor/Payee Select  </p>
+                            </ul>
+                          </div>
+                          <div class="bg-light p-2 rounded-lg">                          
+                            <ul class="mb-0" style="padding-left: 0px !important;">                            
+                              <li class="d-flex flex-wrap align-items-center justify-content-between mb-2 border-bottom">
+                                <span class="text-capitalize font-14 font-weight-600 mb-2"> Bank Information </span>
+                                <span class="edit-text font-14 font-weight-600 mb-2"><a href=""><i class="fa fa-plus me-2" aria-hidden="true"></i> Add</a></span>
+                              </li>
+                              <p class="text-center border-bottom pb-2">    No Bank Info Added   </p>
+                            </ul>
+                          </div>
+                          <div class="bg-light p-2 rounded-lg">                          
+                            <ul class="mb-0" style="padding-left: 0px !important;">                            
+                              <li class="d-flex flex-wrap align-items-center justify-content-between mb-2 border-bottom">
+                                <span class="text-capitalize font-14 font-weight-600 mb-2"> Devices </span>
+                                <span class="edit-text font-14 font-weight-600 mb-2"><a href=""><i class="fa fa-plus me-2" aria-hidden="true"></i>  Invite</a></span>
+                              </li>
+                              <p class="text-center border-bottom pb-2">   No Device invote    </p>
+                            </ul>
+                          </div>
+                          <div class="bg-light p-2 rounded-lg">                          
+                            <ul class="mb-0" style="padding-left: 0px !important;">                            
+                              <li class="d-flex flex-wrap align-items-center justify-content-between mb-2 border-bottom">
+                                <span class="text-capitalize font-14 font-weight-600 mb-2"> GPS Tracking </span>                                  
+                              </li>
+                              <select class="form-select">
+                                <option>Based On</option>
+                                <option>Options</option>
+                                <option>Options</option>
+                                <option>Options</option>
+                            </select>
+                            </ul>
+                          </div>
+                          <div class="bg-light p-2 rounded-lg">                          
+                            <ul class="mb-0" style="padding-left: 0px !important;">                            
+                              <li class="d-flex flex-wrap align-items-center justify-content-between mb-2 border-bottom">
+                                <span class="text-capitalize font-14 font-weight-600 mb-2"> Assigned Users </span>
+                                <span class="edit-text font-14 font-weight-600 mb-2"><a href=""><i class="fa fa-plus me-2" aria-hidden="true"></i>  Assign</a></span>
+                              </li>
+                              <p class="text-center border-bottom pb-2">  No trailer company assigned  </p>
+                            </ul>
+                          </div>
+                          <div class="bg-light p-2 rounded-lg">                          
+                            <ul class="mb-0" style="padding-left: 0px !important;">                            
+                              <li class="d-flex flex-wrap align-items-center justify-content-between mb-2 border-bottom">
+                                <span class="text-capitalize font-14 font-weight-600 mb-2"> Pinned Note </span>
+                                <span class="edit-text font-14 font-weight-600 mb-2"><a href=""><i class="ri-save-3-line" aria-hidden="true"></i>  Save</a></span>
+                              </li>
+                              <textarea class="form-control mb-3" rows="5"></textarea>
+                            </ul>
+                          </div>
+                        </div>
+                      </div>
+                      
+                    </div> 
+                </div>
+            </div>                
+          </div>
+
+          <hr class="hr" />
+        </div>
+        </div>
+</main><!-- End #main -->
+
+<!-- ======= Footer ======= -->
+<footer id="footer" class="footer">
+  <div class="text-dark text-center">
+    <span class="text-muted fw-semibold me-1">2023© all rights reserved</span>
+    <a href="#" class="font-weight-700 text-hover-dark text-dark text-uppercase">3PL TEK INC.</a>
+  </div>
+
+</footer><!-- End Footer -->
+
+<a href="#" class="back-to-top d-flex align-items-center justify-content-center btn-success"><i
+    class="bi bi-arrow-up-short"></i></a>
+
+
+
+        <div class="offcanvas offcanvas-end" tabindex="-1" id="editTruck" aria-labelledby="offcanvasRightLabel" style="width: 80%;">
+          <div class="modal-header" style="padding: 15px; border-bottom: 1px solid #ccc;">
+            <h5 class="modal-title">Edit Truck</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-h2="Close"></button>
+          </div>
+          <div class="offcanvas-body view-load position-relative">
+            <form class="row g-3">
+              <div class="col-md-4">
+                <h2 class="font-14 font-weight-700"> Company Name DBA</h2>
+                <input type="text" class="form-control" id="validationDefault01" value=" Company Name DBA " required="">
+              </div>
+              <div class="col-md-4">
+                <h2 class="font-14 font-weight-700">Corporation</h2>
+                <input type="text" class="form-control" id="validationDefault02" value="Corporation" required="">
+              </div>
+              <div class="col-md-4">
+                <h2 class="font-14 font-weight-700">DOT</h2>
+                <input type="text" class="form-control" id="validationDefault02" value="DOT" required="">
+              </div>
+              <div class="col-md-4">
+                <h2 class="font-14 font-weight-700">MC</h2>
+                <input type="text" class="form-control" id="validationDefault02" value="MC" required="">
+              </div>
+              <div class="col-md-4">
+                <h2 class="font-14 font-weight-700">Upload Document</h2>
+                <input type="file" class="form-control" id="validationDefault02" value="MC" required="">
+              </div>
+              <hr class="hr">
+
+              <div class="col-md-4">
+                <h2 class="font-14 font-weight-700">KYU</h2>
+                <input type="text" class="form-control" id="validationDefault02" value="KYU" required="">
+              </div>
+              <div class="col-md-4">
+                <h2 class="font-14 font-weight-700">Upload Document</h2>
+                <input type="file" class="form-control" id="validationDefault02" value="MC" required="">
+              </div>
+              <div class="col-md-4">
+                <h2 class="font-14 font-weight-700">KYU Expiration</h2>
+                <input type="text" class="form-control" id="validationDefault02" value="dd/mm/yyyy" required="">
+              </div>
+
+              <div class="col-md-4">
+                <h2 class="font-14 font-weight-700">NY</h2>
+                <input type="text" class="form-control" id="validationDefault02" value="NY" required="">
+              </div>
+              <div class="col-md-4">
+                <h2 class="font-14 font-weight-700">Upload Document</h2>
+                <input type="file" class="form-control" id="validationDefault02" value="MC" required="">
+              </div>
+              <div class="col-md-4">
+                <h2 class="font-14 font-weight-700">NY Expiration</h2>
+                <input type="text" class="form-control" id="validationDefault02" value="dd/mm/yyyy" required="">
+              </div>
+
+              <div class="col-md-4">
+                <h2 class="font-14 font-weight-700">NM WDT</h2>
+                <input type="text" class="form-control" id="validationDefault02" value="NM WDT" required="">
+              </div>
+              <div class="col-md-4">
+                <h2 class="font-14 font-weight-700">Ein</h2>
+                <input type="text" class="form-control" id="validationDefault02" value="Ein" required="">
+              </div>
+              <div class="col-md-2">
+                <h2 class="font-14 font-weight-700">W9</h2>
+                <input type="text" class="form-control" id="validationDefault02" value="W9" required="">
+              </div>
+              <div class="col-md-2">
+                <h2 class="font-14 font-weight-700">Upload Document</h2>
+                <input type="file" class="form-control" id="validationDefault02" value="MC" required="">
+              </div>
+
+              <hr class="hr">
+
+              <div class="col-md-4">
+                <h2 class="font-14 font-weight-700">IFTA ACC</h2>
+                <input type="text" class="form-control" id="validationDefault02" value="IFTA ACC" required="">
+              </div>
+              <div class="col-md-4">
+                <h2 class="font-14 font-weight-700">Prepass</h2>
+                <input type="text" class="form-control" id="validationDefault02" value="Prepass" required="">
+              </div>
+              <div class="col-md-4">
+                <h2 class="font-14 font-weight-700">IRP ACC</h2>
+                <input type="text" class="form-control" id="validationDefault02" value="IRP ACC" required="">
+              </div>
+              <div class="col-md-4">
+                <h2 class="font-14 font-weight-700">IRP Renewal Date</h2>
+                <input type="text" class="form-control" id="validationDefault02" value="dd/mm/yyyy" required="">
+              </div>
+              <div class="col-md-4">
+                <h2 class="font-14 font-weight-700">Insurance Document</h2>
+                <input type="file" class="form-control" id="validationDefault02" value="MC" required="">
+              </div>
+
+              <hr class="hr">
+
+              <div class="col-md-4">
+                <h2 class="font-14 font-weight-700">Address</h2>
+                <input type="text" class="form-control" id="validationDefault02" value="Address" required="">
+              </div>
+              <div class="col-md-4">
+                <h2 class="font-14 font-weight-700">Phone</h2>
+                <input type="text" class="form-control" id="validationDefault02" value="Phone" required="">
+              </div>
+              <div class="col-md-4">
+                <h2 class="font-14 font-weight-700">Email Pull Noitce ACC</h2>
+                <input type="text" class="form-control" id="validationDefault02" value="Email Pull Noitce ACC" required="">
+              </div>
+              <div class="col-md-4">
+                <h2 class="font-14 font-weight-700">Truck</h2>
+                <input type="text" class="form-control" id="validationDefault02" value="Truck" required="">
+              </div>
+              <div class="col-md-4">
+                <h2 class="font-14 font-weight-700">Registration</h2>
+                <input type="text" class="form-control" id="validationDefault02" value="Registration" required="">
+              </div>
+              <div class="col-md-4">
+                <h2 class="font-14 font-weight-700">Upload Document</h2>
+                <input type="file" class="form-control" id="validationDefault02" value="MC" required="">
+              </div>
+              <div class="col-md-4">
+                <h2 class="font-14 font-weight-700">Owner Address</h2>
+                <input type="text" class="form-control" id="validationDefault02" value="Address" required="">
+              </div>
+              <div class="col-md-4">
+                <h2 class="font-14 font-weight-700">Phone</h2>
+                <input type="text" class="form-control" id="validationDefault02" value="Phone" required="">
+              </div>
+              <div class="col-md-4">
+                <h2 class="font-14 font-weight-700">Email</h2>
+                <input type="text" class="form-control" id="validationDefault02" value="Email" required="">
+              </div>
+              <div class="col-md-4">
+                <h2 class="font-14 font-weight-700">Number of Trailer</h2>
+                <input type="text" class="form-control" id="validationDefault02" value="Truck" required="">
+              </div>
+              <div class="col-md-4">
+                <h2 class="font-14 font-weight-700">Trailer Registration</h2>
+                <input type="text" class="form-control" id="validationDefault02" value="dd/mm/yyyy" required="">
+              </div>
+              <div class="col-md-4">
+                <h2 class="font-14 font-weight-700">Upload Document</h2>
+                <input type="file" class="form-control" id="validationDefault02" value="MC" required="">
+              </div>
+              <div class="col-md-4">
+                <h2 class="font-14 font-weight-700">Randon DT Enrollment Cert</h2>
+                <input type="text" class="form-control" id="validationDefault02" value="Randon DT Enrollment Cert" required="">
+              </div>
+              <div class="col-md-4">
+                <h2 class="font-14 font-weight-700">Upload Document
+                <input type="file" class="form-control" id="validationDefault02" value="MC" required="">
+              </h2></div>
+
+            </form>
+
+            
+              <div class="modal-footer justify-content-center" style="border-top: 1px solid #ccc; padding-top: 15px; margin-top: 15px; ">
+                <button type="button" class="btn btn-outline-secondary btn-sm text-uppercase rounded-pill" data-bs-dismiss="offcanvas" style="margin: 10px;">Close</button> 
+                <button type="button" class="btn btn-success btn-sm text-uppercase rounded-pill">Save changes</button>
+              </div>
+          </div>
+        </div>
+
+
+
+

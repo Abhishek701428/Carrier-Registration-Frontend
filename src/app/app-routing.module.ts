@@ -9,11 +9,17 @@ import { FileManagerComponent } from './features/file-manager/file-manager.compo
 import { UsersComponent } from './features/users/users.component';
 import { DriverListComponent } from './features/driver-list/driver-list.component';
 import { DocumentComponent } from './features/document/document.component';
+import { TrucklistViewComponent } from './features/truck-list-view/truck-list-view.component';
+import { DashboardComponent } from './features/dashboard/dashboard.component';
+import { DriverProfileViewComponent } from './features/driver-profile-view/driver-profile-view.component';
+import { UsersProfileComponent } from './features/users-profile/users-profile.component';
+import { TrailerListViewComponent } from './features/trailer-list-view/trailer-list-view.component';
 
+
+ 
 const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' },
   { path: 'login', component: LoginComponent },
-  { path: 'dashboard', redirectTo: 'company-profile', pathMatch: 'full' },
   { path: 'company-profile', component: CompanyProfileComponent },
   { path: 'truck-list', component: TruckListComponent },
   { path: 'trailer-list', component: TrailerListComponent },
@@ -21,7 +27,13 @@ const routes: Routes = [
   { path: 'driver-application', component: DriverApplicationComponent },
   { path: 'file-manager', component: FileManagerComponent },
   { path: 'users', component: UsersComponent },
-  { path: 'document', component: DocumentComponent}
+  { path: 'document', component: DocumentComponent},
+  { path: 'truck-list-view/:id' , component : TrucklistViewComponent},
+  { path:'trailer-list-view/:id', component:TrailerListViewComponent},
+  { path: 'driver-profile-view/:id' , component : DriverProfileViewComponent},
+  {path :'dashboard', component: DashboardComponent},
+  {path :'users-profile-view', component: UsersProfileComponent}
+
 ];
 
 @NgModule({
