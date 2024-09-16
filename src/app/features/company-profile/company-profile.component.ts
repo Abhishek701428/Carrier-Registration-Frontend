@@ -29,7 +29,6 @@ export class CompanyProfileComponent implements OnInit {
   fetchCounts(): void {
 
     this.authService.getTrucksFromAPI().subscribe((trucks: any) => {
-      console.log('Fetched trucks data:', trucks);
       this.totalTrucks = trucks.length;
       this.animateCount(this.totalTrucks, 'totalTrucks');
 
@@ -39,7 +38,6 @@ export class CompanyProfileComponent implements OnInit {
     });
 
     this.authService.getTrailersFromAPI().subscribe((trailers: any) => {
-      console.log('Fetched trailers data:', trailers);
       this.totalTrailers = trailers.length;
       this.animateCount(this.totalTrailers, 'totalTrailers');
 
@@ -49,7 +47,6 @@ export class CompanyProfileComponent implements OnInit {
     });
 
     this.authService.getDriversFromAPI().subscribe((drivers: any) => {
-      console.log('Fetched drivers data:', drivers);
       this.totalDrivers = drivers.length;
       this.animateCount(this.totalDrivers, 'totalDrivers');
 
@@ -61,9 +58,7 @@ export class CompanyProfileComponent implements OnInit {
 
   updateCountsByStatus(data: any, status: string, property: string): void {
     const filteredData = data.filter((item: any) => item.status === status);
-    console.log(`Filtered data for status ${status}:`, filteredData);
     const count = filteredData.length;
-    console.log(`Count for ${status}: ${count}`);
     (this as any)[property] = count;
     this.cdr.detectChanges();
   }
@@ -78,7 +73,6 @@ export class CompanyProfileComponent implements OnInit {
           currentCount = finalCount;
         }
         (this as any)[property] = currentCount;
-        console.log(`Animating ${property}: ${currentCount}`);
       } else {
         clearInterval(interval);
       }

@@ -296,7 +296,7 @@
       </div>
 
       <div class="col-md-4">
-        <h2 class="font-14 font-weight-700">Previous License Number</h2>
+        <h2 class="font-14 font-weight-700">Yes/No</h2>
         <input type="text" class="form-control" id="previouslicensenumber" placeholder="Yes/No"
           [(ngModel)]="driverToEdit.previouslicensenumber" name="previouslicensenumber" required="">
       </div>
@@ -314,7 +314,7 @@
       </div>
 
       <div class="col-md-4">
-        <h2 class="font-14 font-weight-700">Driving Experience</h2>
+        <h2 class="font-14 font-weight-700">Yes/No</h2>
         <input type="text" class="form-control" id="drivingexperience" placeholder="Yes/No"
           [(ngModel)]="driverToEdit.drivingexperience" name="drivingexperience" required="">
       </div>
@@ -382,9 +382,7 @@
       </div>
 
       <div class="col-md-4">
-        <h2 class="font-14 font-weight-700">Were You Subject to the Federal Motor
-          Carrier Safety
-          Regulations During this Period</h2>
+        <h2 class="font-14 font-weight-700">Were You Subject to the Federal Motor Carrier Safety Regulations During this Period</h2>
         <input type="text" class="form-control" id="federalMotorCarrierSafetyRegulations2 " placeholder="Yes/No"
           [(ngModel)]="driverToEdit.federalMotorCarrierSafetyRegulations2" name="federalMotorCarrierSafetyRegulations2" required="">
       </div>
@@ -709,6 +707,16 @@
             previousLicenseNumber is required.
           </div>
       </div>
+
+      <div class="col-md-4">
+        <h2 class="font-14 font-weight-700">Yes/No</h2>
+        <input type="text" class="form-control" id="yes/no" placeholder="yes/no"
+          [(ngModel)]="newDriver.previouslicensenumber" name="yes/no" #previouslicensenumber = "ngModel" required=""
+          [ngClass]="{'is-invalid': previouslicensenumber.invalid && (previouslicensenumber.dirty ||previouslicensenumber.touched)}">
+          <div *ngIf="previouslicensenumber.invalid && (previouslicensenumber.dirty || previouslicensenumber.touched)" class="invalid-feedback">
+            previousLicenseNumber is required.
+          </div>
+      </div>
   
       <div class="col-md-4">
         <h2 class="font-14 font-weight-700">Previous Address Last 10 years</h2>
@@ -727,6 +735,16 @@
           [ngClass]="{'is-invalid': drivingExperience.invalid && (drivingExperience.dirty ||drivingExperience.touched)}">
           <div *ngIf="drivingExperience.invalid && (drivingExperience.dirty || drivingExperience.touched)" class="invalid-feedback">
             drivingExperience is required.
+          </div>
+      </div>
+
+      <div class="col-md-4">
+        <h2 class="font-14 font-weight-700">Yes/No</h2>
+        <input type="text" class="form-control" id="yes/no" placeholder="yes/no"
+          [(ngModel)]="newDriver.drivingexperience" name="yes/no" #drivingexperience = "ngModel" required=""
+          [ngClass]="{'is-invalid': drivingexperience.invalid && (drivingexperience.dirty ||drivingexperience.touched)}">
+          <div *ngIf="drivingexperience.invalid && (drivingexperience.dirty || drivingexperience.touched)" class="invalid-feedback">
+            drivingexperience is required.
           </div>
       </div>
   
@@ -799,7 +817,7 @@
           <div *ngIf="companyDates.invalid && (companyDates.dirty || companyDates.touched)" class="invalid-feedback">
             companyDates is required.
           </div>
-      </div>>
+      </div>
     
   
       <div class="col-md-4">
@@ -820,8 +838,10 @@
           <div *ngIf="companyEmail.invalid && (companyEmail.dirty || companyEmail.touched)" class="invalid-feedback">
             companyEmail is required.
       </div>
+
+
+
       </div>
-  
       <div class="col-md-4">
         <h2 class="font-14 font-weight-700">Were You Subject to the Federal Motor
           Carrier Safety
@@ -831,9 +851,24 @@
           [ngClass]="{'is-invalid': federalMotorCarrierSafetyRegulations1.invalid && (federalMotorCarrierSafetyRegulations1.dirty ||federalMotorCarrierSafetyRegulations1.touched)}">
           <div *ngIf="federalMotorCarrierSafetyRegulations1.invalid && (federalMotorCarrierSafetyRegulations1.dirty || federalMotorCarrierSafetyRegulations1.touched)" class="invalid-feedback">
             federalMotorCarrierSafetyRegulations1 is required.
+          </div>
       </div>
+
+      <div class="col-md-4">
+        <h2 class="font-14 font-weight-700">Were You Subject to the Federal Motor Carrier Safety Regulations During this Period</h2>
+        <input type="text" class="form-control" id="federalMotorCarrierSafetyRegulations2" placeholder="Yes/No"
+          [(ngModel)]="newDriver.federalMotorCarrierSafetyRegulations2" name="federalMotorCarrierSafetyRegulations2" #federalMotorCarrierSafetyRegulations2 = "ngModel" required=""
+          [ngClass]="{'is-invalid': federalMotorCarrierSafetyRegulations2.invalid && (federalMotorCarrierSafetyRegulations2.dirty ||federalMotorCarrierSafetyRegulations2.touched)}">
+          <div *ngIf="federalMotorCarrierSafetyRegulations2.invalid && (federalMotorCarrierSafetyRegulations2.dirty || federalMotorCarrierSafetyRegulations2.touched)" class="invalid-feedback">
+            federalMotorCarrierSafetyRegulations1 is required.
+          </div>
       </div>
     
+
+
+
+
+
   
       <div class="col-md-4">
         <h2 class="font-14 font-weight-700">Controlled Substance & Alcohol

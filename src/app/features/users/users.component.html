@@ -1,7 +1,5 @@
 <app-navbar></app-navbar>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-
-
 <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet" />
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
@@ -42,17 +40,17 @@
                   <div class="row">
                     <div class="col-md-12">
                       <div class="d-flex justify-content-between">
-                        <div class="form-group has-search mb-0">
+                        <!-- <div class="form-group has-search mb-0">
                           <span class="fa fa-search form-control-feedback"></span>
                           <input style="height: 36px !important;" type="text" name="Search" class="form-control"
                             placeholder="Search...">
-                        </div>
-                        <div class="d-flex justify-content-end gap-2">
+                        </div> -->
+                        <!-- <div class="d-flex justify-content-end gap-2">
                           <button type="button" class="btn btn-success rounded-pill font-14" data-bs-toggle="modal"
                             data-bs-target="#ExtralargeModal">
                             <i class="fa fa-plus me-2" aria-hidden="true"></i>Add
                           </button>
-                        </div>
+                        </div> -->
                       </div>
                     </div>
                   </div>
@@ -91,7 +89,8 @@
                                     data-bs-target="#ExtralargeModalDelete"
                                     onclick="dropdownevent('dropdownMenuButton2', 'assigned')">Delete</a>
                                   <a class="dropdown-item assigned font-13" href="javascript:;"
-                                    data-bs-toggle="offcanvas" data-bs-target="#addpg" (click)="openPermissions(user._id)">
+                                    data-bs-toggle="offcanvas" data-bs-target="#addpg"
+                                    (click)="openPermissions(user._id)">
                                     Permission/View
                                   </a>
                                 </div>
@@ -247,12 +246,12 @@
                           <div class="form-group has-search mb-0">
 
                           </div>
-                          <div class="d-flex justify-content-end gap-2">
+                          <!-- <div class="d-flex justify-content-end gap-2">
                             <button type="button" class="btn btn-success rounded-pill font-14" data-bs-toggle="modal"
                               data-bs-target="#ExtralargeModal">
                               <i class="fa fa-plus me-2" aria-hidden="true"></i>Add
                             </button>
-                          </div>
+                          </div> -->
                         </div>
                       </div>
                     </div>
@@ -395,93 +394,229 @@
 
 
 
-
             <!-- Users Tab -->
             <div class="tab-pane fade" id="users" role="tabpanel" aria-labelledby="users-tab">
-              <!--Users tab here -->
-              <div class="tab-pane fade active show" id="customer" role="tabpanel" aria-labelledby="home-tab">
-                <div id="kt_app_content" class="app-content flex-column-fluid">
-                  <div class="my-4">
-                    <div class="row">
-                      <div class="col-md-12">
-                        <div class="d-flex justify-content-between">
-                          <div class="form-group has-search mb-0">
-                            <span class="fa fa-search form-control-feedback"></span>
-                            <input style="height: 36px !important;" type="text" name="Search" class="form-control"
-                              placeholder="Search...">
-                          </div>
-                          <div class="d-flex justify-content-end gap-2">
-                            <button type="button" class="btn btn-success rounded-pill font-14" data-bs-toggle="modal"
-                              data-bs-target="#ExtralargeModal">
-                              <i class="fa fa-plus me-2" aria-hidden="true"></i>Add
-                            </button>
-                          </div>
-                        </div>
+              <!-- Users tab content -->
+              <div class="my-4">
+                <div class="row">
+                  <div class="col-md-12">
+                    <div class="d-flex justify-content-between">
+                      <div class="form-group has-search mb-0">
+                        <span class="fa fa-search form-control-feedback"></span>
+                        <input style="height: 36px !important;" type="text" name="Search" class="form-control"
+                          placeholder="Search...">
                       </div>
-                    </div>
-                  </div>
-                  <div class="row">
-                    <div class="col-lg-12">
-                      <div class="table-responsive">
-                        <table class="table table-bordered">
-                          <thead>
-                            <tr>
-                              <th scope="col">Name</th>
-                              <th scope="col">Email</th>
-                              <th scope="col">Type</th>
-                              <th scope="col">Permission Group</th>
-                              <th scope="col">Active/De-Active</th>
-                              <th scope="col" width="30px">Actions</th>
-                            </tr>
-                          </thead>
-                          <tbody>
-                            <tr *ngFor="let user of users">
-                              <td style="color: blue;">{{ user.name }}</td>
-                              <td>{{ user.email }}</td>
-                              <td>{{ user.usertype }}</td>
-                              <td>Update Permission</td>
-                              <td>Active</td>
-                              <td class="text-capitalize text-center">
-                                <div class="dropdown filter-dropdown">
-                                  <span class="dropdown-toggle font-16 px-3" type="button" id="dropdownMenuButton23"
-                                    data-bs-toggle="dropdown" aria-expanded="false"><i
-                                      class="fa fa-ellipsis-v"></i></span>
-                                  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton23">
-                                    <a class="dropdown-item dispatch font-13" href="javascript:;" data-bs-toggle="modal"
-                                      data-bs-target="#ExtralargeModalEdit">Edit</a>
-                                    <a class="dropdown-item assigned font-13" href="javascript:;" data-bs-toggle="modal"
-                                      data-bs-target="#ExtralargeModalDelete">Delete</a>
-                                  </div>
-                                </div>
-                              </td>
-                            </tr>
-                          </tbody>
-                        </table>
+                      <div class="d-flex justify-content-end gap-2">
+                        <button class="btn btn-success rounded-pill font-14" type="button" data-bs-toggle="offcanvas"
+                          data-bs-target="#addUserOffcanvas" aria-controls="addUserOffcanvas">
+                          <i class="fa fa-plus me-2" aria-hidden="true"></i>Add
+                        </button>
                       </div>
-                    </div>
-                  </div>
-                  <div class="row bg-white px-3 py-4 mt-3 rounded">
-                    <div class="col-md-12">
-                      <nav aria-label="Page navigation example ms-auto me-auto">
-                        <ul class="pagination justify-content-center gap-2 mb-0">
-                          <li class="page-item">
-                            <a class="page-link font-22" href="javascript:;" aria-label="Previous"><i
-                                class="fa fa-angle-left font-weight-300"></i></a>
-                          </li>
-                          <li class="page-item active"><a class="page-link font-14" href="javascript:;">1</a></li>
-                          <li class="page-item"><a class="page-link font-14" href="javascript:;">2</a></li>
-                          <li class="page-item"><a class="page-link font-14" href="javascript:;">3</a></li>
-                          <li class="page-item"><a class="page-link font-14" href="javascript:;">4</a></li>
-                          <li class="page-item"><a class="page-link font-14" href="javascript:;">5</a></li>
-                          <li class="page-item"><a class="page-link font-22" href="javascript:;" aria-label="Next"><i
-                                class="fa fa-angle-right font-weight-300"></i></a></li>
-                        </ul>
-                      </nav>
                     </div>
                   </div>
                 </div>
               </div>
 
+              <!-- Offcanvas Component for Users -->
+              <div class="offcanvas offcanvas-end" tabindex="-1" id="addUserOffcanvas"
+                aria-labelledby="addUserOffcanvasLabel" style="width: 80%;">
+                <div class="offcanvas-header" style="padding: 15px; border-bottom: 1px solid #ccc;">
+                  <h5 class="offcanvas-title" id="addUserOffcanvasLabel">ADD USER</h5>
+                  <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                </div>
+                <div class="offcanvas-body">
+                  <form class="row g-3" (ngSubmit)="registerNewUser()">
+                    <div class="col-md-6">
+                      <label for="name" class="form-label">Name</label>
+                      <input type="text" class="form-control" id="name" [(ngModel)]="newUser.name" name="name"
+                        #name="ngModel" required
+                        [ngClass]="{'is-invalid': name.invalid && (name.dirty || name.touched)}">
+                      <div *ngIf="name.invalid && (name.dirty || name.touched)" class="invalid-feedback">
+                        Name is required.
+                      </div>
+                    </div>
+
+                    <div class="col-md-6">
+                      <label for="email" class="form-label">Email</label>
+                      <input type="email" class="form-control" id="email" [(ngModel)]="newUser.email" name="email"
+                        #email="ngModel" required
+                        [ngClass]="{'is-invalid': email.invalid && (email.dirty || email.touched)}">
+                      <div *ngIf="email.invalid && (email.dirty || email.touched)" class="invalid-feedback">
+                        Valid email is required.
+                      </div>
+                    </div>
+
+                    <div class="col-md-6">
+                      <label for="usertype" class="form-label">User Type</label>
+                      <select class="form-select" id="usertype" [(ngModel)]="newUser.usertype" name="usertype"
+                        #usertype="ngModel" required
+                        [ngClass]="{'is-invalid': usertype.invalid && (usertype.dirty || usertype.touched)}">
+                        <option value="admin">Admin</option>
+                        <option value="user">User</option>
+                      </select>
+                      <div *ngIf="usertype.invalid && (usertype.dirty || usertype.touched)" class="invalid-feedback">
+                        User type is required.
+                      </div>
+                    </div>
+
+                    <div class="col-md-6">
+                      <label for="password" class="form-label">Password</label>
+                      <input type="password" class="form-control" id="password" [(ngModel)]="newUser.password"
+                        name="password" #password="ngModel" required
+                        [ngClass]="{'is-invalid': password.invalid && (password.dirty || password.touched)}">
+                      <div *ngIf="password.invalid && (password.dirty || password.touched)" class="invalid-feedback">
+                        Password is required.
+                      </div>
+                    </div>
+
+                    <!-- Permissions Section -->
+                    <div class="col-12">
+                      <h5 class="mt-4">Permissions</h5>
+                      <table class="table table-bordered">
+                        <thead>
+                          <tr>
+                            <th scope="col">Permissions</th>
+                            <th class="text-center" style="width: 5%;">Create</th>
+                            <th class="text-center" style="width: 5%;">Read</th>
+                            <th class="text-center" style="width: 5%;">Update</th>
+                            <th class="text-center" style="width: 5%;">Delete</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <!-- Truck List Permissions -->
+                          <tr>
+                            <td>Truck List</td>
+                            <td><input type="checkbox" [(ngModel)]="newUser.permissions.truckList.create"
+                                name="truckListCreate"></td>
+                            <td><input type="checkbox" [(ngModel)]="newUser.permissions.truckList.read"
+                                name="truckListRead"></td>
+                            <td><input type="checkbox" [(ngModel)]="newUser.permissions.truckList.update"
+                                name="truckListUpdate"></td>
+                            <td><input type="checkbox" [(ngModel)]="newUser.permissions.truckList.delete"
+                                name="truckListDelete"></td>
+                          </tr>
+                          <!-- Trailer List Permissions -->
+                          <tr>
+                            <td>Trailer List</td>
+                            <td><input type="checkbox" [(ngModel)]="newUser.permissions.trailerList.create"
+                                name="trailerListCreate"></td>
+                            <td><input type="checkbox" [(ngModel)]="newUser.permissions.trailerList.read"
+                                name="trailerListRead"></td>
+                            <td><input type="checkbox" [(ngModel)]="newUser.permissions.trailerList.update"
+                                name="trailerListUpdate"></td>
+                            <td><input type="checkbox" [(ngModel)]="newUser.permissions.trailerList.delete"
+                                name="trailerListDelete"></td>
+                          </tr>
+                          <!-- Driver List Permissions -->
+                          <tr>
+                            <td>Driver List</td>
+                            <td><input type="checkbox" [(ngModel)]="newUser.permissions.driverList.create"
+                                name="driverListCreate"></td>
+                            <td><input type="checkbox" [(ngModel)]="newUser.permissions.driverList.read"
+                                name="driverListRead"></td>
+                            <td><input type="checkbox" [(ngModel)]="newUser.permissions.driverList.update"
+                                name="driverListUpdate"></td>
+                            <td><input type="checkbox" [(ngModel)]="newUser.permissions.driverList.delete"
+                                name="driverListDelete"></td>
+                          </tr>
+                          <!-- Driver Application Permissions -->
+                          <tr>
+                            <td>Driver Application</td>
+                            <td><input type="checkbox" [(ngModel)]="newUser.permissions.driverApplication.create"
+                                name="driverApplicationCreate"></td>
+                            <td><input type="checkbox" [(ngModel)]="newUser.permissions.driverApplication.read"
+                                name="driverApplicationRead"></td>
+                            <td><input type="checkbox" [(ngModel)]="newUser.permissions.driverApplication.update"
+                                name="driverApplicationUpdate"></td>
+                            <td><input type="checkbox" [(ngModel)]="newUser.permissions.driverApplication.delete"
+                                name="driverApplicationDelete"></td>
+                          </tr>
+                          <tr>
+                            <td>Company List</td>
+                            <td><input type="checkbox" [(ngModel)]="newUser.permissions.companyList.create"
+                                name="driverApplicationCreate"></td>
+                            <td><input type="checkbox" [(ngModel)]="newUser.permissions.companyList.read"
+                                name="driverApplicationRead"></td>
+                            <td><input type="checkbox" [(ngModel)]="newUser.permissions.companyList.update"
+                                name="driverApplicationUpdate"></td>
+                            <td><input type="checkbox" [(ngModel)]="newUser.permissions.companyList.delete"
+                                name="driverApplicationDelete"></td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+
+
+                    <div class="modal-footer justify-content-center"
+                      style="border-top: 1px solid #ccc; padding-top: 15px; margin-top: 15px;">
+                      <button type="button" class="btn btn-outline-secondary btn-sm text-uppercase rounded-pill"
+                        data-bs-dismiss="offcanvas" style="margin: 10px;">Close</button>
+                      <button type="submit" class="btn btn-success btn-sm text-uppercase rounded-pill"
+                        data-bs-dismiss="offcanvas">Save changes</button>
+                    </div>
+                  </form>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-lg-12">
+                  <div class="table-responsive">
+                    <table class="table table-bordered">
+                      <thead>
+                        <tr>
+                          <th scope="col">Name</th>
+                          <th scope="col">Email</th>
+                          <th scope="col">Type</th>
+                          <th scope="col">Permission Group</th>
+                          <th scope="col">Active/De-Active</th>
+                          <th scope="col" width="30px">Actions</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr *ngFor="let user of users">
+                          <td style="color: blue;">{{ user.name }}</td>
+                          <td>{{ user.email }}</td>
+                          <td>{{ user.usertype }}</td>
+                          <td>Update Permission</td>
+                          <td>Active</td>
+                          <td class="text-capitalize text-center">
+                            <div class="dropdown filter-dropdown">
+                              <span class="dropdown-toggle font-16 px-3" type="button" id="dropdownMenuButton23"
+                                data-bs-toggle="dropdown" aria-expanded="false"><i class="fa fa-ellipsis-v"></i></span>
+                              <div class="dropdown-menu" aria-labelledby="dropdownMenuButton23">
+                                <a class="dropdown-item dispatch font-13" href="javascript:;" data-bs-toggle="modal"
+                                  data-bs-target="#ExtralargeModalEdit">Edit</a>
+                                <a class="dropdown-item assigned font-13" href="javascript:;" data-bs-toggle="modal"
+                                  data-bs-target="#ExtralargeModalDelete">Delete</a>
+                              </div>
+                            </div>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+
+              <div class="row bg-white px-3 py-4 mt-3 rounded">
+                <div class="col-md-12">
+                  <nav aria-label="Page navigation example ms-auto me-auto">
+                    <ul class="pagination justify-content-center gap-2 mb-0">
+                      <li class="page-item">
+                        <a class="page-link font-22" href="javascript:;" aria-label="Previous"><i
+                            class="fa fa-angle-left font-weight-300"></i></a>
+                      </li>
+                      <li class="page-item active"><a class="page-link font-14" href="javascript:;">1</a></li>
+                      <li class="page-item"><a class="page-link font-14" href="javascript:;">2</a></li>
+                      <li class="page-item"><a class="page-link font-14" href="javascript:;">3</a></li>
+                      <li class="page-item"><a class="page-link font-14" href="javascript:;">4</a></li>
+                      <li class="page-item"><a class="page-link font-14" href="javascript:;">5</a></li>
+                      <li class="page-item"><a class="page-link font-22" href="javascript:;" aria-label="Next"><i
+                            class="fa fa-angle-right font-weight-300"></i></a></li>
+                    </ul>
+                  </nav>
+                </div>
+              </div>
 
               <!-- 
               <div class="modal fade" id="ExtralargeModal" tabindex="-1" aria-hidden="true">
@@ -697,11 +832,11 @@
                       </tbody>
                     </table>
 
-                    <div class="offcanvas-footer text-center"
+                    <div class="modal-footer justify-content-center"
                       style="border-top: 1px solid #ccc; padding-top: 15px; margin-top: 15px;">
                       <button type="button" class="btn btn-outline-secondary btn-sm text-uppercase rounded-pill"
-                        data-bs-dismiss="offcanvas">Close</button>
-                      <button type="submit" class="btn btn-success btn-sm text-uppercase rounded-pill">Save
+                        data-bs-dismiss="offcanvas" style="margin: 10px;">Close</button>
+                      <button type="button" class="btn btn-success btn-sm text-uppercase rounded-pill">Save
                         changes</button>
                     </div>
                   </form>
@@ -843,36 +978,6 @@
       <button type="button" class="btn btn-success btn-sm text-uppercase rounded-pill" (click)="savePermissions()">Save
         changes</button>
     </div>
+      
   </div>
 </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

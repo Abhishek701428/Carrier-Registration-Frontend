@@ -7,29 +7,29 @@
 
 <main id="main" class="main mt-0 p-0">
 
-  <body> 
-  
+  <body>
+
     <!-- ======= Header ======= -->
     <header id="header" class="header d-flex align-items-center justify-content-between">
-  
+
       <div class="d-flex align-items-center justify-content-between">
         <a href="dashboard.html" class="logo d-flex align-items-center">
           <img src="assets/img/3pltek-logo.png" alt="3pltek-logo">
-        
+
         </a>
         <div class="row">
           <nav class="navbar navbar-expand-lg navbar-light">
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
-            aria-controls="navbarNav" aria-expanded="false" aria-h2="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
+              aria-controls="navbarNav" aria-expanded="false" aria-h2="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse ms-5" id="navbarNav">
               <ul class="navbar-nav">
                 <li class="nav-item">
-                 
+
                   <a class="nav-link" routerLink="/company-profile">Dashboard</a>
-                  
-                  
+
+
 
 
 
@@ -41,7 +41,7 @@
       </div>
     </header>
   </body>
-  
+
   <div id="kt_app_content" class="app-content  flex-column-fluid">
     <div class="container-fluid px-5">
 
@@ -65,7 +65,7 @@
       </div>
 
 
-      
+
 
 
       <div class="row">
@@ -151,88 +151,154 @@
   <div class="offcanvas-body view-load position-relative">
     <form class="row g-3" (ngSubmit)="submitForm()">
       <div class="col-md-4">
-        <h5 class="font-14 font-weight-700"> Company Name</h5>
-        <input type="text" class="form-control" id="Company Name " placeholder=" Company Name "
-          [(ngModel)]="newCompany.companyName" name="companyName" required="">
+        <h5 class="font-14 font-weight-700">Company Name</h5>
+        <input type="text" class="form-control" id="companyName" placeholder="Company Name"
+          [(ngModel)]="newCompany.companyName" name="companyName" #companyName="ngModel" required
+          [ngClass]="{'is-invalid': companyName.invalid && (companyName.dirty || companyName.touched)}">
+        <div *ngIf="companyName.invalid && (companyName.dirty || companyName.touched)" class="invalid-feedback">
+          Company Name is required.
+        </div>
       </div>
+
+      <!-- Corporation -->
       <div class="col-md-4">
         <h5 class="font-14 font-weight-700">Corporation</h5>
-        <input type="text" class="form-control" id="Corporation" placeholder="Corporation"
-          [(ngModel)]="newCompany.corporation" name="corporation" required="">
+        <input type="text" class="form-control" id="corporation" placeholder="Corporation"
+          [(ngModel)]="newCompany.corporation" name="corporation" #corporation="ngModel" required
+          [ngClass]="{'is-invalid': corporation.invalid && (corporation.dirty || corporation.touched)}">
+        <div *ngIf="corporation.invalid && (corporation.dirty || corporation.touched)" class="invalid-feedback">
+          Corporation is required.
+        </div>
       </div>
+
+      <!-- DOT -->
       <div class="col-md-4">
         <h5 class="font-14 font-weight-700">DOT</h5>
-        <input type="text" class="form-control" id="DOT" placeholder="DOT" [(ngModel)]="newCompany.dot" name="DOT"
-          required="">
+        <input type="text" class="form-control" id="dot" placeholder="DOT" [(ngModel)]="newCompany.dot" name="DOT"
+          #dot="ngModel" required [ngClass]="{'is-invalid': dot.invalid && (dot.dirty || dot.touched)}">
+        <div *ngIf="dot.invalid && (dot.dirty || dot.touched)" class="invalid-feedback">
+          DOT is required.
+        </div>
       </div>
+
+      <!-- MC -->
       <div class="col-md-4">
         <h5 class="font-14 font-weight-700">MC</h5>
-        <input type="text" class="form-control" id="MC" placeholder="MC" [(ngModel)]="newCompany.mc" name="MC"
-          required="">
+        <input type="text" class="form-control" id="mc" placeholder="MC" [(ngModel)]="newCompany.mc" name="MC"
+          #mc="ngModel" required [ngClass]="{'is-invalid': mc.invalid && (mc.dirty || mc.touched)}">
+        <div *ngIf="mc.invalid && (mc.dirty || mc.touched)" class="invalid-feedback">
+          MC is required.
+        </div>
       </div>
+
+      <!-- Upload Documents -->
       <div class="col-md-4">
         <h5 class="font-14 font-weight-700">Upload Documents</h5>
         <input type="file" class="form-control" id="validationDefault02" placeholder="Document.pdf"
           (change)="onFileChange($event, 'uploadDocument')" name="validationDefault02" required="">
+              
       </div>
-      <div class="col-md-4">
-        <h5 class="font-14 font-weight-700">Ownwer Name</h5>
-        <input type="text" class="form-control" id="Ownwer Name " placeholder=" Ownwer Name "
-          [(ngModel)]="newCompany.ownerName" name="OwnwerName" required="">
-      </div>
-      <hr class="hr">
 
+      <!-- Owner Name -->
+      <div class="col-md-4">
+        <h5 class="font-14 font-weight-700">Owner Name</h5>
+        <input type="text" class="form-control" id="ownerName" placeholder="Owner Name"
+          [(ngModel)]="newCompany.ownerName" name="ownerName" #ownerName="ngModel" required
+          [ngClass]="{'is-invalid': ownerName.invalid && (ownerName.dirty || ownerName.touched)}">
+        <div *ngIf="ownerName.invalid && (ownerName.dirty || ownerName.touched)" class="invalid-feedback">
+          Owner Name is required.
+        </div>
+      </div>
+
+      <!-- KYU -->
       <div class="col-md-4">
         <h5 class="font-14 font-weight-700">KYU</h5>
-        <input type="text" class="form-control" id="KYU" placeholder="KYU" [(ngModel)]="newCompany.kyu" name="KYU"
-          required="">
+        <input type="text" class="form-control" id="kyu" placeholder="KYU" [(ngModel)]="newCompany.kyu" name="kyu"
+          #kyu="ngModel" required [ngClass]="{'is-invalid': kyu.invalid && (kyu.dirty || kyu.touched)}">
+        <div *ngIf="kyu.invalid && (kyu.dirty || kyu.touched)" class="invalid-feedback">
+          KYU is required.
+        </div>
       </div>
+
+      <!-- Upload Documents for KYU -->
       <div class="col-md-4">
         <h5 class="font-14 font-weight-700">Upload Documents</h5>
         <input type="file" class="form-control" id="validationDefault02" placeholder="Document.pdf"
           (change)="onFileChange($event, 'kyuUploadDocument')" name="validationDefault02" required="">
+              
       </div>
+      <!-- KYU Expiration -->
       <div class="col-md-4">
         <h5 class="font-14 font-weight-700">KYU Expiration</h5>
-        <input type="date" class="form-control" id="KYU Expiration" placeholder="dd/mm/yyyy"
-          [(ngModel)]="newCompany.kyuExpiration" name="KYU Expiration" required="">
-      </div>
-
-      <div class="col-md-4">
-        <h5 class="font-14 font-weight-700">NY</h5>
-        <input type="text" class="form-control" id="NY" placeholder="NY" [(ngModel)]="newCompany.ny" name="ny"
-          required="">
+        <input type="date" class="form-control" id="kyuExpiration" placeholder="dd/mm/yyyy"
+          [(ngModel)]="newCompany.kyuExpiration" name="kyuExpiration" #kyuExpiration="ngModel" required
+          [ngClass]="{'is-invalid': kyuExpiration.invalid && (kyuExpiration.dirty || kyuExpiration.touched)}">
+        <div *ngIf="kyuExpiration.invalid && (kyuExpiration.dirty || kyuExpiration.touched)" class="invalid-feedback">
+          KYU Expiration is required.
+        </div>
       </div>
       <div class="col-md-4">
         <h5 class="font-14 font-weight-700">Upload Documents</h5>
         <input type="file" class="form-control" id="validationDefault02" placeholder="Document.pdf"
           (change)="onFileChange($event, 'nyUploadDocument')" name="validationDefault02" required="">
+              
       </div>
+
+
+      <div class="col-md-4">
+        <h5 class="font-14 font-weight-700">NY</h5>
+        <input type="text" class="form-control" id="NY" placeholder="NY" [(ngModel)]="newCompany.ny" name="ny"
+          #ny="ngModel" required [ngClass]="{'is-invalid': ny.invalid && (ny.dirty || ny.touched)}">
+        <div *ngIf="ny.invalid && (ny.dirty || ny.touched)" class="invalid-feedback">
+          NY is required.
+        </div>
+      </div>
+
+
+
       <div class="col-md-4">
         <h5 class="font-14 font-weight-700">NY Expiration</h5>
         <input type="date" class="form-control" id="NY Expiration" placeholder="dd/mm/yyyy"
-          [(ngModel)]="newCompany.nyExpiration" name="NY Expiration" required="">
+          [(ngModel)]="newCompany.nyExpiration" name="nyExpiration" #nyExpiration="ngModel" required
+          [ngClass]="{'is-invalid': nyExpiration.invalid && (nyExpiration.dirty || nyExpiration.touched)}">
+        <div *ngIf="nyExpiration.invalid && (nyExpiration.dirty || nyExpiration.touched)" class="invalid-feedback">
+          NY Expiration is required.
+        </div>
       </div>
 
       <div class="col-md-4">
         <h5 class="font-14 font-weight-700">NM WDT</h5>
         <input type="text" class="form-control" id="NM WDT" placeholder="NM WDT" [(ngModel)]="newCompany.nmWdt"
-          name="NM WDT" required="">
+          name="nmWdt" #nmWdt="ngModel" required
+          [ngClass]="{'is-invalid': nmWdt.invalid && (nmWdt.dirty || nmWdt.touched)}">
+        <div *ngIf="nmWdt.invalid && (nmWdt.dirty || nmWdt.touched)" class="invalid-feedback">
+          NM WDT is required.
+        </div>
       </div>
+
       <div class="col-md-4">
         <h5 class="font-14 font-weight-700">Ein</h5>
-        <input type="text" class="form-control" id="Ein" placeholder="Ein" [(ngModel)]="newCompany.ein" name="Ein"
-          required="">
+        <input type="text" class="form-control" id="Ein" placeholder="Ein" [(ngModel)]="newCompany.ein" name="ein"
+          #ein="ngModel" required [ngClass]="{'is-invalid': ein.invalid && (ein.dirty || ein.touched)}">
+        <div *ngIf="ein.invalid && (ein.dirty || ein.touched)" class="invalid-feedback">
+          EIN is required.
+        </div>
       </div>
+
       <div class="col-md-2">
         <h5 class="font-14 font-weight-700">W9</h5>
-        <input type="text" class="form-control" id="W9" placeholder="W9" [(ngModel)]="newCompany.w9" name="W9"
-          required="">
+        <input type="text" class="form-control" id="W9" placeholder="W9" [(ngModel)]="newCompany.w9" name="w9"
+          #w9="ngModel" required [ngClass]="{'is-invalid': w9.invalid && (w9.dirty || w9.touched)}">
+        <div *ngIf="w9.invalid && (w9.dirty || w9.touched)" class="invalid-feedback">
+          W9 is required.
+        </div>
       </div>
+
       <div class="col-md-4">
         <h5 class="font-14 font-weight-700">Upload Documents</h5>
         <input type="file" class="form-control" id="validationDefault02" placeholder="Document.pdf"
           (change)="onFileChange($event, 'w9UploadDocument')" name="validationDefault02" required="">
+              
       </div>
 
       <hr class="hr">
@@ -240,100 +306,186 @@
       <div class="col-md-4">
         <h5 class="font-14 font-weight-700">IFTA ACC</h5>
         <input type="text" class="form-control" id="IFTA ACC" placeholder="IFTA ACC" [(ngModel)]="newCompany.iftaAcc"
-          name="IFTA ACC" required="">
+          name="iftaAcc" #iftaAcc="ngModel" required
+          [ngClass]="{'is-invalid': iftaAcc.invalid && (iftaAcc.dirty || iftaAcc.touched)}">
+        <div *ngIf="iftaAcc.invalid && (iftaAcc.dirty || iftaAcc.touched)" class="invalid-feedback">
+          IFTA ACC is required.
+        </div>
       </div>
+
       <div class="col-md-4">
         <h5 class="font-14 font-weight-700">Prepass</h5>
         <input type="text" class="form-control" id="Prepass" placeholder="Prepass" [(ngModel)]="newCompany.prepass"
-          name="Prepass" required="">
+          name="prepass" #prepass="ngModel" required
+          [ngClass]="{'is-invalid': prepass.invalid && (prepass.dirty || prepass.touched)}">
+        <div *ngIf="prepass.invalid && (prepass.dirty || prepass.touched)" class="invalid-feedback">
+          Prepass is required.
+        </div>
       </div>
+
       <div class="col-md-4">
         <h5 class="font-14 font-weight-700">IRP ACC</h5>
         <input type="text" class="form-control" id="IRP ACC" placeholder="IRP ACC" [(ngModel)]="newCompany.irpAcc"
-          name="IRP ACC" required="">
+          name="irpAcc" #irpAcc="ngModel" required
+          [ngClass]="{'is-invalid': irpAcc.invalid && (irpAcc.dirty || irpAcc.touched)}">
+        <div *ngIf="irpAcc.invalid && (irpAcc.dirty || irpAcc.touched)" class="invalid-feedback">
+          IRP ACC is required.
+        </div>
       </div>
+
       <div class="col-md-4">
         <h5 class="font-14 font-weight-700">IRP Renewal Date</h5>
         <input type="date" class="form-control" id="IRP Renewal Date" placeholder="dd/mm/yyyy"
-          [(ngModel)]="newCompany.irpRenewalDate" name="IRP Renewal Date" required="">
+          [(ngModel)]="newCompany.irpRenewalDate" name="irpRenewalDate" #irpRenewalDate="ngModel" required
+          [ngClass]="{'is-invalid': irpRenewalDate.invalid && (irpRenewalDate.dirty || irpRenewalDate.touched)}">
+        <div *ngIf="irpRenewalDate.invalid && (irpRenewalDate.dirty || irpRenewalDate.touched)"
+          class="invalid-feedback">
+          IRP Renewal Date is required.
+        </div>
       </div>
+
       <div class="col-md-4">
         <h5 class="font-14 font-weight-700">Insurance Document</h5>
         <input type="file" class="form-control" id="validationDefault02" placeholder="Document.pdf"
           (change)="onFileChange($event, 'insuranceDocument')" name="validationDefault02" required="">
+              
       </div>
 
       <hr class="hr">
 
+
       <div class="col-md-4">
         <h5 class="font-14 font-weight-700">Address</h5>
         <input type="text" class="form-control" id="Address" placeholder="Enter Address"
-          [(ngModel)]="newCompany.address" name="Address" required="">
+          [(ngModel)]="newCompany.address" name="address" #address="ngModel" required
+          [ngClass]="{'is-invalid': address.invalid && (address.dirty || address.touched)}">
+        <div *ngIf="address.invalid && (address.dirty || address.touched)" class="invalid-feedback">
+          Address is required.
+        </div>
       </div>
+
       <div class="col-md-4">
         <h5 class="font-14 font-weight-700">Phone</h5>
         <input type="number" class="form-control" id="Phone" placeholder="Enter Phone" [(ngModel)]="newCompany.phone"
-          name="Phone" required="">
+          name="phone" #phone="ngModel" required
+          [ngClass]="{'is-invalid': phone.invalid && (phone.dirty || phone.touched)}">
+        <div *ngIf="phone.invalid && (phone.dirty || phone.touched)" class="invalid-feedback">
+          Phone number is required.
+        </div>
       </div>
+
       <div class="col-md-4">
-        <h5 class="font-14 font-weight-700"> Pull Noitce ACC</h5>
-        <input type="text" class="form-control" id="Pull Noitce ACC" placeholder=" Pull Noitce ACC"
-          [(ngModel)]="newCompany.pullNoticeAcc" name="Pull Noitce ACC" required="">
+        <h5 class="font-14 font-weight-700">Pull Notice ACC</h5>
+        <input type="text" class="form-control" id="Pull Noitce ACC" placeholder="Pull Notice ACC"
+          [(ngModel)]="newCompany.pullNoticeAcc" name="pullNoticeAcc" #pullNoticeAcc="ngModel" required
+          [ngClass]="{'is-invalid': pullNoticeAcc.invalid && (pullNoticeAcc.dirty || pullNoticeAcc.touched)}">
+        <div *ngIf="pullNoticeAcc.invalid && (pullNoticeAcc.dirty || pullNoticeAcc.touched)" class="invalid-feedback">
+          Pull Notice ACC is required.
+        </div>
       </div>
+
       <div class="col-md-4">
         <h5 class="font-14 font-weight-700">Truck</h5>
         <input type="text" class="form-control" id="Truck" placeholder="Truck" [(ngModel)]="newCompany.truck"
-          name="Truck" required="">
+          name="truck" #truck="ngModel" required
+          [ngClass]="{'is-invalid': truck.invalid && (truck.dirty || truck.touched)}">
+        <div *ngIf="truck.invalid && (truck.dirty || truck.touched)" class="invalid-feedback">
+          Truck is required.
+        </div>
       </div>
+
       <div class="col-md-4">
         <h5 class="font-14 font-weight-700">Registration</h5>
         <input type="text" class="form-control" id="Registration" placeholder="Registration"
-          [(ngModel)]="newCompany.registration" name="Registration" required="">
+          [(ngModel)]="newCompany.registration" name="registration" #registration="ngModel" required
+          [ngClass]="{'is-invalid': registration.invalid && (registration.dirty || registration.touched)}">
+        <div *ngIf="registration.invalid && (registration.dirty || registration.touched)" class="invalid-feedback">
+          Registration is required.
+        </div>
       </div>
       <div class="col-md-4">
         <h5 class="font-14 font-weight-700">Registration Upload Document</h5>
         <input type="file" class="form-control" id="validationDefault02" placeholder="Document.pdf"
-        (change)="onFileChange($event, 'registrationUploadDocument')" name="validationDefault02" required="">
+          (change)="onFileChange($event, 'registrationUploadDocument')" name="validationDefault02" required="">
+              
       </div>
+
       <div class="col-md-4">
         <h5 class="font-14 font-weight-700">Owner Address</h5>
         <input type="text" class="form-control" id="Owner Address" placeholder="Owner Address"
-          [(ngModel)]="newCompany.ownerAddress" name="Owner Address" required="">
+          [(ngModel)]="newCompany.ownerAddress" name="ownerAddress" #ownerAddress="ngModel" required
+          [ngClass]="{'is-invalid': ownerAddress.invalid && (ownerAddress.dirty || ownerAddress.touched)}">
+        <div *ngIf="ownerAddress.invalid && (ownerAddress.dirty || ownerAddress.touched)" class="invalid-feedback">
+          Owner Address is required.
+        </div>
       </div>
+
       <div class="col-md-4">
         <h5 class="font-14 font-weight-700">Owner Phone</h5>
-        <input type="number" class="form-control" id="Owner Phone" placeholder=" Owner Phone"
-          [(ngModel)]="newCompany.ownerPhone" name="Owner Phone" required="">
+        <input type="number" class="form-control" id="Owner Phone" placeholder="Owner Phone"
+          [(ngModel)]="newCompany.ownerPhone" name="ownerPhone" #ownerPhone="ngModel" required
+          [ngClass]="{'is-invalid': ownerPhone.invalid && (ownerPhone.dirty || ownerPhone.touched)}">
+        <div *ngIf="ownerPhone.invalid && (ownerPhone.dirty || ownerPhone.touched)" class="invalid-feedback">
+          Owner Phone is required.
+        </div>
       </div>
+
       <div class="col-md-4">
         <h5 class="font-14 font-weight-700">Owner Email</h5>
         <input type="email" class="form-control" id="Owner Email" placeholder="Owner Email"
-          [(ngModel)]="newCompany.ownerEmail" name="Owner Email" required="">
+          [(ngModel)]="newCompany.ownerEmail" name="ownerEmail" #ownerEmail="ngModel" required
+          [ngClass]="{'is-invalid': ownerEmail.invalid && (ownerEmail.dirty || ownerEmail.touched)}">
+        <div *ngIf="ownerEmail.invalid && (ownerEmail.dirty || ownerEmail.touched)" class="invalid-feedback">
+          A valid Owner Email is required.
+        </div>
       </div>
+
       <div class="col-md-4">
         <h5 class="font-14 font-weight-700">Number of Trailer</h5>
         <input type="number" class="form-control" id="Number of Trailer" placeholder="Number of Trailer"
-          [(ngModel)]="newCompany.numberOfTrailer" name="Number of Trailer" required="">
+          [(ngModel)]="newCompany.numberOfTrailer" name="numberOfTrailer" #numberOfTrailer="ngModel" required
+          [ngClass]="{'is-invalid': numberOfTrailer.invalid && (numberOfTrailer.dirty || numberOfTrailer.touched)}">
+        <div *ngIf="numberOfTrailer.invalid && (numberOfTrailer.dirty || numberOfTrailer.touched)"
+          class="invalid-feedback">
+          Number of Trailer is required.
+        </div>
       </div>
       <div class="col-md-4">
         <h5 class="font-14 font-weight-700">Trailer Registration</h5>
         <input type="date" class="form-control" id="Trailer Registration" placeholder="dd/mm/yyyy"
-          [(ngModel)]="newCompany.trailerRegistration" name="Trailer Registration" required="">
+          [(ngModel)]="newCompany.trailerRegistration" name="trailerRegistration" #trailerRegistration="ngModel"
+          required
+          [ngClass]="{'is-invalid': trailerRegistration.invalid && (trailerRegistration.dirty || trailerRegistration.touched)}">
+        <div *ngIf="trailerRegistration.invalid && (trailerRegistration.dirty || trailerRegistration.touched)"
+          class="invalid-feedback">
+          Trailer Registration is required.
+        </div>
       </div>
+
       <div class="col-md-4">
         <h5 class="font-14 font-weight-700">Trailer Upload Document</h5>
         <input type="file" class="form-control" id="validationDefault02" placeholder="Document.pdf"
-        (change)="onFileChange($event, 'trailerUploadDocument')" name="validationDefault02" required="">
+          (change)="onFileChange($event, 'trailerUploadDocument')" name="validationDefault02" required="">
+              
       </div>
+
       <div class="col-md-4">
         <h5 class="font-14 font-weight-700">Randon DT Enrollment Cert</h5>
         <input type="text" class="form-control" id="Randon DT Enrollment Cert" placeholder="Randon DT Enrollment Cert"
-          [(ngModel)]="newCompany.randomDtEnrollmentCert" name="Randon DT Enrollment Cert" required="">
+          [(ngModel)]="newCompany.randomDtEnrollmentCert" name="randomDtEnrollmentCert"
+          #randomDtEnrollmentCert="ngModel" required
+          [ngClass]="{'is-invalid': randomDtEnrollmentCert.invalid && (randomDtEnrollmentCert.dirty || randomDtEnrollmentCert.touched)}">
+        <div *ngIf="randomDtEnrollmentCert.invalid && (randomDtEnrollmentCert.dirty || randomDtEnrollmentCert.touched)"
+          class="invalid-feedback">
+          Randon DT Enrollment Cert is required.
+        </div>
       </div>
+
       <div class="col-md-4">
         <h5 class="font-14 font-weight-700">Randon Upload Document</h5>
         <input type="file" class="form-control" id="validationDefault02" placeholder="Document.pdf"
-        (change)="onFileChange($event, 'randomDtUploadDocument')" name="validationDefault02" required="">
+          (change)="onFileChange($event, 'randomDtUploadDocument')" name="validationDefault02" required="">
+              
       </div>
 
       <div class="modal-footer justify-content-center"
@@ -345,7 +497,6 @@
       </div>
     </form>
 
-  </div>
+      
+  </div>
 </div>
-
-
